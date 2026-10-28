@@ -1,0 +1,31 @@
+:root {
+  /* Brand Tactical Palette */
+  --color-pitch-turf-hover: #09523b;
+  --color-pitch-turf-active: #063b2a;
+  --color-pitch-turf-surface: #f0fdf4;
+  --color-floodlight-navy: #0b192c;
+  --color-live-orange-hover: #c2410c;
+  --color-live-orange-active: #9a3412;
+  --color-card-red-danger: #dc2626;
+  --color-card-red-hover: #b91c1c;
+  --color-card-red-surface: #fef2f2;
+  --color-card-red-border: #fca5a5;
+  --color-status-warning-amber: #b45309;
+  --color-status-success-emerald: #047857;
+  --color-info-reassign-blue: #1d4ed8;
+  --color-info-reassign-accent: #2563eb;
+  --color-info-reassign-surface: #eff6ff;
+  --color-canvas-alabaster: #f8fafc;
+  --color-surface-card: #ffffff;
+  --color-text-muted: #64748b;
+  --color-border-grid: #e2e8f0;
+  --color-border-control: #cbd5e1;
+  --color-primary-container: #0d6e4f;
+  --color-on-primary-container: #99edc6;
+
+  /* Typography Scale */
+  --font-headline: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-eyebrow: 'Barlow Condensed', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}

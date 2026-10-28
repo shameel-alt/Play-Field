@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"card-red-border":"#fca5a5","card-red-hover":"#b91c1c","surface":"#f1fcf3","surface-variant":"#dae5dd","background":"#f1fcf3","pitch-turf-active":"#063b2a","primary-fixed":"#9ff4cc","error-container":"#ffdad6","card-red-danger":"#dc2626","on-secondary-fixed-variant":"#3a475c","secondary-fixed-dim":"#bac7e1","on-primary-fixed-variant":"#005139","secondary-fixed":"#d6e3fe","on-background":"#141e19","on-surface":"#141e19","live-orange-hover":"#c2410c","info-reassign-surface":"#eff6ff","inverse-surface":"#28332d","on-tertiary-fixed":"#370e00","border-grid":"#e2e8f0","surface-container":"#e5f1e8","surface-card":"#ffffff","live-orange-active":"#9a3412","on-error":"#ffffff","on-tertiary-fixed-variant":"#7f2b00","surface-container-lowest":"#ffffff","tertiary-container":"#ab3c00","inverse-primary":"#83d7b1","on-secondary":"#ffffff","info-reassign-blue":"#1d4ed8","on-surface-variant":"#3f4943","card-red-surface":"#fef2f2","tertiary-fixed-dim":"#ffb599","pitch-turf-hover":"#09523b","canvas-alabaster":"#f8fafc","tertiary":"#832c00","on-tertiary":"#ffffff","outline-variant":"#bec9c1","secondary":"#525f75","pitch-turf-surface":"#f0fdf4","surface-tint":"#076c4d","primary-container":"#0d6e4f","inverse-on-surface":"#e8f4eb","error":"#ba1a1a","card-red-active":"#991b1b","primary-fixed-dim":"#83d7b1","on-secondary-fixed":"#0e1c2f","info-reassign-border":"#bfdbfe","status-warning-amber":"#b45309","state-hover-gray":"#f1f5f9","secondary-container":"#d6e3fe","floodlight-navy":"#0b192c","status-success-emerald":"#047857","surface-container-high":"#e0ebe2","text-placeholder":"#94a3b8","on-primary-fixed":"#002115","on-primary-container":"#99edc6","surface-container-highest":"#dae5dd","text-muted":"#64748b","on-tertiary-container":"#ffd3c3","info-reassign-accent":"#2563eb","on-secondary-container":"#58657b","surface-dim":"#d1ddd4","primary":"#00543b","surface-bright":"#f1fcf3","border-control":"#cbd5e1","on-primary":"#ffffff","tertiary-fixed":"#ffdbce","outline":"#6f7a73","surface-container-low":"#ebf6ee","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","margin":"1rem","gutter-md":"1.25rem","space-lg":"1rem","space-xs":"0.25rem","space-md":"0.625rem","gutter-lg":"1.5rem","space-xl":"1.5rem","space-sm":"0.375rem","margin-md":"1.5rem","margin-lg":"2rem"},"fontFamily":{"table-cell":["Instrument Sans"],"score-display-mobile":["JetBrains Mono"],"headline-md-mobile":["Plus Jakarta Sans"],"input-entry":["Instrument Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"badge-label":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Instrument Sans"],"score-entry":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"eyebrow":["Barlow Condensed"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Instrument Sans"],"subheading":["Instrument Sans"],"data-mono":["JetBrains Mono"],"score-display":["JetBrains Mono"]},"fontSize":{"table-cell":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display-mobile":["28px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md-mobile":["18px",{"lineHeight":"24px","letterSpacing":"-0.015em","fontWeight":"700"}],"input-entry":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"badge-label":["12px",{"lineHeight":"12px","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"score-entry":["20px",{"lineHeight":"24px","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"eyebrow":["13px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"22px","fontWeight":"400"}],"subheading":["16px",{"lineHeight":"22px","fontWeight":"600"}],"data-mono":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display":["36px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas-alabaster font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card border-b border-border-grid shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="landing" href="#"><img alt="Play Field Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpV83TVnr_8FNRkCuzr_oaoKFzsFHMvUZDfIktr5-0HscVW4DCqFgwNLP1Ffy40qsbLOTAmL03YfnxP28CAnW19nSuYYqSb_S1MjSp1fWg63HdYOJZZK_n-S69KDBzfy1gUkHrz4YxNTaLWehPs9k7f46YDA-ItedhhMJ_EttCpePbZzfxelC-yE39BXWB8Ez2DlxQ_rrUiNPLhtf8M2wphb0kSjF8fYe_bMj-b1A"/><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold tracking-tight uppercase">Play Field</span></a><span class="hidden lg:inline-flex items-center px-space-xs py-0.5 rounded-full bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase tracking-wider">Broadcast Desk</span></div><nav class="hidden xl:flex items-center gap-space-xl" data-active-classes="text-primary font-subheading border-b-2 border-primary-container pb-1"><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ongoing-tournaments" href="#">Ongoing Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ended-tournaments" href="#">Ended Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="public-live" href="#">Public Live Match Center</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover hover:text-on-primary active:bg-pitch-turf-active font-subheading text-subheading shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap" data-path="wizard-step1" href="#"><span class="material-symbols-outlined text-[18px]">add_circle</span><span>+ Start Tournament</span></a><button aria-label="Notifications" class="p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-card-red-danger"></span></button><div class="flex items-center pl-space-xs border-l border-border-grid"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-border-grid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL2lTIHZNPd2I0gTfnEQCwWGxUmuuMWI9h3naoviZBXcbcUsT4P5Z-AhSXcJkjuRnu87yfKNVK8vJAYoGw5vqLdGpkgPjbBCQU0uQi64muj8Lpz7m_P6klaSVPhph4bELkYw77_GZ3ZQSTmcw0xb-r1tQ-reGHvGS1cASiqaeDCOwz9W3nBrA5Ob4K4ebf1HmuTOE-nqwsNbLp5KdRMOj6OHJPSUlWGWxtyS1xVs4"/></div></div></div></header><main class="w-full pt-16 bg-canvas-alabaster flex-1"><div class="flex flex-col w-full">
+<!-- Stepper & Tactical Masthead Bar -->
+<section class="w-full bg-surface-card shadow-sm py-space-md">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg">
+<!-- Breadcrumb navigation stream -->
+<nav class="flex items-center gap-space-xs text-text-muted font-badge-label text-badge-label uppercase mb-space-sm">
+<a class="hover:text-primary transition-colors" href="#">Tournaments Desk</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Creation Wizard</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Step 1: Event &amp; Venue</span>
+</nav>
+<!-- Stepper Pill Progression Track -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-space-sm pt-space-xs">
+<!-- Step 1 (Active) -->
+<div class="flex items-center gap-space-sm px-space-md py-space-xs rounded-xl bg-pitch-turf-surface text-primary shadow-sm">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-data-mono text-badge-label">1</div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow tracking-wider uppercase text-primary">Active Stage</span>
+<span class="font-subheading text-subheading truncate font-bold text-pitch-turf-active">Event &amp; Venue Details</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-center gap-space-sm px-space-md py-space-xs rounded-xl bg-surface-container-low text-text-muted hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-data-mono text-badge-label">2</div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow tracking-wider uppercase text-text-muted">Roster Matrix</span>
+<span class="font-subheading text-subheading truncate">Teams &amp; Rosters</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center gap-space-sm px-space-md py-space-xs rounded-xl bg-surface-container-low text-text-muted hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-data-mono text-badge-label">3</div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow tracking-wider uppercase text-text-muted">Draw &amp; Fixtures</span>
+<span class="font-subheading text-subheading truncate">Structure Confirmation</span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-center gap-space-sm px-space-md py-space-xs rounded-xl bg-surface-container-low text-text-muted hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-data-mono text-badge-label">4</div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow tracking-wider uppercase text-text-muted">Fiscal Lock</span>
+<span class="font-subheading text-subheading truncate">Payment &amp; Publish</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Section Header -->
+<section class="w-full py-space-lg bg-surface-container-lowest shadow-[0_2px_4px_rgba(0,0,0,0.02)]">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="inline-flex items-center gap-space-xs font-eyebrow text-eyebrow tracking-widest uppercase text-primary mb-space-xs">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald animate-pulse"></span>
+          Operations Engine // Engine v4.2
+        </div>
+<h1 class="font-headline-lg text-headline-lg text-floodlight-navy font-extrabold tracking-tight">
+          Start New Tournament — Venue Booking &amp; Event Setup
+        </h1>
+<p class="font-body-md text-body-md text-text-muted mt-space-xs max-w-3xl">
+          Reserve official tournament pitches, set competition brackets, and orchestrate match day timetable matrices without physical schedule collisions.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm text-text-muted font-data-mono text-data-mono bg-canvas-alabaster px-space-md py-space-xs rounded-xl">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span>Venue Collision Shield Active</span>
+</div>
+</div>
+</section>
+<!-- Main Multi-Column Content Workstation -->
+<main class="w-full py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
+<!-- Left Form Column: 8 Cols (~66%) -->
+<div class="lg:col-span-8 space-y-space-xl">
+<!-- Block 1: Discipline & Sport Archetype -->
+<div class="bg-surface-card rounded-xl shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-eyebrow text-eyebrow text-primary">01 / SPORT SPECIFICATION</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-subheading text-subheading font-bold text-floodlight-navy">Discipline</span>
+</div>
+<span class="font-badge-label text-badge-label uppercase px-2 py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald">
+                FIFA / AMF Rules Configured
+              </span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm" id="sport-selector">
+<!-- Futsal 5v5 (Active) -->
+<button class="sport-chip text-left p-space-md rounded-xl bg-pitch-turf-surface text-pitch-turf-active shadow-sm flex flex-col justify-between transition-all" data-sport="futsal" type="button">
+<div class="flex items-center justify-between w-full mb-space-sm">
+<span class="material-symbols-outlined text-[26px] text-primary" style="font-variation-settings: 'FILL' 1;">sports_soccer</span>
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Futsal 5v5</span>
+<span class="font-data-mono text-badge-label text-pitch-turf-hover">High-tempo indoor court</span>
+</div>
+</button>
+<!-- 7-a-side -->
+<button class="sport-chip text-left p-space-md rounded-xl bg-canvas-alabaster text-on-surface-variant hover:bg-surface-container transition-all flex flex-col justify-between" data-sport="seven-side" type="button">
+<div class="flex items-center justify-between w-full mb-space-sm">
+<span class="material-symbols-outlined text-[26px] text-text-muted">sports_soccer</span>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">7-a-side Football</span>
+<span class="font-data-mono text-badge-label text-text-muted">Extended turf arena</span>
+</div>
+</button>
+<!-- Indoor Cricket -->
+<button class="sport-chip text-left p-space-md rounded-xl bg-canvas-alabaster text-on-surface-variant hover:bg-surface-container transition-all flex flex-col justify-between" data-sport="cricket" type="button">
+<div class="flex items-center justify-between w-full mb-space-sm">
+<span class="material-symbols-outlined text-[26px] text-text-muted">sports_cricket</span>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Indoor Cricket</span>
+<span class="font-data-mono text-badge-label text-text-muted">Tension net stadium</span>
+</div>
+</button>
+<!-- Badminton -->
+<button class="sport-chip text-left p-space-md rounded-xl bg-canvas-alabaster text-on-surface-variant hover:bg-surface-container transition-all flex flex-col justify-between" data-sport="badminton" type="button">
+<div class="flex items-center justify-between w-full mb-space-sm">
+<span class="material-symbols-outlined text-[26px] text-text-muted">sports_tennis</span>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Badminton</span>
+<span class="font-data-mono text-badge-label text-text-muted">BWF synthetic taraflex</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Block 2: Tournament Architecture & Brackets -->
+<div class="bg-surface-card rounded-xl shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-eyebrow text-eyebrow text-primary">02 / COMPETITION ARCHITECTURE</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-subheading text-subheading font-bold text-floodlight-navy">Tournament Style</span>
+</div>
+<span class="font-table-cell text-table-cell text-text-muted">Automatic Standings &amp; Goal Difference Calc</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card A: Group Stage + Single Elim (Selected) -->
+<div class="relative p-space-md rounded-xl bg-pitch-turf-surface shadow-sm cursor-pointer transition-all">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-badge-label text-badge-label uppercase px-2 py-0.5 rounded-full bg-primary text-on-primary">
+                    Recommended
+                  </span>
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h3 class="font-subheading text-subheading font-bold text-floodlight-navy mb-space-xs">
+                  Group Stage + Knockout
+                </h3>
+<p class="font-body-md text-body-md text-pitch-turf-hover mb-space-md">
+                  Most popular format for corporate futsal cups. Guarantees 3+ group fixtures prior to sudden death.
+                </p>
+<div class="font-data-mono text-badge-label text-pitch-turf-active bg-pitch-turf-surface py-1 px-2 rounded inline-block">
+                  4 Groups × 4 Squads → Quarterfinals
+                </div>
+</div>
+<!-- Card B: Round Robin League -->
+<div class="relative p-space-md rounded-xl bg-canvas-alabaster hover:bg-surface-container cursor-pointer transition-all">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-badge-label text-badge-label uppercase px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant">
+                    League Table
+                  </span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">radio_button_unchecked</span>
+</div>
+<h3 class="font-subheading text-subheading font-bold text-floodlight-navy mb-space-xs">
+                  Round Robin League
+                </h3>
+<p class="font-body-md text-body-md text-text-muted mb-space-md">
+                  Every registered team plays all opponents once. Maximum pitch utilization and unified table.
+                </p>
+<div class="font-data-mono text-badge-label text-text-muted bg-surface-container-high py-1 px-2 rounded inline-block">
+                  Cumulative Points &amp; Fair-Play Rank
+                </div>
+</div>
+<!-- Card C: Pure Knockout -->
+<div class="relative p-space-md rounded-xl bg-canvas-alabaster hover:bg-surface-container cursor-pointer transition-all">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-badge-label text-badge-label uppercase px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant">
+                    Fast Track
+                  </span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">radio_button_unchecked</span>
+</div>
+<h3 class="font-subheading text-subheading font-bold text-floodlight-navy mb-space-xs">
+                  Pure Knockout Bracket
+                </h3>
+<p class="font-body-md text-body-md text-text-muted mb-space-md">
+                  Single loss elimination. Ideal for rapid single-day festival cups or lightning evening cups.
+                </p>
+<div class="font-data-mono text-badge-label text-text-muted bg-surface-container-high py-1 px-2 rounded inline-block">
+                  15 Matches Total // Direct Penalty Tiebreakers
+                </div>
+</div>
+</div>
+</div>
+<!-- Block 3: Identity & Expected Participation Parameters -->
+<div class="bg-surface-card rounded-xl shadow-sm p-space-lg">
+<div class="flex items-center gap-space-xs mb-space-md">
+<span class="font-eyebrow text-eyebrow text-primary">03 / EVENT IDENTITY</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-subheading text-subheading font-bold text-floodlight-navy">Official Title &amp; Registry</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="md:col-span-2">
+<label class="block font-subheading text-subheading text-floodlight-navy mb-space-xs">
+                  Tournament Official Name <span class="text-card-red-danger">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-[46px] px-space-md rounded-xl bg-canvas-alabaster font-input-entry text-input-entry text-floodlight-navy focus:bg-surface-card focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="e.g. Western Province Futsal Championship" type="text" value="Colombo Corporate Futsal Super Cup 2026"/>
+<span class="absolute right-3 top-3 material-symbols-outlined text-status-success-emerald text-[20px]">check_circle</span>
+</div>
+<span class="block font-table-cell text-table-cell text-text-muted mt-1">This identifier will be stamped on official referee match cards and player accreditations.</span>
+</div>
+<div>
+<label class="block font-subheading text-subheading text-floodlight-navy mb-space-xs">
+                  Expected Squads <span class="text-card-red-danger">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-[46px] px-space-md rounded-xl bg-canvas-alabaster font-data-mono text-table-cell text-floodlight-navy focus:bg-surface-card focus:outline-none focus:ring-2 focus:ring-primary shadow-sm appearance-none">
+<option selected="">16 Teams (4 Groups × 4)</option>
+<option>8 Teams (2 Groups × 4)</option>
+<option>12 Teams (3 Groups × 4)</option>
+<option>24 Teams (6 Groups × 4)</option>
+<option>32 Teams Championship Deck</option>
+</select>
+<span class="absolute right-3 top-3 material-symbols-outlined text-text-muted pointer-events-none text-[20px]">expand_more</span>
+</div>
+<span class="block font-table-cell text-table-cell text-text-muted mt-1">Locks squad cap.</span>
+</div>
+</div>
+</div>
+<!-- Block 4: Venue Selection & Pitch Matrix -->
+<div class="bg-surface-card rounded-xl shadow-sm p-space-lg space-y-space-lg">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-eyebrow text-eyebrow text-primary">04 / VENUE ALLOCATION</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-subheading text-subheading font-bold text-floodlight-navy">Arena &amp; Court Matrix</span>
+</div>
+<a class="font-table-cell text-table-cell text-primary hover:underline flex items-center gap-0.5" href="#">
+                  Change Venue Facility <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+<p class="font-body-md text-body-md text-text-muted">Synchronized directly with venue hardware booking gateways to prevent dual scheduling.</p>
+</div>
+<!-- Selected Venue Showcase Banner -->
+<div class="p-space-md rounded-xl bg-canvas-alabaster flex flex-col md:flex-row gap-space-md items-start md:items-center justify-between">
+<div class="flex items-center gap-space-md">
+<img class="w-20 h-20 rounded-xl object-cover shadow-sm" data-alt="High-angle professional photo of modern indoor synthetic futsal arena in Colombo with bright LED floodlights, pristine green turf, and marked sidelines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdL8qyyr_xWJycUSMk4Ya2OZvv_j7vEwoqyUh_z3nI8RebpBcEah4KlYdV5e3RMwyJgXDknbWiQPYGSizmzqct4lpIe7vKh3sVtC94WpP-uggUEEMFVT2mhQPVTItEA1h6iJKmXmL6dPqYxjk8unytdaaULYo9Srli7DLj0Jfagb1sP-67tY1rtd_KPvc-en0XTaCnmLxv5aRomcdBSawUFz3lGf2JApD5oQXr654"/>
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-subheading text-subheading font-bold text-floodlight-navy">Colombo Futsal Hub — Synthetic &amp; FIFA Arena</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald uppercase">Verified Partner</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 font-table-cell text-table-cell text-text-muted">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span> Colombo 07, Albert Crescent</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">sports_soccer</span> 5 Total Pitches</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">wb_incandescent</span> 800 Lux Floodlights</span>
+</div>
+</div>
+</div>
+<!-- Live Venue Status Pill -->
+<div class="bg-surface-card px-space-md py-space-xs rounded-xl shadow-sm flex flex-col items-end">
+<span class="font-eyebrow text-eyebrow text-status-success-emerald tracking-wide">STATUS // ONLINE</span>
+<span class="font-data-mono text-table-cell text-floodlight-navy font-bold">API Gate Connected</span>
+</div>
+</div>
+<!-- Court Selector Matrix -->
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-subheading text-subheading font-bold text-floodlight-navy">Select Required Pitches for Concurrent Matches</span>
+<span class="font-data-mono text-badge-label text-primary font-bold">3 COURTS SELECTED</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-sm" id="court-selector-pills">
+<!-- Court 1 (Synthetic Turf - Selected) -->
+<label class="cursor-pointer p-space-md rounded-xl bg-pitch-turf-surface text-pitch-turf-active flex flex-col justify-between shadow-sm transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-eyebrow text-eyebrow text-pitch-turf-hover">COURT 01</span>
+<input checked="" class="accent-primary w-4 h-4 rounded" type="checkbox"/>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Pitch 1 (Turf)</span>
+<span class="font-table-cell text-table-cell text-text-muted">40mm Synthetic</span>
+</div>
+<span class="mt-space-sm font-badge-label text-badge-label text-status-success-emerald font-bold uppercase">Ready</span>
+</label>
+<!-- Court 2 (Synthetic Turf - Selected) -->
+<label class="cursor-pointer p-space-md rounded-xl bg-pitch-turf-surface text-pitch-turf-active flex flex-col justify-between shadow-sm transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-eyebrow text-eyebrow text-pitch-turf-hover">COURT 02</span>
+<input checked="" class="accent-primary w-4 h-4 rounded" type="checkbox"/>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Pitch 2 (Turf)</span>
+<span class="font-table-cell text-table-cell text-text-muted">40mm Synthetic</span>
+</div>
+<span class="mt-space-sm font-badge-label text-badge-label text-status-success-emerald font-bold uppercase">Ready</span>
+</label>
+<!-- Court 3 (Indoor Hardwood - Unselected) -->
+<label class="cursor-pointer p-space-md rounded-xl bg-canvas-alabaster text-on-surface-variant flex flex-col justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-eyebrow text-eyebrow text-text-muted">COURT 03</span>
+<input class="accent-primary w-4 h-4 rounded" type="checkbox"/>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Pitch 3 (Wood)</span>
+<span class="font-table-cell text-table-cell text-text-muted">Indoor Hardwood</span>
+</div>
+<span class="mt-space-sm font-badge-label text-badge-label text-text-muted uppercase">Unallocated</span>
+</label>
+<!-- Court 4 (Training Cage - Unavailable) -->
+<div class="p-space-md rounded-xl bg-surface-container-high text-text-muted opacity-60 flex flex-col justify-between cursor-not-allowed">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-eyebrow text-eyebrow text-text-muted">COURT 04</span>
+<span class="material-symbols-outlined text-[16px]">lock</span>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Pitch 4 (Cage)</span>
+<span class="font-table-cell text-table-cell text-text-muted">Training Only</span>
+</div>
+<span class="mt-space-sm font-badge-label text-badge-label text-card-red-danger uppercase">Maintenance</span>
+</div>
+<!-- Court 5 (FIFA Spec Turf - Selected) -->
+<label class="cursor-pointer p-space-md rounded-xl bg-pitch-turf-surface text-pitch-turf-active flex flex-col justify-between shadow-sm transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-eyebrow text-eyebrow text-pitch-turf-hover">COURT 05</span>
+<input checked="" class="accent-primary w-4 h-4 rounded" type="checkbox"/>
+</div>
+<div>
+<span class="font-subheading text-subheading font-bold block text-floodlight-navy">Arena (FIFA)</span>
+<span class="font-table-cell text-table-cell text-text-muted">Showcase Court</span>
+</div>
+<span class="mt-space-sm font-badge-label text-badge-label text-status-success-emerald font-bold uppercase">Prime Spec</span>
+</label>
+</div>
+</div>
+<!-- Pricing Model Segmented Control -->
+<div class="p-space-md rounded-xl bg-canvas-alabaster">
+<label class="block font-subheading text-subheading font-bold text-floodlight-navy mb-space-sm">
+                Preferred Venue Rental Arrangement
+              </label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<!-- Option 1: Hourly -->
+<label class="flex items-start gap-space-sm p-space-md rounded-xl bg-surface-card hover:bg-surface-container cursor-pointer transition-all">
+<input class="mt-1 accent-primary" name="pricing_tier" type="radio"/>
+<div>
+<span class="font-subheading text-subheading font-bold text-floodlight-navy block">Hourly Discretionary Rate</span>
+<span class="font-data-mono text-data-mono text-floodlight-navy">LKR 4,500 <span class="text-text-muted font-normal">/ hr per pitch</span></span>
+<span class="block font-table-cell text-table-cell text-text-muted mt-1">Flexible for short single-evening tourneys with unpredictable durations.</span>
+</div>
+</label>
+<!-- Option 2: Full Matchday Package (Active) -->
+<label class="flex items-start gap-space-sm p-space-md rounded-xl bg-pitch-turf-surface shadow-sm cursor-pointer transition-all">
+<input checked="" class="mt-1 accent-primary" name="pricing_tier" type="radio"/>
+<div class="w-full">
+<div class="flex items-center justify-between">
+<span class="font-subheading text-subheading font-bold text-pitch-turf-active">Full Matchday Package</span>
+<span class="font-badge-label text-badge-label uppercase px-2 py-0.5 rounded-full bg-status-success-emerald text-on-primary">15% SAVINGS</span>
+</div>
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">LKR 42,000 <span class="text-text-muted font-normal">/ day per court</span></span>
+<span class="block font-table-cell text-table-cell text-pitch-turf-hover mt-1">Includes unlimited 08:00–22:00 exclusive arena access, marshals &amp; scoreboard gear.</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Dates & Schedule Slot Matrix -->
+<div class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<label class="block font-subheading text-subheading font-bold text-floodlight-navy">Tournament Dates &amp; Operating Window</label>
+<span class="font-table-cell text-table-cell text-text-muted">Pitch schedule validation running across 14-hour window per day.</span>
+</div>
+<div class="inline-flex items-center gap-space-xs font-data-mono text-data-mono px-space-md py-space-xs rounded-xl bg-surface-container font-bold text-floodlight-navy">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+<span>Sat 14 Nov 2026 – Sun 15 Nov 2026 (2 Days)</span>
+</div>
+</div>
+<!-- Interactive Pitch Slot Visual Grid -->
+<div class="bg-floodlight-navy rounded-xl p-space-md text-surface-card">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-data-mono text-data-mono font-bold text-primary-fixed">TIMETABLE RADAR // DAY 1: SATURDAY</span>
+<span class="text-text-muted">•</span>
+<span class="font-table-cell text-table-cell text-secondary-fixed">08:00 — 22:00 LKR Time</span>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-space-md font-badge-label text-badge-label">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-status-success-emerald"></span> Locked Available</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-card-red-danger"></span> Booked (League)</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> Maintenance</span>
+</div>
+</div>
+<!-- Slot Timeline Matrix -->
+<div class="space-y-space-xs overflow-x-auto pb-1">
+<!-- Court 1 Slots -->
+<div class="grid grid-cols-12 gap-1 items-center min-w-[620px]">
+<span class="font-data-mono text-badge-label text-secondary-fixed col-span-2 truncate">P1: Synthetic</span>
+<div class="col-span-10 grid grid-cols-7 gap-1">
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">08-10h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">10-12h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">12-14h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">14-16h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">16-18h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">18-20h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">20-22h OK</div>
+</div>
+</div>
+<!-- Court 2 Slots -->
+<div class="grid grid-cols-12 gap-1 items-center min-w-[620px]">
+<span class="font-data-mono text-badge-label text-secondary-fixed col-span-2 truncate">P2: Synthetic</span>
+<div class="col-span-10 grid grid-cols-7 gap-1">
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">08-10h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">10-12h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">12-14h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">14-16h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">16-18h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">18-20h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">20-22h OK</div>
+</div>
+</div>
+<!-- Court 3 Slots (Unselected Reference) -->
+<div class="grid grid-cols-12 gap-1 items-center min-w-[620px] opacity-40">
+<span class="font-data-mono text-badge-label text-secondary-fixed col-span-2 truncate">P3: Hardwood</span>
+<div class="col-span-10 grid grid-cols-7 gap-1">
+<div class="bg-card-red-danger/40 text-on-error text-center py-1 rounded text-[11px] font-data-mono">Private</div>
+<div class="bg-card-red-danger/40 text-on-error text-center py-1 rounded text-[11px] font-data-mono">Private</div>
+<div class="bg-secondary text-surface-card text-center py-1 rounded text-[11px] font-data-mono">Maint.</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">Free</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">Free</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">Free</div>
+<div class="bg-card-red-danger/40 text-on-error text-center py-1 rounded text-[11px] font-data-mono">League</div>
+</div>
+</div>
+<!-- Court 5 Slots (Selected Arena) -->
+<div class="grid grid-cols-12 gap-1 items-center min-w-[620px]">
+<span class="font-data-mono text-badge-label text-secondary-fixed col-span-2 truncate">P5: FIFA Arena</span>
+<div class="col-span-10 grid grid-cols-7 gap-1">
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">08-10h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">10-12h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">12-14h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">14-16h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">16-18h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">18-20h OK</div>
+<div class="bg-pitch-turf-active text-primary-fixed text-center py-1 rounded text-[11px] font-data-mono">20-22h OK</div>
+</div>
+</div>
+</div>
+<!-- Real-Time Conflict Shield Banner -->
+<div class="mt-space-md p-space-sm bg-pitch-turf-surface rounded-lg flex items-center justify-between text-pitch-turf-active font-table-cell text-table-cell">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-status-success-emerald text-[20px]">check_circle</span>
+<span class="font-bold">Zero Scheduling Collisions Detected:</span>
+<span>All selected 28 operational time blocks across Courts 1, 2, 5 are verified open.</span>
+</div>
+<span class="font-data-mono text-badge-label uppercase text-pitch-turf-hover">Ping 18ms</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Summary & Fiscal Rail Column: 4 Cols (~34%) -->
+<div class="lg:col-span-4 sticky top-20 space-y-space-md">
+<!-- Tactical Matchday Booking Estimate Card -->
+<div class="bg-surface-card rounded-xl shadow-md p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-eyebrow text-eyebrow text-floodlight-navy tracking-widest uppercase">MATCHDAY ESTIMATE</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded-full bg-floodlight-navy text-surface-card">STAGE 1 DECK</span>
+</div>
+<div class="space-y-space-md mb-space-lg">
+<!-- Visual Arena Preview -->
+<div class="relative rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-32 object-cover" data-alt="Expansive panoramic view of FIFA-standard indoor futsal championship court with crisp white chalk markings, electronic scoreboard mast, and empty spectator stands" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl0Llm1gudlTlPm_-19tOyTJ1Q7f5UwGd0yz2DElhEbzUWer92EWF1gzMquHeaOeWtgfgQoj3ZYirNK9iieXDV7rrlywjP6RckTosZUsoBJqp3K0NBdUg1PQy7VbN_PNTQAxyEIiZrLAdXLfZeaxVumcAbKJ5Wt6j25cdmpmNp-RCF1YplYnVnofkUblF_YY6EH0D81avcHGFZUXMsiQYphIMI7oehEetc18CYLn8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-floodlight-navy/90 via-transparent to-transparent flex items-end p-space-sm">
+<div class="text-surface-card">
+<span class="font-badge-label text-badge-label uppercase text-primary-fixed block">Venue Locked</span>
+<span class="font-subheading text-subheading font-bold">Colombo Futsal Hub Arena</span>
+</div>
+</div>
+</div>
+<!-- Line Items Matrix -->
+<div class="space-y-space-sm font-table-cell text-table-cell">
+<div class="flex items-center justify-between py-1 bg-canvas-alabaster px-space-sm rounded">
+<span class="text-text-muted">Selected Sport</span>
+<span class="font-bold text-floodlight-navy">Futsal (5v5 Pro)</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-canvas-alabaster px-space-sm rounded">
+<span class="text-text-muted">Allocated Courts</span>
+<span class="font-bold text-floodlight-navy">3 Pitches (C1, C2, C5)</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-canvas-alabaster px-space-sm rounded">
+<span class="text-text-muted">Tournament Duration</span>
+<span class="font-bold text-floodlight-navy">2 Days (Full Weekend)</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-canvas-alabaster px-space-sm rounded">
+<span class="text-text-muted">Total Reserved Pitch Time</span>
+<span class="font-data-mono text-data-mono font-bold text-floodlight-navy">24 Court Hours</span>
+</div>
+</div>
+<!-- Monetary Subtotals -->
+<div class="space-y-space-xs pt-space-sm">
+<div class="flex items-center justify-between font-table-cell text-table-cell">
+<span class="text-text-muted">Court Allocation Subtotal</span>
+<span class="font-data-mono text-data-mono text-floodlight-navy">LKR 126,000</span>
+</div>
+<div class="flex items-center justify-between font-table-cell text-table-cell">
+<span class="text-text-muted">Floodlight &amp; Marshaling Service</span>
+<span class="font-data-mono text-data-mono text-floodlight-navy">LKR 14,000</span>
+</div>
+<div class="flex items-center justify-between font-table-cell text-table-cell text-pitch-turf-hover font-bold">
+<span>Matchday Package Discount (15%)</span>
+<span class="font-data-mono text-data-mono">-LKR 14,000</span>
+</div>
+<div class="flex items-center justify-between pt-space-sm mt-space-xs bg-canvas-alabaster p-space-sm rounded-lg">
+<div>
+<span class="block font-subheading text-subheading font-extrabold text-floodlight-navy">Estimated Grand Total</span>
+<span class="text-[12px] text-text-muted">Tax &amp; pitch cleanup included</span>
+</div>
+<span class="font-score-entry text-score-entry text-floodlight-navy font-bold">LKR 126,000</span>
+</div>
+</div>
+<!-- Deposit Required Highlight Box -->
+<div class="p-space-md rounded-xl bg-pitch-turf-surface text-pitch-turf-active">
+<div class="flex items-center justify-between mb-1">
+<span class="font-eyebrow text-eyebrow text-pitch-turf-hover uppercase tracking-wider">RESERVATION HOLD (30%)</span>
+<span class="material-symbols-outlined text-[18px] text-primary">lock_clock</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-extrabold text-primary">LKR 42,000</span>
+<span class="font-data-mono text-badge-label text-text-muted">Payable at Step 4</span>
+</div>
+<p class="font-table-cell text-table-cell text-pitch-turf-hover mt-space-xs">
+                  Remaining 70% (LKR 84,000) collected on event morning prior to opening kickoff.
+                </p>
+</div>
+</div>
+<!-- Collision Shield Security Notice -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">shield</span>
+<div>
+<span class="font-subheading text-subheading font-bold text-floodlight-navy block">Conflict-Free Schedule Guarantee</span>
+<p class="font-table-cell text-table-cell text-text-muted">
+                  These court slots are provisionally quarantined for <span class="font-data-mono text-floodlight-navy font-bold" id="slot-timer">14:59</span> while you complete roster registration.
+                </p>
+</div>
+</div>
+</div>
+<!-- Quick Venue Regulatory Badges -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-xs text-text-muted font-table-cell text-table-cell">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">emergency</span>
+<span>On-site pitchside paramedic facility included.</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">wifi</span>
+<span>Broadcast-grade 300 Mbps Wi-Fi for Live Match Desk.</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">local_parking</span>
+<span>120 dedicated athlete and team bus parking slots.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Tactical Footer Actions Bar -->
+<footer class="w-full bg-surface-card shadow-[0_-4px_12px_rgba(0,0,0,0.06)] py-space-md">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Left State Diagnostics -->
+<div class="flex items-center gap-space-md">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-canvas-alabaster hover:bg-surface-container text-floodlight-navy font-subheading text-subheading shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+<span>Save Draft &amp; Exit</span>
+</button>
+<span class="hidden md:inline font-table-cell text-table-cell text-text-muted">
+          Draft auto-saved at 11:42 AM
+        </span>
+</div>
+<!-- Right Step Advancement Controls -->
+<div class="flex items-center gap-space-md w-full sm:w-auto justify-end">
+<a class="font-subheading text-subheading text-text-muted hover:text-floodlight-navy transition-colors px-space-sm" href="#">
+          Cancel Setup
+        </a>
+<button class="inline-flex items-center justify-center gap-space-xs px-space-xl py-space-md rounded-xl bg-primary text-on-primary hover:bg-pitch-turf-hover active:bg-pitch-turf-active font-subheading text-subheading font-bold shadow-md transition-all" id="proceed-button" type="button">
+<span>Save &amp; Proceed to Team Registration</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+</div>
+<!-- Inline Micro-interaction Script for Interactive Feedback & Timer -->
+<script>
+  // Countdown Timer for Temporary Slot Hold Quarentine
+  (function initTimer() {
+    let timeLeft = 899; // 14:59 in seconds
+    const timerDisplay = document.getElementById('slot-timer');
+    if (!timerDisplay) return;
+
+    setInterval(() => {
+      if (timeLeft <= 0) {
+        timerDisplay.textContent = "00:00 (Hold Expired)";
+        return;
+      }
+      timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+  })();
+
+  // Sport Selection Pill Toggle Interaction
+  document.querySelectorAll('#sport-selector .sport-chip').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#sport-selector .sport-chip').forEach(el => {
+        el.classList.remove('bg-pitch-turf-surface', 'text-pitch-turf-active', 'shadow-sm');
+        el.classList.add('bg-canvas-alabaster', 'text-on-surface-variant');
+        const icon = el.querySelector('.material-symbols-outlined:last-child');
+        if (icon) {
+          icon.textContent = 'radio_button_unchecked';
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-outline-variant');
+        }
+      });
+      this.classList.remove('bg-canvas-alabaster', 'text-on-surface-variant');
+      this.classList.add('bg-pitch-turf-surface', 'text-pitch-turf-active', 'shadow-sm');
+      const icon = this.querySelector('.material-symbols-outlined:last-child');
+      if (icon) {
+        icon.textContent = 'check_circle';
+        icon.classList.remove('text-outline-variant');
+        icon.classList.add('text-primary');
+      }
+    });
+  });
+
+  // Proceed button feedback
+  const proceedBtn = document.getElementById('proceed-button');
+  if (proceedBtn) {
+    proceedBtn.addEventListener('click', function() {
+      this.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span><span>Saving Court Locks...</span>';
+      setTimeout(() => {
+        alert('Step 1 Saved! In production, this advances to Step 2: Teams & Rosters.');
+        this.innerHTML = '<span>Save &amp; Proceed to Team Registration</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
+      }, 700);
+    });
+  }
+</script></main><footer class="w-full bg-surface-card border-t border-border-grid py-space-xl mt-auto"><div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase tracking-tight">Play Field</span><span class="text-text-muted font-body-md text-body-md">• Professional Tournament Management Engine</span></div><div class="flex items-center gap-space-lg text-text-muted font-table-cell text-table-cell"><a class="hover:text-primary transition-colors" data-path="public-live" href="#">Public Live Center</a><a class="hover:text-primary transition-colors" data-path="ongoing-tournaments" href="#">Tournaments</a><a class="hover:text-primary transition-colors" data-path="dashboard" href="#">Organizer Control Desk</a><span>© 2025 Play Field System. All Rights Reserved.</span></div></div></footer></body></html>

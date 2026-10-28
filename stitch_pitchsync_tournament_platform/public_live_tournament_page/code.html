@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"card-red-border":"#fca5a5","card-red-hover":"#b91c1c","surface":"#f1fcf3","surface-variant":"#dae5dd","background":"#f1fcf3","pitch-turf-active":"#063b2a","primary-fixed":"#9ff4cc","error-container":"#ffdad6","card-red-danger":"#dc2626","on-secondary-fixed-variant":"#3a475c","secondary-fixed-dim":"#bac7e1","on-primary-fixed-variant":"#005139","secondary-fixed":"#d6e3fe","on-background":"#141e19","on-surface":"#141e19","live-orange-hover":"#c2410c","info-reassign-surface":"#eff6ff","inverse-surface":"#28332d","on-tertiary-fixed":"#370e00","border-grid":"#e2e8f0","surface-container":"#e5f1e8","surface-card":"#ffffff","live-orange-active":"#9a3412","on-error":"#ffffff","on-tertiary-fixed-variant":"#7f2b00","surface-container-lowest":"#ffffff","tertiary-container":"#ab3c00","inverse-primary":"#83d7b1","on-secondary":"#ffffff","info-reassign-blue":"#1d4ed8","on-surface-variant":"#3f4943","card-red-surface":"#fef2f2","tertiary-fixed-dim":"#ffb599","pitch-turf-hover":"#09523b","canvas-alabaster":"#f8fafc","tertiary":"#832c00","on-tertiary":"#ffffff","outline-variant":"#bec9c1","secondary":"#525f75","pitch-turf-surface":"#f0fdf4","surface-tint":"#076c4d","primary-container":"#0d6e4f","inverse-on-surface":"#e8f4eb","error":"#ba1a1a","card-red-active":"#991b1b","primary-fixed-dim":"#83d7b1","on-secondary-fixed":"#0e1c2f","info-reassign-border":"#bfdbfe","status-warning-amber":"#b45309","state-hover-gray":"#f1f5f9","secondary-container":"#d6e3fe","floodlight-navy":"#0b192c","status-success-emerald":"#047857","surface-container-high":"#e0ebe2","text-placeholder":"#94a3b8","on-primary-fixed":"#002115","on-primary-container":"#99edc6","surface-container-highest":"#dae5dd","text-muted":"#64748b","on-tertiary-container":"#ffd3c3","info-reassign-accent":"#2563eb","on-secondary-container":"#58657b","surface-dim":"#d1ddd4","primary":"#00543b","surface-bright":"#f1fcf3","border-control":"#cbd5e1","on-primary":"#ffffff","tertiary-fixed":"#ffdbce","outline":"#6f7a73","surface-container-low":"#ebf6ee","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","margin":"1rem","gutter-md":"1.25rem","space-lg":"1rem","space-xs":"0.25rem","space-md":"0.625rem","gutter-lg":"1.5rem","space-xl":"1.5rem","space-sm":"0.375rem","margin-md":"1.5rem","margin-lg":"2rem"},"fontFamily":{"table-cell":["Instrument Sans"],"score-display-mobile":["JetBrains Mono"],"headline-md-mobile":["Plus Jakarta Sans"],"input-entry":["Instrument Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"badge-label":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Instrument Sans"],"score-entry":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"eyebrow":["Barlow Condensed"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Instrument Sans"],"subheading":["Instrument Sans"],"data-mono":["JetBrains Mono"],"score-display":["JetBrains Mono"]},"fontSize":{"table-cell":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display-mobile":["28px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md-mobile":["18px",{"lineHeight":"24px","letterSpacing":"-0.015em","fontWeight":"700"}],"input-entry":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"badge-label":["12px",{"lineHeight":"12px","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"score-entry":["20px",{"lineHeight":"24px","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"eyebrow":["13px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"22px","fontWeight":"400"}],"subheading":["16px",{"lineHeight":"22px","fontWeight":"600"}],"data-mono":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display":["36px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas-alabaster font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card border-b border-border-grid shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="landing" href="#"><img alt="Play Field Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu_1TIXR-X2CxapVnh__5a8u3VoAgt8RoxwLkySSFTaitboXXY3AzvzBWB_8HefzprrOGqC_bRanek0OSRGhUr50cGPMpnpZHl3briYtOpmghmb7hfAt6qTZlO4fBhppTJudHplSfFGsQmqpwezNEGTeUL_Dn2iAuNmU3OmyUnTLJ6MGt-LcqEfSMX0Kdxo5OWDFqUHq9Itsga1foxedLUomqp8278B54bvRLFhoQ"/><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold tracking-tight uppercase">Play Field</span></a><span class="hidden lg:inline-flex items-center px-space-xs py-0.5 rounded-full bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase tracking-wider">Broadcast Desk</span></div><nav class="hidden xl:flex items-center gap-space-xl" data-active-classes="text-primary font-subheading border-b-2 border-primary-container pb-1"><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ongoing-tournaments" href="#">Ongoing Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ended-tournaments" href="#">Ended Tournaments</a><a aria-current="page" class="transition-colors text-primary font-subheading border-b-2 border-primary-container pb-1" data-path="public-live" href="#">Public Live Match Center</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover hover:text-on-primary active:bg-pitch-turf-active font-subheading text-subheading shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap" data-path="wizard-step1" href="#"><span class="material-symbols-outlined text-[18px]">add_circle</span><span>+ Start Tournament</span></a><button aria-label="Notifications" class="p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-card-red-danger"></span></button><div class="flex items-center pl-space-xs border-l border-border-grid"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-border-grid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5B9jcfvJpOO40Ze8Fh25eqjGzd-QEgJugQFJxx3lchlzAOK8W-QkbBiQbr6sxJLmXqa1_CtkfXQgRhrHRiYg9x7jwc-bS8_vIbrdQ2_ilFhWuWramh964XR5HQSKiMPhVGXSlJnLpgyXhZUSdrUND-zDcCbdyYDBa9q8gfZbJzcUpR09GfTzKhNYe5hV7sVZ9C-c2VJOV1-QwEOnboTHnhnOLV5ZYf94c3BrZS4Y"/></div></div></div></header><main class="w-full pt-16 bg-canvas-alabaster flex-1"><div class="flex flex-col w-full">
+<!-- Section 0: Broadcast Header / Dark Masthead -->
+<section class="w-full bg-floodlight-navy text-surface-card shadow-xl relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-floodlight-navy via-pitch-turf-active/40 to-floodlight-navy pointer-events-none opacity-50"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg py-space-xl relative z-10 flex flex-col gap-space-lg">
+<!-- Top Utility Strip: Live Indicator, Venue, Share CTAs -->
+<div class="flex flex-wrap items-center justify-between gap-gutter border-b border-secondary/20 pb-space-md">
+<div class="flex items-center flex-wrap gap-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-card/10 backdrop-blur-sm">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-success-emerald opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-status-success-emerald"></span>
+</span>
+<span class="font-badge-label text-badge-label tracking-widest text-primary-fixed uppercase">LIVE MATCHDAY UPDATES ACTIVE</span>
+</div>
+<div class="flex items-center gap-space-xs text-secondary-fixed font-table-cell text-table-cell">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">stadium</span>
+<span>Colombo Futsal Hub • Synthetic Arena 4 &amp; 5</span>
+</div>
+</div>
+<!-- Share Desk Buttons -->
+<div class="flex items-center gap-space-xs">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-card/10 hover:bg-surface-card/20 text-surface-card font-subheading text-subheading transition-colors" id="copyLinkBtn" title="Copy Match Center URL" type="button">
+<span class="material-symbols-outlined text-[18px]">link</span>
+<span>Copy Link</span>
+</button>
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-status-success-emerald hover:bg-pitch-turf-hover text-surface-card font-subheading text-subheading transition-colors" href="https://wa.me/?text=Follow%20Live%20Matches%20at%20Colombo%20Corporate%20Futsal%20Super%20Cup%202026" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>WhatsApp Share</span>
+</a>
+</div>
+</div>
+<!-- Masthead Title & Phase Display -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<span class="font-eyebrow text-eyebrow text-primary-fixed tracking-widest uppercase">Official Match Operations • Public Spectator Stream</span>
+<h1 class="font-eyebrow text-[28px] md:text-[34px] lg:text-[40px] leading-tight font-bold tracking-tight uppercase text-surface-card mt-0.5">
+            COLOMBO CORPORATE FUTSAL SUPER CUP 2026
+          </h1>
+</div>
+<div class="flex flex-col md:items-end gap-1">
+<span class="font-badge-label text-badge-label uppercase text-secondary-fixed bg-surface-card/10 px-2 py-1 rounded">Spectator Feed #409</span>
+<p class="font-subheading text-subheading text-surface-variant font-medium">
+            Group Stage Day 1 • <span class="text-primary-fixed font-semibold">Matchday Round 2</span>
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 1: UEFA/FotMob Style Live Match Hero Deck -->
+<section class="max-w-[1440px] w-full mx-auto px-margin md:px-margin-md lg:px-margin-lg -mt-6 z-20">
+<div class="bg-surface-card rounded-xl shadow-xl overflow-hidden">
+<!-- Top State Header on Hero Card -->
+<div class="bg-surface-container-high px-space-lg py-space-sm flex flex-wrap items-center justify-between gap-gutter">
+<div class="flex items-center gap-space-md">
+<span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-card-red-surface text-card-red-danger font-badge-label text-badge-label uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-card-red-danger animate-pulse"></span>
+            LIVE • 34' (2nd Half)
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">sports_soccer</span>
+            COURT 5 (FIFA Turf)
+          </span>
+</div>
+<div class="flex items-center gap-space-lg text-text-muted font-badge-label text-badge-label uppercase">
+<span>Match ID: #M-08</span>
+<span>Official: R. Jayawardena</span>
+<span class="text-pitch-turf-hover font-bold">12m Added Clock Potential</span>
+</div>
+</div>
+<!-- Main Scoreboard Grid -->
+<div class="p-space-lg md:p-space-xl grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-center">
+<!-- Team A -->
+<div class="lg:col-span-4 flex items-center justify-between lg:justify-end gap-space-lg order-1">
+<div class="text-left lg:text-right">
+<div class="inline-flex items-center gap-1 text-primary font-badge-label text-badge-label uppercase tracking-widest mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Group A Leader
+            </div>
+<h2 class="font-headline-lg text-headline-lg text-floodlight-navy uppercase font-bold tracking-tight">Apex Warriors</h2>
+<p class="font-body-md text-text-muted text-body-md">Kit: Emerald Black • Colombo Central</p>
+</div>
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-pitch-turf-surface flex items-center justify-center p-2 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Emblem for Apex Warriors futsal team featuring a bold emerald green shield and athletic stylized falcon icon on crisp white backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA20kgf__Cn_GUNLGgDceDL1tK6LwyfAN0ZuLHJsPZwxkI82jrLt46R7vBRCWyyh3Q4VPMpTxmxpslprLJ-qpfsUFAdOnSCFJVc7n2tSQ88iX173xHqhePUfEQLY7wMjod1en_4wRNRsaNoWvcc9CCw0KbXeSEYqxD2gyuIR-NjfOgxha7FUUWKFCzaynZywkz09miSeBmRDc35eIKwRBodBXSTjugsbBxQJvqLcGA"/>
+</div>
+</div>
+<!-- Center Scoreboard Digital Gauge -->
+<div class="lg:col-span-4 flex flex-col items-center justify-center text-center order-2 py-space-sm bg-surface-container-low rounded-xl p-space-md">
+<div class="font-score-display text-[44px] md:text-[56px] leading-none text-floodlight-navy tracking-tight font-bold tabular-nums">
+<span class="text-primary-container">2</span>
+<span class="text-outline-variant mx-3">–</span>
+<span class="text-floodlight-navy">1</span>
+</div>
+<div class="inline-flex items-center gap-1.5 mt-space-sm px-space-md py-0.5 rounded-full bg-card-red-surface text-card-red-danger font-badge-label text-badge-label uppercase">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>Live Clock: 34:18 / 40:00</span>
+</div>
+<span class="font-data-mono text-data-mono text-text-muted mt-1">Aggregated Possessions: 54% - 46%</span>
+</div>
+<!-- Team B -->
+<div class="lg:col-span-4 flex items-center justify-between lg:justify-start gap-space-lg order-3">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-surface-container-high flex items-center justify-center p-2 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Emblem for Colombo Thunder FC with dark navy blue lightning crest sports club identity design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLaKtueWpiyg2xkc8kgSMPf52ROQupVEmFP6QdXLOZt3c40AUtr7n428_t6-g1NtcpL3BUpY8QK9Wgl-k4XwjeQKqif-P5RpwjaQFsVrNbDFBPbnVTsamVNlw9QZ2oPFzJMxqpku1Ig-6fURofzEu-oZMB71m5a-zPEaTjhtu42DlvTKR6KX1la_C2NnADlu0iTnJ_SeDurkwL3m4solJtkB4eK028SksTsN1M8wg"/>
+</div>
+<div class="text-left">
+<div class="inline-flex items-center gap-1 text-text-muted font-badge-label text-badge-label uppercase tracking-widest mb-1">
+              Group A Rank 2
+            </div>
+<h2 class="font-headline-lg text-headline-lg text-floodlight-navy uppercase font-bold tracking-tight">Colombo Thunder FC</h2>
+<p class="font-body-md text-text-muted text-body-md">Kit: White &amp; Sky Blue • Havelock City</p>
+</div>
+</div>
+</div>
+<!-- Live Match Timeline / Events Ticker Bar -->
+<div class="bg-canvas-alabaster p-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs font-eyebrow text-eyebrow text-floodlight-navy uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] text-live-orange-active">bolt</span>
+<span>Match Event Feed &amp; Goal Timeline</span>
+</div>
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Verified by Chief Scorer</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Event 1 -->
+<div class="bg-surface-card p-space-md rounded-lg shadow-sm flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-primary-fixed text-primary font-score-entry text-score-entry flex items-center justify-center shrink-0">
+              24'
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-badge-label text-badge-label uppercase text-primary font-bold">GOAL • APEX WARRIORS</span>
+</div>
+<p class="font-subheading text-subheading text-on-surface truncate">Tariq Al-Hassan</p>
+<p class="font-table-cell text-table-cell text-text-muted text-xs truncate">Assist: K. Rizvi • Clean strike from D-box</p>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="bg-surface-card p-space-md rounded-lg shadow-sm flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-surface-container-highest text-floodlight-navy font-score-entry text-score-entry flex items-center justify-center shrink-0">
+              18'
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-badge-label text-badge-label uppercase text-floodlight-navy font-bold">GOAL • COLOMBO THUNDER</span>
+</div>
+<p class="font-subheading text-subheading text-on-surface truncate">Nuwan Perera</p>
+<p class="font-table-cell text-table-cell text-text-muted text-xs truncate">Volley from corner delivery</p>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="bg-surface-card p-space-md rounded-lg shadow-sm flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-primary-fixed text-primary font-score-entry text-score-entry flex items-center justify-center shrink-0">
+              11'
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-badge-label text-badge-label uppercase text-primary font-bold">GOAL • APEX WARRIORS</span>
+</div>
+<p class="font-subheading text-subheading text-on-surface truncate">Tariq Al-Hassan</p>
+<p class="font-table-cell text-table-cell text-text-muted text-xs truncate">Counter attack solo dribble past keeper</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Interactive Tabs & Multi-Screen Broadcast Content -->
+<section class="max-w-[1440px] w-full mx-auto px-margin md:px-margin-md lg:px-margin-lg py-space-xl">
+<!-- Segmented Filter Bar -->
+<div class="flex items-center justify-between border-b border-border-grid pb-space-sm mb-space-lg overflow-x-auto">
+<div class="flex items-center gap-space-xs shrink-0" id="tournamentTabGroup" role="tablist">
+<button class="tab-trigger px-space-lg py-space-sm rounded-lg bg-floodlight-navy text-surface-card font-subheading text-subheading shadow-sm transition-all" id="tab-btn-fixtures" onclick="switchTab('fixtures')" type="button">
+<span class="inline-flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">calendar_clock</span>
+<span>Live &amp; Upcoming Fixtures (4)</span>
+</span>
+</button>
+<button class="tab-trigger px-space-lg py-space-sm rounded-lg bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray font-subheading text-subheading transition-all" id="tab-btn-standings" onclick="switchTab('standings')" type="button">
+<span class="inline-flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">leaderboard</span>
+<span>Live Group Standings</span>
+</span>
+</button>
+<button class="tab-trigger px-space-lg py-space-sm rounded-lg bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray font-subheading text-subheading transition-all" id="tab-btn-knockout" onclick="switchTab('knockout')" type="button">
+<span class="inline-flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span>Knockout Tree</span>
+</span>
+</button>
+<button class="tab-trigger px-space-lg py-space-sm rounded-lg bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray font-subheading text-subheading transition-all" id="tab-btn-scorers" onclick="switchTab('scorers')" type="button">
+<span class="inline-flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">military_tech</span>
+<span>Golden Boot / Top Scorers</span>
+</span>
+</button>
+</div>
+<div class="hidden lg:flex items-center gap-space-md text-text-muted font-badge-label text-badge-label">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span> Auto-Sync: 15s
+        </span>
+<button class="text-primary hover:underline flex items-center gap-0.5" onclick="simulateRefresh()" type="button">
+<span class="material-symbols-outlined text-[14px]">refresh</span> Refresh
+        </button>
+</div>
+</div>
+<!-- TAB PANE 1: FIXTURES & RESULTS (Active by default) -->
+<div class="tab-pane flex flex-col gap-space-lg" id="pane-fixtures">
+<!-- Court Relocation Alert Notice -->
+<div class="bg-info-reassign-surface rounded-lg p-space-md flex items-start gap-space-md shadow-sm">
+<div class="p-1 rounded bg-info-reassign-accent text-surface-card shrink-0">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-xs">
+<h4 class="font-subheading text-subheading text-info-reassign-blue font-bold uppercase tracking-wide">
+              Official Venue Reassignment Notice • Court 1 → Court 5
+            </h4>
+<span class="font-badge-label text-badge-label text-text-muted">Logged at 16:42 PM • Operations Desk</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+<strong>NOTICE BANNER:</strong> Court 1 matches moved to Court 5 due to weather maintenance and turf surface drying protocols. Match 7 kickoff adjusted by +10 minutes.
+          </p>
+</div>
+</div>
+<!-- 2-Column Fixture Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-lg items-start">
+<!-- COLUMN A: UPCOMING MATCHES -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-grid">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 bg-live-orange-active rounded-full"></span>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase">Column A: Upcoming Matches</h3>
+</div>
+<span class="font-badge-label text-badge-label bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">2 Fixtures Scheduled</span>
+</div>
+<!-- Match Card 7 -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-badge-label text-badge-label uppercase text-text-muted">
+                Match 7 • Group A
+              </span>
+<div class="flex items-center gap-space-xs">
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-amber-50 text-status-warning-amber font-bold">17:30 Kickoff</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-floodlight-navy text-surface-card">Court 2 (Synthetic)</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-md py-space-sm bg-surface-container-low rounded-lg px-space-md">
+<!-- Team 1 -->
+<div class="flex items-center gap-space-md flex-1">
+<div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Red Dragons futsal team emblem shield with crimson red dragon illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY6NYHqx9ukaEdAV357fg8xDYAcq1Pj_N_q0ej5CUaV2Gz6R3YGZpBiK2kMqSACn0QFGMbE8WWqpR7rRaCmmTyez3B8dueK0h39Xb7e5ZsOqNcbBLP_O-hdHZbA_TUDZMEq4KaKX20zV2jhQj81qlo0pcELHA2KOht0rMb-hbzy7kp0UIADKD1PdCjDX1pqikJg15DytRXgbo0PVqtK2FcOnMLliF8SdkjrA2QEQg"/>
+</div>
+<div>
+<h4 class="font-subheading text-subheading text-floodlight-navy font-bold">Red Dragons</h4>
+<span class="text-xs text-text-muted font-table-cell">W-D-W form</span>
+</div>
+</div>
+<!-- VS Badge -->
+<div class="shrink-0 px-space-md">
+<span class="font-data-mono text-data-mono text-text-muted font-bold">VS</span>
+</div>
+<!-- Team 2 -->
+<div class="flex items-center justify-end gap-space-md flex-1 text-right">
+<div>
+<h4 class="font-subheading text-subheading text-floodlight-navy font-bold">Coastal Strikers</h4>
+<span class="text-xs text-text-muted font-table-cell">L-W-W form</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Coastal Strikers emblem with blue nautical trident waves futsal sport crest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARqfpg1bv4Sh331irmV0dubw4nPpk7YgJraEpi2I5PbSi2XcfEluD5GzigPtvKTf-ZNdZwDXBek_3slZKDIqZkehCMit_lLsEm3TgqIqi-kgJvClx6cw9vz7hkcMaqenCx6zjp_o03NAYzhoYQrowdjY1-Qmx3JPO3Zz5LS66hcg7tQ_0g-rpqvIMQ4Yc7-Xwxt1qp7OGNj9UGai6kaEtXmS0kuhmfYb5nuRWb324"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-text-muted font-table-cell pt-1 border-t border-border-grid">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">sports</span>
+                Referees: K. Perera &amp; M. Farzan
+              </span>
+<span class="text-primary font-medium hover:underline cursor-pointer">Preview Lineup →</span>
+</div>
+</div>
+<!-- Match Card 8 Upcoming -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-badge-label text-badge-label uppercase text-text-muted">
+                Match 9 • Group B
+              </span>
+<div class="flex items-center gap-space-xs">
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold">18:15 Kickoff</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-floodlight-navy text-surface-card">Court 5 (FIFA Turf)</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-md py-space-sm bg-surface-container-low rounded-lg px-space-md">
+<!-- Team 1 -->
+<div class="flex items-center gap-space-md flex-1">
+<div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Island Titans sports badge dark gold and graphite shield" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCToPkEmSx1dA7o_TZLpmYuhENkcAq8rFU6wC1A9bJOuilsEK3ciFrVbGj2x8FbsXpxizL91Yc_1KsupEWUtFUvPWktt4LUnkYBhSeQLrpMjs35NcUgbwJXsH6f33RMuzIf0p2XYcTxAXDBnwUFhAQ8tJAJlDRaC4tgL5Mo5VMyo0P9IOdaGFcbVclcrcU3KwaTYrpFWISIlEbu5-zSJ2fobCCNKnyCOoRTDu5kmw"/>
+</div>
+<div>
+<h4 class="font-subheading text-subheading text-floodlight-navy font-bold">Island Titans</h4>
+<span class="text-xs text-text-muted font-table-cell">W-W-L form</span>
+</div>
+</div>
+<!-- VS Badge -->
+<div class="shrink-0 px-space-md">
+<span class="font-data-mono text-data-mono text-text-muted font-bold">VS</span>
+</div>
+<!-- Team 2 -->
+<div class="flex items-center justify-end gap-space-md flex-1 text-right">
+<div>
+<h4 class="font-subheading text-subheading text-floodlight-navy font-bold">Lanka Vipers</h4>
+<span class="text-xs text-text-muted font-table-cell">D-L-W form</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Lanka Vipers team logo neon emerald snake geometric crest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBia3eqdcgHh0FrYQn3c25MiApespEZE1lxIPQYeJpCKL8ITQqM61DMkbHncq1lLd7qjzySEZJVuObM5xF2b0sBeJ2cpuR9hjG5R5HP9CK1lCIAdz_2ykLuVUEp1lUYr5jjEl5V1KaVVDy44BpdEVWw7MA-WqFhDn9VDm3oCXgKuptxeHwkhNw64IqwJfSTYQ5FipahhP-Y6nJxOOB18SCewHXlhEU9c8x6f1XxxKk"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-text-muted font-table-cell pt-1 border-t border-border-grid">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">sports</span>
+                Referees: D. Silva &amp; T. Fernando
+              </span>
+<span class="text-primary font-medium hover:underline cursor-pointer">Preview Lineup →</span>
+</div>
+</div>
+</div>
+<!-- COLUMN B: COMPLETED RESULTS -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-grid">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 bg-pitch-turf-active rounded-full"></span>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase">Column B: Completed Results</h3>
+</div>
+<span class="font-badge-label text-badge-label bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">Round 1 Concluded</span>
+</div>
+<!-- Match 5: Awarded via Walkover (W/O) -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-badge-label text-badge-label uppercase text-text-muted">
+                Match 5 • Group A • Final
+              </span>
+<div class="flex items-center gap-space-xs">
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-card-red-surface text-card-red-danger font-bold">W/O AWARDED</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Court 3</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-md py-space-sm bg-surface-container-low rounded-lg px-space-md">
+<div class="flex items-center gap-space-md flex-1 opacity-70">
+<div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="City Lions football emblem golden lion profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9AFfUrdUhWy9PuAn4kKPdTOGr5BFTE4GH383Ro5WPPEC-6RS2prlCs3x_Z6gmnE-u8nZa6zoPKMzWE8WWl26Vnd9PuIMxQtIZ87nN4Na-JVwUb9mJVJ3GtTc1tWdYxwQ5CR9L5TVl3UsSKgdPsm6r5GVLHEFeYbixqjBml_hIbkvl2TAWlVUWNYXht1L10uEuaRdb75d2ZcyNa36rzrGMFfrCwm2lvrqtDH0_348"/>
+</div>
+<div>
+<h4 class="font-subheading text-subheading text-on-surface font-semibold line-through">City Lions</h4>
+<span class="text-xs text-card-red-danger font-badge-label uppercase font-bold">Disqualified (Late Forfeit)</span>
+</div>
+</div>
+<!-- Score -->
+<div class="shrink-0 px-space-md text-center">
+<div class="font-score-entry text-score-entry text-floodlight-navy font-bold tabular-nums">0 – 3</div>
+<span class="font-badge-label text-[10px] text-text-muted uppercase">Rule 14.2</span>
+</div>
+<div class="flex items-center justify-end gap-space-md flex-1 text-right">
+<div>
+<h4 class="font-subheading text-subheading text-pitch-turf-hover font-bold">Metro Strikers</h4>
+<span class="text-xs text-status-success-emerald font-badge-label uppercase font-bold">+3 PTS Awarded</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-pitch-turf-surface flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Metro Strikers football logo modern geometric bolt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaBkughnTgaL0ryTKIlexaKdT5InfSa4UWWj3Am4yAAZjPdJGCqXDN9f8pNBGWjuBKNsANk-GQJqolarDq3YZM7unMKEnGnG_URXXhhkY5nBRL2YIFOEt9J003H4i4JHVKvcFuk6GAW8v8kA5RpJrAtfdxEd4Q82lhXpuYbL-HGzo49NvrquWA4J_xlBn0uynaTRrm2TOgrctAoMUMOf2KJyZ-aBh2OzMKUX-ThuM"/>
+</div>
+</div>
+</div>
+<div class="text-xs text-card-red-danger font-table-cell bg-card-red-surface px-space-sm py-1 rounded">
+              Official Note: City Lions failed to field the mandatory 5 registered players by 16:15 window. Match awarded 3-0 to Metro Strikers.
+            </div>
+</div>
+<!-- Match 4: Regular FT Result -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-badge-label text-badge-label uppercase text-text-muted">
+                Match 4 • Group A • Full Time
+              </span>
+<div class="flex items-center gap-space-xs">
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-pitch-turf-surface text-pitch-turf-hover font-bold">FT • Concluded</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Court 5</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-md py-space-sm bg-surface-container-low rounded-lg px-space-md">
+<div class="flex items-center gap-space-md flex-1">
+<div class="w-10 h-10 rounded-lg bg-pitch-turf-surface flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="United FC futsal circular crest with deep navy and red wings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk653R8dc3DGPtEWq4bJofz1Rz9a8JMkvaP54p7i2GGC3xTetekvhiUGH55gENWux8kpnAO4YIlFDeumy-lMkMJ0iXnXkmvlrbXCKsSNRnY-qHGC3s1YhSJd53Ij3ZW1LQPBx1aMmkvxzDxcEGtnpW3mYQQ5pkEK8oy_yxUDpTW_muBMnSft6IePTB48lH29i3VVaL5nPMp87mi07DObgIgTqDDIZ1XSRe7S9n7Yc"/>
+</div>
+<div>
+<h4 class="font-subheading text-subheading text-floodlight-navy font-bold">United FC</h4>
+<span class="text-xs text-status-success-emerald font-table-cell">Winner (+2 GD)</span>
+</div>
+</div>
+<!-- Score -->
+<div class="shrink-0 px-space-md text-center">
+<div class="font-score-entry text-score-entry text-floodlight-navy font-bold tabular-nums">4 – 2</div>
+<span class="font-badge-label text-[10px] text-text-muted uppercase">40:00 Final</span>
+</div>
+<div class="flex items-center justify-end gap-space-md flex-1 text-right">
+<div>
+<h4 class="font-subheading text-subheading text-on-surface font-semibold">Phoenix Strikers</h4>
+<span class="text-xs text-text-muted font-table-cell">Group A Rank 4</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center p-1 shadow-sm shrink-0">
+<img class="w-full h-full object-contain" data-alt="Phoenix Strikers athletic emblem fiery phoenix bird wing icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6rjtxfRZNmHkrTzr2vW-sNUjQJicAMutM96nWA9h8DlX4MFGufEdCioULQd-hJePCHgLqYg9VSSmlkO_DQjyUNbJN4nKkZckkNIDeSXonMqzqj9mn3KOwt6fqCGN-uvgdLFPmhS39hvqu-qbLFNKXO1G0orKSb3dYX-oh5_hxsyQPxgceE0ksgNQ3Hzt2rLpzIWGc3BLcwJXPRzN2VNGyKhEh2mGzpuX4gf5u4IU"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-text-muted font-table-cell pt-1 border-t border-border-grid">
+<span>United FC: Silva (7', 22'), Rizvi (14'), Gomez (39')</span>
+<span class="text-primary font-medium hover:underline cursor-pointer">Match Stats &amp; Heatmap →</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB PANE 2: LIVE GROUP STANDINGS -->
+<div class="tab-pane hidden flex flex-col gap-space-lg" id="pane-standings">
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden">
+<div class="bg-surface-container-high px-space-lg py-space-md flex flex-wrap items-center justify-between gap-space-md">
+<div>
+<div class="font-eyebrow text-eyebrow text-primary uppercase tracking-wider">Automated Live Computations</div>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase">GROUP A • Official League Table</h3>
+</div>
+<div class="flex items-center gap-space-sm text-xs font-badge-label uppercase">
+<span class="px-2 py-1 rounded bg-status-success-emerald/10 text-status-success-emerald font-bold">Top 2 Qualify for Semi-Finals</span>
+<span class="px-2 py-1 rounded bg-card-red-surface text-card-red-danger font-bold">Bottom 2 Eliminated</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-canvas-alabaster border-b border-border-grid text-text-muted font-table-cell text-xs uppercase tracking-wider h-10">
+<th class="py-space-xs px-space-lg font-semibold w-12 text-center">POS</th>
+<th class="py-space-xs px-space-md font-semibold">CLUB / SQUAD</th>
+<th class="py-space-xs px-space-sm font-semibold text-center w-12">P</th>
+<th class="py-space-xs px-space-sm font-semibold text-center w-12">W</th>
+<th class="py-space-xs px-space-sm font-semibold text-center w-12">D</th>
+<th class="py-space-xs px-space-sm font-semibold text-center w-12">L</th>
+<th class="py-space-xs px-space-sm font-semibold text-center w-14">GF</th>
+<th class="py-space-xs px-space-sm font-semibold text-center w-14">GA</th>
+<th class="py-space-xs px-space-sm font-semibold text-center w-14">GD</th>
+<th class="py-space-xs px-space-md font-semibold text-center w-16 text-floodlight-navy">PTS</th>
+<th class="py-space-xs px-space-lg font-semibold text-right">STATUS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-grid font-table-cell text-table-cell">
+<!-- Team 1: Apex Warriors -->
+<tr class="hover:bg-pitch-turf-surface/40 transition-colors bg-pitch-turf-surface/20">
+<td class="py-space-md px-space-lg font-score-entry text-sm font-bold text-center text-floodlight-navy">1</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-7 h-7 rounded bg-pitch-turf-surface flex items-center justify-center p-1 shrink-0">
+<img class="w-full h-full object-contain" data-alt="Apex Warriors small shield emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbaQy7KQe4H5HuKvpglIPE7YsCdVirXtzrMEyrfNVxkBKJYnWmiD6ipBl6whRh0woOR1Mnf7uN_mUzRt2FHBItsEaFIVKJ9xXiT6xJQNcK-j-Q-wSUBgRfNIohs97L6i3nCW9MGd7fF3kjgbtjgleZoMiQb1RfeZmBqS_x_ZQUpWoVw3J2tgzoAW2zoI4O8OHd6TymlJ03J-tRK6xU9YL961CtczQOqCKP_DK17_M"/>
+</div>
+<div>
+<span class="font-subheading text-floodlight-navy font-bold">Apex Warriors</span>
+<span class="block text-xs text-text-muted">Live match score counted (+1)</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">6</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono text-status-success-emerald font-bold">+4</td>
+<td class="py-space-md px-space-md text-center font-score-entry text-base font-bold text-primary">6</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="inline-flex items-center px-space-md py-0.5 rounded-full bg-pitch-turf-surface text-pitch-turf-hover font-badge-label text-badge-label uppercase">
+                    Qualified ✓
+                  </span>
+</td>
+</tr>
+<!-- Team 2: Colombo Thunder FC -->
+<tr class="hover:bg-state-hover-gray transition-colors">
+<td class="py-space-md px-space-lg font-score-entry text-sm font-bold text-center text-floodlight-navy">2</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center p-1 shrink-0">
+<img class="w-full h-full object-contain" data-alt="Colombo Thunder small shield emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1dONNHuUDbYtLUdQBJk8B76WgfljQN8qIDLnwO3A9L9Xs-wTXFtdyr0VxM7A1pi0FhmHiQUEZlXlUoMk30Ns7dht8pAMJMtCJbnDoYBySx2V9LY3Hk733dK4s3Q9S6V5KXzklJ9R6dvT3xBV0DjIHD0V7LgwqT6cb1nVP-h1aZpY0Dudi-I-NdhTUMGN_58z_s5RdFhoNJkrQRsGxc4QYbi2SmqYr-j9tBhz_cik"/>
+</div>
+<div>
+<span class="font-subheading text-floodlight-navy font-bold">Colombo Thunder FC</span>
+<span class="block text-xs text-card-red-danger font-medium">Currently trailing in Match 8</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">1</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">1</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">4</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">3</td>
+<td class="py-space-md px-space-sm text-center font-data-mono font-bold">+1</td>
+<td class="py-space-md px-space-md text-center font-score-entry text-base font-bold text-floodlight-navy">3</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="inline-flex items-center px-space-md py-0.5 rounded-full bg-info-reassign-surface text-info-reassign-blue font-badge-label text-badge-label uppercase animate-pulse">
+                    Still Playing • 34'
+                  </span>
+</td>
+</tr>
+<!-- Team 3: Metro Strikers -->
+<tr class="hover:bg-state-hover-gray transition-colors">
+<td class="py-space-md px-space-lg font-score-entry text-sm font-bold text-center text-floodlight-navy">3</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center p-1 shrink-0">
+<img class="w-full h-full object-contain" data-alt="Metro Strikers small shield emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhd3BIQQAd5v55EdNhpi2mzzCJYAow5lOHBTToOBI7oYBpzlMvRKZzAwWJLsiiX8a1D9f-_qOio2Bk--qS4UoKfn6EaS1zw442_1IfxhsIdUv-k8Hk-_kYVeFNZra4SHtdRUquYCGkdl-djPsA8U4NY3CGFHnef6ACihfgdfosDeWaglZWHRce6gpdSavZYGhWDmTW1LV74eKyJhzUFBZOpcwXUnkc2cf5oTEKyUg"/>
+</div>
+<div>
+<span class="font-subheading text-on-surface font-semibold">Metro Strikers</span>
+<span class="block text-xs text-text-muted">+3 pts awarded via walkover</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">1</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">1</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">4</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">4</td>
+<td class="py-space-md px-space-sm text-center font-data-mono font-bold">0</td>
+<td class="py-space-md px-space-md text-center font-score-entry text-base font-bold text-floodlight-navy">3</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="inline-flex items-center px-space-md py-0.5 rounded-full bg-surface-container text-on-surface-variant font-badge-label text-badge-label uppercase">
+                    In Contention
+                  </span>
+</td>
+</tr>
+<!-- Team 4: Phoenix Strikers -->
+<tr class="hover:bg-state-hover-gray transition-colors">
+<td class="py-space-md px-space-lg font-score-entry text-sm font-bold text-center text-text-muted">4</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center p-1 shrink-0">
+<img class="w-full h-full object-contain" data-alt="Phoenix Strikers small shield emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQvYXQrU6NJM78aTYN_sbqMZP_YevbKVEE0u_Hr8tBznXr8H1HBuJ0c23zCA55Qb2ntltgJNJ2_b_wAwWfnNJXCARQADp5KkjlOSim16E2o6BAgDNpYmc98K6QhBXASx2gOuIRxQ9DHX8w5h7BjldmwNh42jPBmcnVyFxYwnMNGHum5DBTz21q0fqdLblKGQOJUDw2BbyWiWfmlkiOFqT3_zDjeN4q5pyaDWKeyl0"/>
+</div>
+<div>
+<span class="font-subheading text-on-surface">Phoenix Strikers</span>
+<span class="block text-xs text-text-muted">Defeated by United FC in M4</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">3</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">7</td>
+<td class="py-space-md px-space-sm text-center font-data-mono text-card-red-danger font-bold">-4</td>
+<td class="py-space-md px-space-md text-center font-score-entry text-base font-bold text-text-muted">0</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="inline-flex items-center px-space-md py-0.5 rounded-full bg-card-red-surface text-card-red-danger font-badge-label text-badge-label uppercase">
+                    Eliminated
+                  </span>
+</td>
+</tr>
+<!-- Team 5: City Lions -->
+<tr class="hover:bg-state-hover-gray transition-colors opacity-75">
+<td class="py-space-md px-space-lg font-score-entry text-sm font-bold text-center text-text-muted">5</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center p-1 shrink-0">
+<img class="w-full h-full object-contain" data-alt="City Lions small emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCECG6mvYc-wAASESy_X_McVyXi9eTlZrfrVvHPZOWmAl2oK-NpgPSGp2EiBXIs0leF2xI3nGIy-skx5UenkFDB9pY80iqrgGZ62IRrm88bnGhPgdZ4r_c8GBhOdfE6EzDg4WbtlqBOIGWOsFZmL6UMLM0nQnsIGJ5shYRkqqaOaOFyeOE40YV5915v3Fl8e9TZOGVhhaE5pev9C8IsXulv3JjJRWY8tZr4MfHhB0E"/>
+</div>
+<div>
+<span class="font-subheading text-on-surface line-through">City Lions</span>
+<span class="block text-xs text-card-red-danger">Disciplinary sanction applied</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">2</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">0</td>
+<td class="py-space-md px-space-sm text-center font-data-mono">6</td>
+<td class="py-space-md px-space-sm text-center font-data-mono text-card-red-danger font-bold">-6</td>
+<td class="py-space-md px-space-md text-center font-score-entry text-base font-bold text-card-red-danger">0</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="inline-flex items-center px-space-md py-0.5 rounded-full bg-card-red-surface text-card-red-danger font-badge-label text-badge-label uppercase">
+                    DQ / Forfeit
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- TAB PANE 3: KNOCKOUT BRACKET / TREE -->
+<div class="tab-pane hidden flex flex-col gap-space-lg" id="pane-knockout">
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between border-b border-border-grid pb-space-sm mb-space-lg">
+<div>
+<span class="font-eyebrow text-eyebrow text-primary uppercase tracking-wider">Championship Path</span>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase">Quarter-Finals → Grand Finale Bracket</h3>
+</div>
+<span class="font-badge-label text-badge-label px-space-md py-1 rounded bg-surface-container text-on-surface-variant uppercase">Updated Post-Round 2</span>
+</div>
+<!-- Visual Bracket Mockup (4-Team / 2 Rounds Flow) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg items-center py-space-md">
+<!-- Semi-Final 1 -->
+<div class="flex flex-col gap-space-md">
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Semi-Final 1 • 19:30</span>
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between p-2 rounded bg-surface-card">
+<span class="font-subheading text-floodlight-navy font-bold">Apex Warriors</span>
+<span class="font-data-mono text-xs font-bold text-primary">Grp A 1st</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-card opacity-60">
+<span class="font-subheading text-text-muted">Grp B 2nd Place</span>
+<span class="font-data-mono text-xs text-text-muted">TBD</span>
+</div>
+</div>
+</div>
+<!-- Final Match Anchor -->
+<div class="flex flex-col gap-space-md">
+<span class="font-badge-label text-badge-label text-primary font-bold uppercase text-center">Grand Final • 21:00 Court 5</span>
+<div class="bg-floodlight-navy text-surface-card rounded-lg p-space-lg flex flex-col items-center justify-center text-center gap-space-md shadow-md">
+<span class="material-symbols-outlined text-[32px] text-primary-fixed">trophy</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-surface-card font-bold uppercase tracking-tight">Super Cup Final</h4>
+<p class="font-body-md text-secondary-fixed text-xs mt-0.5">Winner Semi 1 vs Winner Semi 2</p>
+</div>
+<div class="px-space-md py-1 rounded-full bg-surface-card/10 text-primary-fixed font-badge-label text-badge-label uppercase">
+                Prize: LKR 500,000 + Trophy
+              </div>
+</div>
+</div>
+<!-- Semi-Final 2 -->
+<div class="flex flex-col gap-space-md">
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Semi-Final 2 • 20:15</span>
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between p-2 rounded bg-surface-card">
+<span class="font-subheading text-floodlight-navy font-bold">Island Titans</span>
+<span class="font-data-mono text-xs font-bold text-primary">Grp B 1st</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-card opacity-60">
+<span class="font-subheading text-text-muted">Colombo Thunder FC</span>
+<span class="font-data-mono text-xs text-text-muted">Grp A 2nd</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB PANE 4: TOP SCORERS / GOLDEN BOOT -->
+<div class="tab-pane hidden flex flex-col gap-space-lg" id="pane-scorers">
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden p-space-lg">
+<div class="flex items-center justify-between border-b border-border-grid pb-space-sm mb-space-md">
+<div>
+<span class="font-eyebrow text-eyebrow text-primary uppercase tracking-wider">Player Statistical Feed</span>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase">Golden Boot Leaderboard</h3>
+</div>
+<span class="font-badge-label text-badge-label px-space-md py-0.5 rounded bg-pitch-turf-surface text-pitch-turf-hover uppercase">Real-Time Sync</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Top Scorer 1 -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary text-surface-card font-score-display text-lg flex items-center justify-center font-bold">
+                1
+              </div>
+<div>
+<h4 class="font-subheading text-floodlight-navy font-bold">Tariq Al-Hassan</h4>
+<p class="text-xs text-text-muted">Apex Warriors • Forward</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-score-entry text-score-entry text-primary font-bold">5</span>
+<span class="block text-[11px] text-text-muted font-badge-label uppercase">Goals</span>
+</div>
+</div>
+<!-- Top Scorer 2 -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest text-floodlight-navy font-score-display text-lg flex items-center justify-center font-bold">
+                2
+              </div>
+<div>
+<h4 class="font-subheading text-floodlight-navy font-bold">Nuwan Perera</h4>
+<p class="text-xs text-text-muted">Colombo Thunder • Midfield</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-score-entry text-score-entry text-floodlight-navy font-bold">3</span>
+<span class="block text-[11px] text-text-muted font-badge-label uppercase">Goals</span>
+</div>
+</div>
+<!-- Top Scorer 3 -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest text-floodlight-navy font-score-display text-lg flex items-center justify-center font-bold">
+                3
+              </div>
+<div>
+<h4 class="font-subheading text-floodlight-navy font-bold">Malik Rizvi</h4>
+<p class="text-xs text-text-muted">United FC • Winger</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-score-entry text-score-entry text-floodlight-navy font-bold">3</span>
+<span class="block text-[11px] text-text-muted font-badge-label uppercase">Goals</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Clean Spectator Engine Footer -->
+<section class="w-full bg-surface-card border-t border-border-grid py-space-lg mt-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-text-muted font-body-md text-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">verified</span>
+<span>Certified Live Broadcast Feed • <strong>Powered by Play Field Tournament Engine</strong></span>
+</div>
+<div class="flex items-center gap-space-lg text-xs font-data-mono">
+<span>LATENCY: 142ms</span>
+<span>VENUE DESK: HUB-01</span>
+<span>NO LOGIN REQUIRED</span>
+</div>
+</div>
+</section>
+</div>
+<script>
+  function switchTab(tabKey) {
+    // Hide all panes
+    const panes = document.querySelectorAll('.tab-pane');
+    panes.forEach(p => p.classList.add('hidden'));
+
+    // Reset button states
+    const buttons = document.querySelectorAll('.tab-trigger');
+    buttons.forEach(b => {
+      b.classList.remove('bg-floodlight-navy', 'text-surface-card', 'shadow-sm');
+      b.classList.add('bg-surface-card', 'text-on-surface-variant');
+    });
+
+    // Activate selected pane & button
+    const targetPane = document.getElementById('pane-' + tabKey);
+    const targetBtn = document.getElementById('tab-btn-' + tabKey);
+
+    if (targetPane) targetPane.classList.remove('hidden');
+    if (targetBtn) {
+      targetBtn.classList.remove('bg-surface-card', 'text-on-surface-variant');
+      targetBtn.classList.add('bg-floodlight-navy', 'text-surface-card', 'shadow-sm');
+    }
+  }
+
+  // Copy Link Micro-interaction
+  document.getElementById('copyLinkBtn')?.addEventListener('click', function() {
+    navigator.clipboard?.writeText(window.location.href);
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span><span>Copied!</span>';
+    setTimeout(() => {
+      this.innerHTML = originalText;
+    }, 2000);
+  });
+
+  function simulateRefresh() {
+    const btn = event.currentTarget;
+    if (btn) {
+      btn.classList.add('animate-spin');
+      setTimeout(() => btn.classList.remove('animate-spin'), 600);
+    }
+  }
+</script></main><footer class="w-full bg-surface-card border-t border-border-grid py-space-xl mt-auto"><div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase tracking-tight">Play Field</span><span class="text-text-muted font-body-md text-body-md">• Professional Tournament Management Engine</span></div><div class="flex items-center gap-space-lg text-text-muted font-table-cell text-table-cell"><a class="hover:text-primary transition-colors" data-path="public-live" href="#">Public Live Center</a><a class="hover:text-primary transition-colors" data-path="ongoing-tournaments" href="#">Tournaments</a><a class="hover:text-primary transition-colors" data-path="dashboard" href="#">Organizer Control Desk</a><span>© 2025 Play Field System. All Rights Reserved.</span></div></div></footer></body></html>

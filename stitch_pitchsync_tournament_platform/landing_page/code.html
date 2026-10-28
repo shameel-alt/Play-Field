@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"card-red-border":"#fca5a5","card-red-hover":"#b91c1c","surface":"#f1fcf3","surface-variant":"#dae5dd","background":"#f1fcf3","pitch-turf-active":"#063b2a","primary-fixed":"#9ff4cc","error-container":"#ffdad6","card-red-danger":"#dc2626","on-secondary-fixed-variant":"#3a475c","secondary-fixed-dim":"#bac7e1","on-primary-fixed-variant":"#005139","secondary-fixed":"#d6e3fe","on-background":"#141e19","on-surface":"#141e19","live-orange-hover":"#c2410c","info-reassign-surface":"#eff6ff","inverse-surface":"#28332d","on-tertiary-fixed":"#370e00","border-grid":"#e2e8f0","surface-container":"#e5f1e8","surface-card":"#ffffff","live-orange-active":"#9a3412","on-error":"#ffffff","on-tertiary-fixed-variant":"#7f2b00","surface-container-lowest":"#ffffff","tertiary-container":"#ab3c00","inverse-primary":"#83d7b1","on-secondary":"#ffffff","info-reassign-blue":"#1d4ed8","on-surface-variant":"#3f4943","card-red-surface":"#fef2f2","tertiary-fixed-dim":"#ffb599","pitch-turf-hover":"#09523b","canvas-alabaster":"#f8fafc","tertiary":"#832c00","on-tertiary":"#ffffff","outline-variant":"#bec9c1","secondary":"#525f75","pitch-turf-surface":"#f0fdf4","surface-tint":"#076c4d","primary-container":"#0d6e4f","inverse-on-surface":"#e8f4eb","error":"#ba1a1a","card-red-active":"#991b1b","primary-fixed-dim":"#83d7b1","on-secondary-fixed":"#0e1c2f","info-reassign-border":"#bfdbfe","status-warning-amber":"#b45309","state-hover-gray":"#f1f5f9","secondary-container":"#d6e3fe","floodlight-navy":"#0b192c","status-success-emerald":"#047857","surface-container-high":"#e0ebe2","text-placeholder":"#94a3b8","on-primary-fixed":"#002115","on-primary-container":"#99edc6","surface-container-highest":"#dae5dd","text-muted":"#64748b","on-tertiary-container":"#ffd3c3","info-reassign-accent":"#2563eb","on-secondary-container":"#58657b","surface-dim":"#d1ddd4","primary":"#00543b","surface-bright":"#f1fcf3","border-control":"#cbd5e1","on-primary":"#ffffff","tertiary-fixed":"#ffdbce","outline":"#6f7a73","surface-container-low":"#ebf6ee","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","margin":"1rem","gutter-md":"1.25rem","space-lg":"1rem","space-xs":"0.25rem","space-md":"0.625rem","gutter-lg":"1.5rem","space-xl":"1.5rem","space-sm":"0.375rem","margin-md":"1.5rem","margin-lg":"2rem"},"fontFamily":{"table-cell":["Instrument Sans"],"score-display-mobile":["JetBrains Mono"],"headline-md-mobile":["Plus Jakarta Sans"],"input-entry":["Instrument Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"badge-label":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Instrument Sans"],"score-entry":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"eyebrow":["Barlow Condensed"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Instrument Sans"],"subheading":["Instrument Sans"],"data-mono":["JetBrains Mono"],"score-display":["JetBrains Mono"]},"fontSize":{"table-cell":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display-mobile":["28px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md-mobile":["18px",{"lineHeight":"24px","letterSpacing":"-0.015em","fontWeight":"700"}],"input-entry":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"badge-label":["12px",{"lineHeight":"12px","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"score-entry":["20px",{"lineHeight":"24px","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"eyebrow":["13px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"22px","fontWeight":"400"}],"subheading":["16px",{"lineHeight":"22px","fontWeight":"600"}],"data-mono":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display":["36px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas-alabaster font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card border-b border-border-grid shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="landing" href="#"><img alt="Play Field Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu_1TIXR-X2CxapVnh__5a8u3VoAgt8RoxwLkySSFTaitboXXY3AzvzBWB_8HefzprrOGqC_bRanek0OSRGhUr50cGPMpnpZHl3briYtOpmghmb7hfAt6qTZlO4fBhppTJudHplSfFGsQmqpwezNEGTeUL_Dn2iAuNmU3OmyUnTLJ6MGt-LcqEfSMX0Kdxo5OWDFqUHq9Itsga1foxedLUomqp8278B54bvRLFhoQ"/><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold tracking-tight uppercase">Play Field</span></a><span class="hidden lg:inline-flex items-center px-space-xs py-0.5 rounded-full bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase tracking-wider">Broadcast Desk</span></div><nav class="hidden xl:flex items-center gap-space-xl" data-active-classes="text-primary font-subheading border-b-2 border-primary-container pb-1"><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ongoing-tournaments" href="#">Ongoing Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ended-tournaments" href="#">Ended Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="public-live" href="#">Public Live Match Center</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover hover:text-on-primary active:bg-pitch-turf-active font-subheading text-subheading shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap" data-path="wizard-step1" href="#"><span class="material-symbols-outlined text-[18px]">add_circle</span><span>+ Start Tournament</span></a><button aria-label="Notifications" class="p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-card-red-danger"></span></button><div class="flex items-center pl-space-xs border-l border-border-grid"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-border-grid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5B9jcfvJpOO40Ze8Fh25eqjGzd-QEgJugQFJxx3lchlzAOK8W-QkbBiQbr6sxJLmXqa1_CtkfXQgRhrHRiYg9x7jwc-bS8_vIbrdQ2_ilFhWuWramh964XR5HQSKiMPhVGXSlJnLpgyXhZUSdrUND-zDcCbdyYDBa9q8gfZbJzcUpR09GfTzKhNYe5hV7sVZ9C-c2VJOV1-QwEOnboTHnhnOLV5ZYf94c3BrZS4Y"/></div></div></div></header><main class="w-full pt-16 bg-canvas-alabaster flex-1"><div class="flex flex-col w-full">
+<!-- Sub-Header Context Bar -->
+<section class="w-full bg-surface-card shadow-sm">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg py-space-sm flex flex-wrap items-center justify-between gap-gutter">
+<div class="flex items-center gap-space-md">
+<span class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-card-red-surface text-card-red-danger font-badge-label text-badge-label uppercase">
+<span class="w-2 h-2 rounded-full bg-card-red-danger animate-ping"></span>
+          Live Matchday Ops
+        </span>
+<span class="font-eyebrow text-eyebrow uppercase text-text-muted hidden sm:inline">South Asia Futsal Cup • Matchday 4 Active</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<a class="font-subheading text-table-cell text-on-surface-variant hover:text-primary transition-colors" href="#venues">Partner Venues</a>
+<a class="font-subheading text-table-cell text-on-surface-variant hover:text-primary transition-colors" href="#features">Engine Specs</a>
+<a class="font-subheading text-table-cell text-on-surface-variant hover:text-primary transition-colors" href="#pricing">Pricing &amp; Slots</a>
+<a class="font-table-cell text-table-cell text-info-reassign-blue font-semibold hover:underline flex items-center gap-1" href="#">
+<span>Official Public Feed</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Hero Section -->
+<section class="relative w-full py-space-xl lg:py-16 overflow-hidden">
+<!-- Subtle architectural pitch glow background -->
+<div class="absolute -top-32 left-1/4 w-[580px] h-[580px] rounded-full bg-surface-container opacity-60 pointer-events-none filter blur-3xl"></div>
+<div class="absolute -bottom-24 right-0 w-[420px] h-[420px] rounded-full bg-primary-fixed opacity-40 pointer-events-none filter blur-3xl"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-center">
+<!-- Left Editorial Narrative Column -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<div class="inline-flex items-center gap-2 self-start px-space-md py-1 rounded-full bg-surface-container-high text-primary font-badge-label text-badge-label tracking-wider uppercase">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+            Tactical Tournament Management &amp; Venue Booking
+          </div>
+<h1 class="font-headline-lg text-headline-lg lg:text-[46px] lg:leading-[52px] text-floodlight-navy font-extrabold tracking-tight">
+            Book the Turf. Run the Bracket.<br/>
+<span class="text-primary-container">Broadcast Every Goal Live.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[620px]">
+            The authoritative tournament operating system engineered for multi-pitch arenas. Zero court scheduling clashes, automated FIFA-spec tiebreakers, and instant public broadcast desks that update spectators without a single refresh.
+          </p>
+<!-- CTAs -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center justify-center gap-space-sm px-6 py-3.5 rounded-lg bg-primary-container text-on-primary font-subheading text-subheading shadow-md hover:bg-pitch-turf-hover active:bg-pitch-turf-active transition-all group" data-path="wizard-step1" href="#">
+<span>Start a Tournament</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-sm px-6 py-3.5 rounded-lg bg-surface-card text-floodlight-navy font-subheading text-subheading shadow-sm hover:bg-state-hover-gray active:bg-surface-container transition-all" data-path="public-live" href="#">
+<span class="w-2.5 h-2.5 rounded-full bg-card-red-danger"></span>
+<span>View Live Match Center</span>
+</a>
+</div>
+<!-- Trust Proof Metrics -->
+<div class="pt-space-md grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-lg bg-surface-card shadow-sm flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-pitch-turf-surface text-primary-container flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[22px]">stadium</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">45+ Premier Venues</div>
+<div class="font-table-cell text-table-cell text-text-muted">Live across Colombo &amp; South Asia</div>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-card shadow-sm flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high text-floodlight-navy flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[22px]">event_busy</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary-container font-bold">0 Court Clashes</div>
+<div class="font-table-cell text-table-cell text-text-muted">Multi-court mutex slot locking guarantee</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Tactical Live Broadcast Deck -->
+<div class="lg:col-span-5 flex flex-col">
+<div class="w-full rounded-xl bg-floodlight-navy text-surface-card shadow-xl overflow-hidden">
+<!-- Masthead Status Bar -->
+<div class="px-space-lg py-space-md bg-[#071322] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-card-red-danger text-surface-card font-badge-label text-badge-label tracking-wider uppercase animate-pulse">
+                  LIVE • 24' 1ST HALF
+                </span>
+<span class="font-eyebrow text-eyebrow text-text-placeholder uppercase">CUP FINAL SERIES</span>
+</div>
+<span class="inline-flex items-center gap-1 text-pitch-turf-surface font-badge-label text-badge-label">
+<span class="material-symbols-outlined text-[14px]">sensors</span> 60 FPS SYNC
+              </span>
+</div>
+<!-- Scoreboard Core -->
+<div class="p-space-lg flex flex-col gap-space-lg">
+<div class="flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg bg-surface-card/10 flex items-center justify-center font-headline-md text-surface-card font-bold">AW</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-surface-card font-bold">Apex Warriors</div>
+<div class="font-data-mono text-table-cell text-text-placeholder">Group A #1 Seed</div>
+</div>
+</div>
+<div class="font-score-display text-score-display text-primary-fixed tracking-tight tabular-nums">2</div>
+</div>
+<div class="flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg bg-surface-card/10 flex items-center justify-center font-headline-md text-surface-card font-bold">CT</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-surface-card font-bold">Colombo Thunder FC</div>
+<div class="font-data-mono text-table-cell text-text-placeholder">Group B #2 Seed</div>
+</div>
+</div>
+<div class="font-score-display text-score-display text-surface-card tracking-tight tabular-nums">1</div>
+</div>
+<!-- Match Metadata strip -->
+<div class="p-space-md rounded-lg bg-surface-card/5 flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-2 text-surface-card">
+<span class="material-symbols-outlined text-primary-fixed text-[18px]">sports_soccer</span>
+<span class="font-table-cell text-table-cell">Court 5 (FIFA Pro Turf Arena)</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-card/10 font-badge-label text-badge-label text-text-placeholder uppercase">Pitch Referee: S. Perera</span>
+</div>
+<!-- Bracket Mini-Tree Progression -->
+<div class="p-space-md rounded-lg bg-[#071322] flex flex-col gap-2">
+<div class="flex items-center justify-between font-eyebrow text-eyebrow text-text-placeholder uppercase">
+<span>Semi-Final Progression</span>
+<span class="text-primary-fixed">Cup Tiebreaker V4.2</span>
+</div>
+<!-- Bracket SVG Flow -->
+<div class="w-full flex items-center justify-between gap-2 pt-1">
+<div class="flex-1 bg-surface-card/10 p-2 rounded flex items-center justify-between">
+<span class="font-subheading text-[13px] text-surface-card truncate">Apex Warriors</span>
+<span class="font-data-mono text-[13px] text-primary-fixed font-bold">ADV</span>
+</div>
+<svg class="w-6 h-6 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="flex-1 bg-primary-container p-2 rounded flex items-center justify-between">
+<span class="font-subheading text-[13px] text-surface-card truncate">Grand Finalist</span>
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">trophy</span>
+</div>
+</div>
+</div>
+<!-- Shareable Public Match Center URL -->
+<div class="p-space-sm pl-space-md rounded-lg bg-surface-card/10 flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2 text-text-placeholder font-data-mono text-table-cell truncate">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">public</span>
+<span class="truncate">playfield.live/t/colombo-futsal-2026</span>
+</div>
+<button class="px-3 py-1.5 rounded bg-surface-card/20 hover:bg-surface-card/30 text-surface-card font-badge-label text-badge-label uppercase tracking-wider transition-colors flex items-center gap-1" onclick="navigator.clipboard?.writeText('https://playfield.live/t/colombo-futsal-2026')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+                  Copy
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Platform Ops Ticker -->
+<section class="w-full bg-floodlight-navy text-surface-card py-space-lg shadow-md">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter items-center text-center divide-x-0">
+<div class="p-space-sm flex flex-col items-center">
+<span class="font-score-display text-score-display text-primary-fixed tabular-nums font-bold">1,420+</span>
+<span class="font-eyebrow text-eyebrow uppercase text-text-placeholder tracking-widest mt-1">Matches Concluded</span>
+</div>
+<div class="p-space-sm flex flex-col items-center">
+<span class="font-score-display text-score-display text-surface-card tabular-nums font-bold">86</span>
+<span class="font-eyebrow text-eyebrow uppercase text-text-placeholder tracking-widest mt-1">Tournaments Hosted</span>
+</div>
+<div class="p-space-sm flex flex-col items-center">
+<span class="font-score-display text-score-display text-primary-fixed tabular-nums font-bold">99.98%</span>
+<span class="font-eyebrow text-eyebrow uppercase text-text-placeholder tracking-widest mt-1">Conflict-Free Uptime</span>
+</div>
+<div class="p-space-sm flex flex-col items-center">
+<span class="font-score-display text-score-display text-secondary-fixed tabular-nums font-bold">&lt; 0.4s</span>
+<span class="font-eyebrow text-eyebrow uppercase text-text-placeholder tracking-widest mt-1">Live Score Propagation</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Value Pillars (3-Column Tactical Grid) -->
+<section class="w-full py-space-xl lg:py-24 bg-canvas-alabaster" id="features">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs max-w-[720px]">
+<span class="font-eyebrow text-eyebrow uppercase text-primary tracking-widest">Architected For Zero Administrative Headaches</span>
+<h2 class="font-headline-lg text-headline-lg text-floodlight-navy font-bold tracking-tight">Built specifically for high-cadence turf venues and serious tournament directors.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg">
+<!-- Pillar 1 -->
+<div class="p-space-xl rounded-xl bg-surface-card shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[28px]">domain_verification</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Zero-Conflict Venue &amp; Court Matrix</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Real-time API lock across multi-pitch complexes (Courts 1 through 5). Dynamic slot reservations automatically reserve buffers, preventing disastrous double-bookings and referee overlap.
+            </p>
+</div>
+<div class="pt-space-lg">
+<div class="p-space-sm rounded bg-pitch-turf-surface text-status-success-emerald font-data-mono text-[13px] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+<span>100% Guaranteed Slot Mutex</span>
+</div>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="p-space-xl rounded-xl bg-surface-card shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[28px]">account_tree</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Deterministic Fixture &amp; Roster Engine</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Generate seeded round-robin groups, double-elimination brackets, and hybrid knockouts in seconds. Enforces minimum player eligibility rules and calculates FIFA head-to-head tiebreakers automatically.
+            </p>
+</div>
+<div class="pt-space-lg">
+<div class="p-space-sm rounded bg-info-reassign-surface text-info-reassign-blue font-data-mono text-[13px] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span>Roster ID &amp; Red Card Enforced</span>
+</div>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="p-space-xl rounded-xl bg-surface-card shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-card-red-surface flex items-center justify-center text-card-red-danger">
+<span class="material-symbols-outlined text-[28px]">broadcast_on_home</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Zero-Delay Public Match Center</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Provide players, team managers, and fans a dedicated live URL. Pitch reallocations, live goal scorers, disciplinary tallies, and automated league standings stream live over WebSockets.
+            </p>
+</div>
+<div class="pt-space-lg">
+<div class="p-space-sm rounded bg-card-red-surface text-card-red-danger font-data-mono text-[13px] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>Ultra-low Latency Spectator Desk</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Turf Venues Spotlight Section -->
+<section class="w-full py-space-xl lg:py-20 bg-surface-container-low shadow-inner" id="venues">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col gap-space-xl">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md">
+<div>
+<span class="font-eyebrow text-eyebrow uppercase text-primary tracking-widest">Synchronized Partner Arenas</span>
+<h2 class="font-headline-lg text-headline-lg text-floodlight-navy font-bold tracking-tight">Verified Pitch Facilities in Colombo</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Pre-configured with real-time electronic tournament desk terminals.</p>
+</div>
+<a class="inline-flex items-center gap-1 font-subheading text-subheading text-primary font-bold hover:underline" href="#">
+<span>View All 45+ Partner Pitches</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</div>
+<!-- Venue Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg">
+<!-- Venue 1 -->
+<div class="flex flex-col rounded-xl bg-surface-card shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High quality athletic outdoor floodlit futsal pitch with green synthetic turf in Colombo Sri Lanka, night game setting with tournament banners and crisp field boundary markings." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsViODykQF8RIFO0mS4m5qPZIYIfMwMrJjsgbBrYZDFmCEFkIIcFPWSaGN6M3FpPKxjRtw1XIzM1DOW560ZEMt2nWH6Y9XGkmGYgTHhm5V2-Gi56o2kQ8cVcGqStqtoiTjRn376VlPDzIe-Kw9aQPvRRWK4ekWu5fgoEjQSBGFaIjJpl54leT-lNFuwANzxbF5Ammt0KcysvdNviJjhA-auZW4jdeSkp0xGR2irfY"/>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-floodlight-navy/90 text-surface-card font-badge-label text-badge-label uppercase">
+              5 Pitches Available
+            </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-pitch-turf-surface text-status-success-emerald font-badge-label text-badge-label">
+              FIFA 2-Star Turf
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Colombo Futsal Hub</h3>
+<span class="font-data-mono text-table-cell text-primary-container font-bold">LKR 6,500/hr</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-text-placeholder">location_on</span>
+                Dehiwala-Mount Lavinia, Western Province
+              </p>
+</div>
+<div class="pt-space-sm flex flex-col gap-2">
+<div class="flex items-center justify-between text-table-cell font-table-cell text-on-surface-variant">
+<span>Floodlight Lux Rating:</span>
+<span class="font-data-mono text-floodlight-navy font-semibold">850 Lux (HD Broadcast)</span>
+</div>
+<div class="flex items-center justify-between text-table-cell font-table-cell text-on-surface-variant">
+<span>Integrated Desk Terminal:</span>
+<span class="font-data-mono text-status-success-emerald font-semibold">Active &amp; Ready</span>
+</div>
+<button class="w-full mt-2 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-floodlight-navy font-subheading text-table-cell transition-colors font-semibold" type="button">
+                Inspect Pitch Calendar
+              </button>
+</div>
+</div>
+</div>
+<!-- Venue 2 -->
+<div class="flex flex-col rounded-xl bg-surface-card shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern indoor futsal complex with multi-tier seating, polished specialized synthetic turf courts, bright LED stadium lighting and scoreboard consoles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUXUwq3ZGSCRr2LWZv1ZdxJKExG-5YSBDOGyncnxoNwlzP4ryiHdDhF6dZSA7BQpieuRZX6v_WKKaMZ-DPVZNurz3INi7BFgJPvFMnOP8igmGga4g0UXvne15KxrTd_ak4TyNn3txETCvEL1C4U0l752_UGVxfgQ7wHinsKTU7kY1-kTGLGT7OZi1b2sD3yBi9kr5OTbCHoMWJ4D2N0h8qCeEVT2UQgDDwCXPJEFc"/>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-floodlight-navy/90 text-surface-card font-badge-label text-badge-label uppercase">
+              3 Pitches Available
+            </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-pitch-turf-surface text-status-success-emerald font-badge-label text-badge-label">
+              ShockPad Pro Turf
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Urban Turf Arena</h3>
+<span class="font-data-mono text-table-cell text-primary-container font-bold">LKR 5,800/hr</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-text-placeholder">location_on</span>
+                Rajagiriya Central, Colombo
+              </p>
+</div>
+<div class="pt-space-sm flex flex-col gap-2">
+<div class="flex items-center justify-between text-table-cell font-table-cell text-on-surface-variant">
+<span>Floodlight Lux Rating:</span>
+<span class="font-data-mono text-floodlight-navy font-semibold">600 Lux (Night Match)</span>
+</div>
+<div class="flex items-center justify-between text-table-cell font-table-cell text-on-surface-variant">
+<span>Integrated Desk Terminal:</span>
+<span class="font-data-mono text-status-success-emerald font-semibold">Active &amp; Ready</span>
+</div>
+<button class="w-full mt-2 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-floodlight-navy font-subheading text-table-cell transition-colors font-semibold" type="button">
+                Inspect Pitch Calendar
+              </button>
+</div>
+</div>
+</div>
+<!-- Venue 3 -->
+<div class="flex flex-col rounded-xl bg-surface-card shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High ceiling timber hardwood indoor multisport arena equipped for professional basketball and futsal tournaments with high-end sideline benches." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgJ3O5x3qwm0UyHglSNaMT9bhQeUvAlFt0S58YKyrtlC2tFn6H9tdYrDLFzIcN9JFgRV9czde8Bit8yBmhT0laE0U3Vt7YBn1fdd2SuJkYuUwGQu65Xus25gVHmxQMAqMtqEyUD42_MCKe6dzVLUf6zfkwO-SBm6SJ6LTCaCLVvtoAiNJ6aggRI6S1LnFw_XXpiiRq6GRZNY0FKkpBC4sJMWdJA0urT6RKDrDFF5M"/>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-floodlight-navy/90 text-surface-card font-badge-label text-badge-label uppercase">
+              4 Pitches Available
+            </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-badge-label text-badge-label">
+              Timber Hardwood
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">ProIndoor Sports Dome</h3>
+<span class="font-data-mono text-table-cell text-primary-container font-bold">LKR 7,200/hr</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-text-placeholder">location_on</span>
+                Pelawatte, Battaramulla
+              </p>
+</div>
+<div class="pt-space-sm flex flex-col gap-2">
+<div class="flex items-center justify-between text-table-cell font-table-cell text-on-surface-variant">
+<span>Floodlight Lux Rating:</span>
+<span class="font-data-mono text-floodlight-navy font-semibold">1000 Lux (FIBA/FIFA)</span>
+</div>
+<div class="flex items-center justify-between text-table-cell font-table-cell text-on-surface-variant">
+<span>Integrated Desk Terminal:</span>
+<span class="font-data-mono text-status-success-emerald font-semibold">Active &amp; Ready</span>
+</div>
+<button class="w-full mt-2 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-floodlight-navy font-subheading text-table-cell transition-colors font-semibold" type="button">
+                Inspect Pitch Calendar
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Live Match Simulation Matrix -->
+<section class="w-full py-space-xl lg:py-24 bg-canvas-alabaster">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col gap-space-xl">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div>
+<span class="font-eyebrow text-eyebrow uppercase text-primary tracking-widest">Matchday Operations Hub</span>
+<h2 class="font-headline-lg text-headline-lg text-floodlight-navy font-bold tracking-tight">Court Allocations &amp; Real-Time Referee Log</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-pitch-turf-surface text-status-success-emerald font-data-mono text-badge-label">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span>
+            ALL 5 COURTS ONLINE
+          </span>
+</div>
+</div>
+<!-- Live Tactical Court Schedule Strip -->
+<div class="w-full bg-surface-card rounded-xl shadow-sm overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr class="h-10 text-on-surface-variant font-subheading text-[12px] uppercase tracking-wider">
+<th class="px-space-lg">Time Slot</th>
+<th class="px-space-md">Court</th>
+<th class="px-space-md">Fixture / Phase</th>
+<th class="px-space-md text-center">Score</th>
+<th class="px-space-md">Referee</th>
+<th class="px-space-md">Status</th>
+<th class="px-space-lg text-right">Desk Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-grid font-table-cell text-table-cell">
+<tr class="h-14 hover:bg-state-hover-gray transition-colors">
+<td class="px-space-lg font-data-mono text-floodlight-navy font-bold">14:00 - 14:45</td>
+<td class="px-space-md">
+<span class="px-2 py-0.5 rounded bg-floodlight-navy text-surface-card font-badge-label text-badge-label">Court 1</span>
+</td>
+<td class="px-space-md">
+<div class="font-subheading text-on-surface font-semibold">Colombo Kings vs. Southern United</div>
+<div class="text-[12px] text-text-muted">Group A Matchday 3</div>
+</td>
+<td class="px-space-md text-center font-data-mono text-score-entry text-floodlight-navy">
+                4 - 2
+              </td>
+<td class="px-space-md text-on-surface-variant">M. Rashad</td>
+<td class="px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-badge-label text-badge-label uppercase">Final Whistle</span>
+</td>
+<td class="px-space-lg text-right">
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-floodlight-navy font-subheading text-[13px] font-semibold transition-colors" type="button">
+                  Match Report
+                </button>
+</td>
+</tr>
+<tr class="h-14 hover:bg-state-hover-gray transition-colors bg-card-red-surface/30">
+<td class="px-space-lg font-data-mono text-card-red-danger font-bold">15:00 - 15:45</td>
+<td class="px-space-md">
+<span class="px-2 py-0.5 rounded bg-floodlight-navy text-surface-card font-badge-label text-badge-label">Court 2</span>
+</td>
+<td class="px-space-md">
+<div class="font-subheading text-on-surface font-semibold">Apex Warriors vs. Colombo Thunder FC</div>
+<div class="text-[12px] text-text-muted">Cup Semi-Final 1</div>
+</td>
+<td class="px-space-md text-center font-data-mono text-score-entry text-card-red-danger font-bold">
+                2 - 1
+              </td>
+<td class="px-space-md text-on-surface-variant">S. Perera</td>
+<td class="px-space-md">
+<span class="px-2 py-0.5 rounded bg-card-red-surface text-card-red-danger font-badge-label text-badge-label uppercase flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-card-red-danger animate-ping"></span>
+                  24' Live
+                </span>
+</td>
+<td class="px-space-lg text-right">
+<button class="px-3 py-1 rounded bg-card-red-danger text-surface-card hover:bg-card-red-hover font-subheading text-[13px] font-semibold transition-colors" type="button">
+                  Live Score Desk
+                </button>
+</td>
+</tr>
+<tr class="h-14 hover:bg-state-hover-gray transition-colors">
+<td class="px-space-lg font-data-mono text-floodlight-navy font-bold">16:00 - 16:45</td>
+<td class="px-space-md">
+<span class="px-2 py-0.5 rounded bg-floodlight-navy text-surface-card font-badge-label text-badge-label">Court 3</span>
+</td>
+<td class="px-space-md">
+<div class="font-subheading text-on-surface font-semibold">Kandy Strikers vs. Galle Gladiators</div>
+<div class="text-[12px] text-text-muted">Cup Semi-Final 2</div>
+</td>
+<td class="px-space-md text-center font-data-mono text-text-placeholder">
+                -- : --
+              </td>
+<td class="px-space-md text-on-surface-variant">D. Wijesinghe</td>
+<td class="px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-badge-label text-badge-label uppercase">Scheduled</span>
+</td>
+<td class="px-space-lg text-right">
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-floodlight-navy font-subheading text-[13px] font-semibold transition-colors" type="button">
+                  Check Rosters
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Final High-Impact Operations CTA Banner -->
+<section class="w-full bg-floodlight-navy text-surface-card py-space-xl lg:py-20 relative overflow-hidden">
+<div class="absolute -right-16 -bottom-16 w-96 h-96 bg-primary-container opacity-20 rounded-full filter blur-3xl pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg relative z-10">
+<div class="p-space-xl lg:p-14 rounded-2xl bg-surface-card/5 backdrop-blur flex flex-col md:flex-row items-center justify-between gap-space-xl">
+<div class="flex flex-col gap-space-sm max-w-[680px]">
+<span class="font-eyebrow text-eyebrow uppercase text-primary-fixed tracking-widest">No More WhatsApp Groups &amp; Broken Sheets</span>
+<h2 class="font-headline-lg text-headline-lg text-surface-card font-bold tracking-tight">
+            Ready to launch your corporate or club tournament in 4 minutes?
+          </h2>
+<p class="font-body-lg text-body-lg text-text-placeholder">
+            Instant court slot synchronization, automated roster qualification, and branded live broadcast links ready out of the box.
+          </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-md flex-shrink-0">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-8 py-4 rounded-lg bg-primary-container text-surface-card font-subheading text-subheading hover:bg-pitch-turf-hover active:bg-pitch-turf-active transition-all shadow-md" data-path="wizard-step1" href="#">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+<span>Launch Tournament Wizard</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-card border-t border-border-grid py-space-xl mt-auto"><div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase tracking-tight">Play Field</span><span class="text-text-muted font-body-md text-body-md">• Professional Tournament Management Engine</span></div><div class="flex items-center gap-space-lg text-text-muted font-table-cell text-table-cell"><a class="hover:text-primary transition-colors" data-path="public-live" href="#">Public Live Center</a><a class="hover:text-primary transition-colors" data-path="ongoing-tournaments" href="#">Tournaments</a><a class="hover:text-primary transition-colors" data-path="dashboard" href="#">Organizer Control Desk</a><span>© 2025 Play Field System. All Rights Reserved.</span></div></div></footer></body></html>

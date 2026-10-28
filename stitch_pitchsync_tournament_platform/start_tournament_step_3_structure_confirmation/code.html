@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"card-red-border":"#fca5a5","card-red-hover":"#b91c1c","surface":"#f1fcf3","surface-variant":"#dae5dd","background":"#f1fcf3","pitch-turf-active":"#063b2a","primary-fixed":"#9ff4cc","error-container":"#ffdad6","card-red-danger":"#dc2626","on-secondary-fixed-variant":"#3a475c","secondary-fixed-dim":"#bac7e1","on-primary-fixed-variant":"#005139","secondary-fixed":"#d6e3fe","on-background":"#141e19","on-surface":"#141e19","live-orange-hover":"#c2410c","info-reassign-surface":"#eff6ff","inverse-surface":"#28332d","on-tertiary-fixed":"#370e00","border-grid":"#e2e8f0","surface-container":"#e5f1e8","surface-card":"#ffffff","live-orange-active":"#9a3412","on-error":"#ffffff","on-tertiary-fixed-variant":"#7f2b00","surface-container-lowest":"#ffffff","tertiary-container":"#ab3c00","inverse-primary":"#83d7b1","on-secondary":"#ffffff","info-reassign-blue":"#1d4ed8","on-surface-variant":"#3f4943","card-red-surface":"#fef2f2","tertiary-fixed-dim":"#ffb599","pitch-turf-hover":"#09523b","canvas-alabaster":"#f8fafc","tertiary":"#832c00","on-tertiary":"#ffffff","outline-variant":"#bec9c1","secondary":"#525f75","pitch-turf-surface":"#f0fdf4","surface-tint":"#076c4d","primary-container":"#0d6e4f","inverse-on-surface":"#e8f4eb","error":"#ba1a1a","card-red-active":"#991b1b","primary-fixed-dim":"#83d7b1","on-secondary-fixed":"#0e1c2f","info-reassign-border":"#bfdbfe","status-warning-amber":"#b45309","state-hover-gray":"#f1f5f9","secondary-container":"#d6e3fe","floodlight-navy":"#0b192c","status-success-emerald":"#047857","surface-container-high":"#e0ebe2","text-placeholder":"#94a3b8","on-primary-fixed":"#002115","on-primary-container":"#99edc6","surface-container-highest":"#dae5dd","text-muted":"#64748b","on-tertiary-container":"#ffd3c3","info-reassign-accent":"#2563eb","on-secondary-container":"#58657b","surface-dim":"#d1ddd4","primary":"#00543b","surface-bright":"#f1fcf3","border-control":"#cbd5e1","on-primary":"#ffffff","tertiary-fixed":"#ffdbce","outline":"#6f7a73","surface-container-low":"#ebf6ee","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","margin":"1rem","gutter-md":"1.25rem","space-lg":"1rem","space-xs":"0.25rem","space-md":"0.625rem","gutter-lg":"1.5rem","space-xl":"1.5rem","space-sm":"0.375rem","margin-md":"1.5rem","margin-lg":"2rem"},"fontFamily":{"table-cell":["Instrument Sans"],"score-display-mobile":["JetBrains Mono"],"headline-md-mobile":["Plus Jakarta Sans"],"input-entry":["Instrument Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"badge-label":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Instrument Sans"],"score-entry":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"eyebrow":["Barlow Condensed"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Instrument Sans"],"subheading":["Instrument Sans"],"data-mono":["JetBrains Mono"],"score-display":["JetBrains Mono"]},"fontSize":{"table-cell":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display-mobile":["28px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md-mobile":["18px",{"lineHeight":"24px","letterSpacing":"-0.015em","fontWeight":"700"}],"input-entry":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"badge-label":["12px",{"lineHeight":"12px","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"score-entry":["20px",{"lineHeight":"24px","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"eyebrow":["13px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"22px","fontWeight":"400"}],"subheading":["16px",{"lineHeight":"22px","fontWeight":"600"}],"data-mono":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display":["36px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas-alabaster font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card border-b border-border-grid shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="landing" href="#"><img alt="Play Field Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpV83TVnr_8FNRkCuzr_oaoKFzsFHMvUZDfIktr5-0HscVW4DCqFgwNLP1Ffy40qsbLOTAmL03YfnxP28CAnW19nSuYYqSb_S1MjSp1fWg63HdYOJZZK_n-S69KDBzfy1gUkHrz4YxNTaLWehPs9k7f46YDA-ItedhhMJ_EttCpePbZzfxelC-yE39BXWB8Ez2DlxQ_rrUiNPLhtf8M2wphb0kSjF8fYe_bMj-b1A"/><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold tracking-tight uppercase">Play Field</span></a><span class="hidden lg:inline-flex items-center px-space-xs py-0.5 rounded-full bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase tracking-wider">Broadcast Desk</span></div><nav class="hidden xl:flex items-center gap-space-xl" data-active-classes="text-primary font-subheading border-b-2 border-primary-container pb-1"><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ongoing-tournaments" href="#">Ongoing Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ended-tournaments" href="#">Ended Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="public-live" href="#">Public Live Match Center</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover hover:text-on-primary active:bg-pitch-turf-active font-subheading text-subheading shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap" data-path="wizard-step1" href="#"><span class="material-symbols-outlined text-[18px]">add_circle</span><span>+ Start Tournament</span></a><button aria-label="Notifications" class="p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-card-red-danger"></span></button><div class="flex items-center pl-space-xs border-l border-border-grid"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-border-grid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL2lTIHZNPd2I0gTfnEQCwWGxUmuuMWI9h3naoviZBXcbcUsT4P5Z-AhSXcJkjuRnu87yfKNVK8vJAYoGw5vqLdGpkgPjbBCQU0uQi64muj8Lpz7m_P6klaSVPhph4bELkYw77_GZ3ZQSTmcw0xb-r1tQ-reGHvGS1cASiqaeDCOwz9W3nBrA5Ob4K4ebf1HmuTOE-nqwsNbLp5KdRMOj6OHJPSUlWGWxtyS1xVs4"/></div></div></div></header><main class="w-full pt-16 bg-canvas-alabaster flex-1"><div class="flex flex-col w-full">
+<div class="max-w-[1440px] w-full mx-auto px-margin md:px-margin-md lg:px-margin-lg py-space-xl flex flex-col gap-space-xl">
+<!-- STEP PROGRESS TRACKER -->
+<section class="bg-surface-card rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<!-- Step 1 -->
+<div class="flex items-center gap-space-md flex-1">
+<div class="w-8 h-8 rounded-full bg-status-success-emerald text-on-primary flex items-center justify-center font-badge-label text-badge-label shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-eyebrow text-eyebrow text-text-muted uppercase tracking-wider">Step 01</span>
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Tournament Profile &amp; Venue</span>
+</div>
+</div>
+<div class="hidden md:block w-8 h-[2px] bg-status-success-emerald self-center"></div>
+<!-- Step 2 -->
+<div class="flex items-center gap-space-md flex-1">
+<div class="w-8 h-8 rounded-full bg-status-success-emerald text-on-primary flex items-center justify-center font-badge-label text-badge-label shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-eyebrow text-eyebrow text-text-muted uppercase tracking-wider">Step 02</span>
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Rosters &amp; Qualification Rules</span>
+</div>
+</div>
+<div class="hidden md:block w-8 h-[2px] bg-primary-container self-center"></div>
+<!-- Step 3 (Active) -->
+<div class="flex items-center gap-space-md flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-badge-label text-badge-label shadow-sm animate-pulse">
+            03
+          </div>
+<div class="flex flex-col">
+<span class="font-eyebrow text-eyebrow text-primary uppercase tracking-wider">Active Stage</span>
+<span class="font-subheading text-subheading text-primary font-bold">Structure &amp; Conflict Audit</span>
+</div>
+</div>
+<div class="hidden md:block w-8 h-[2px] bg-surface-container-highest self-center"></div>
+<!-- Step 4 -->
+<div class="flex items-center gap-space-md flex-1 opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-text-muted flex items-center justify-center font-badge-label text-badge-label">
+            04
+          </div>
+<div class="flex flex-col">
+<span class="font-eyebrow text-eyebrow text-text-muted uppercase tracking-wider">Final Step</span>
+<span class="font-subheading text-subheading text-text-muted font-medium">Advance Payment &amp; Launch</span>
+</div>
+</div>
+</div>
+</section>
+<!-- PAGE HEADER -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-primary-container text-on-primary font-badge-label text-badge-label uppercase">Desk Engine v4.2</span>
+<span class="text-text-muted font-data-mono text-data-mono">LOCK-REF: #TRN-COLOMBO-2611</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-floodlight-navy font-black tracking-tight">Step 3: Verify Structure &amp; Conflict Audit</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">Review generated match fixtures, court progression matrix, and automated conflict-free validation before locking booking.</p>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-card p-space-xs rounded-lg shadow-sm">
+<span class="inline-flex w-3 h-3 rounded-full bg-status-success-emerald animate-ping"></span>
+<span class="font-badge-label text-badge-label text-status-success-emerald tracking-wider uppercase">Engine Live Synced</span>
+</div>
+</div>
+<!-- CONFLICT AUDIT MASTHEAD BANNER (FR-10 COMPLIANCE) -->
+<section class="bg-surface-container-low rounded-xl p-space-lg shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-pitch-turf-surface text-status-success-emerald flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Automated Venue &amp; Schedule Conflict Engine: PASSED</span>
+<span class="px-space-xs py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-badge-label uppercase">0 Violations</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Deterministic verification across venue court buffers, multi-booking constraints, and certified match commissioner rosters.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm w-full lg:w-auto shrink-0">
+<div class="bg-surface-card p-space-sm rounded-lg shadow-sm flex flex-col">
+<span class="font-badge-label text-badge-label text-status-success-emerald uppercase">Court Clashes</span>
+<span class="font-score-entry text-score-entry text-floodlight-navy font-bold">0 Detected</span>
+</div>
+<div class="bg-surface-card p-space-sm rounded-lg shadow-sm flex flex-col">
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Allocated Hubs</span>
+<span class="font-score-entry text-score-entry text-floodlight-navy font-bold">3 Courts</span>
+</div>
+<div class="bg-surface-card p-space-sm rounded-lg shadow-sm flex flex-col">
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Total Matches</span>
+<span class="font-score-entry text-score-entry text-floodlight-navy font-bold">32 Fixtures</span>
+</div>
+<div class="bg-surface-card p-space-sm rounded-lg shadow-sm flex flex-col">
+<span class="font-badge-label text-badge-label text-status-success-emerald uppercase">Buffer Integrity</span>
+<span class="font-score-entry text-score-entry text-floodlight-navy font-bold">≥ 40m Rest</span>
+</div>
+</div>
+</section>
+<!-- METADATA & VENUE LOCK SNAPSHOT -->
+<section class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">sports_soccer</span>
+<span class="font-eyebrow text-eyebrow text-floodlight-navy uppercase tracking-wider">Tournament Configuration Matrix</span>
+</div>
+<span class="font-data-mono text-data-mono text-text-muted">Generated at 10:48 AM IST • Auto-Validating</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-floodlight-navy font-subheading text-subheading flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">groups</span>
+          Futsal 5v5
+        </span>
+<span class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-floodlight-navy font-subheading text-subheading flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">schema</span>
+          Group Stage (4 Groups of 4) → Knockout Top 2
+        </span>
+<span class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-floodlight-navy font-subheading text-subheading flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">stadium</span>
+          Colombo Futsal Hub
+        </span>
+<span class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-floodlight-navy font-subheading text-subheading flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_month</span>
+          14–15 Nov 2026 (2 Days)
+        </span>
+<span class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-floodlight-navy font-subheading text-subheading flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">badge</span>
+          16 Corporate Squads Registered
+        </span>
+</div>
+</section>
+<!-- MAIN TWO-COLUMN CONTENT GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- SECTION A: GROUP SEEDING & ROSTER ACCORDION PREVIEW (5 Cols) -->
+<section class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">format_list_bulleted</span>
+<h2 class="font-headline-md text-headline-md text-floodlight-navy font-bold">Group Seeding &amp; Roster Audit</h2>
+</div>
+<span class="font-badge-label text-badge-label bg-pitch-turf-surface text-status-success-emerald px-space-xs py-0.5 rounded-full">16/16 Confirmed</span>
+</div>
+<!-- Accordion Container -->
+<div class="flex flex-col gap-space-sm" id="group-accordions">
+<!-- Group A (Expanded by Default) -->
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden transition-all duration-200">
+<button class="w-full p-space-md bg-floodlight-navy text-on-primary flex items-center justify-between text-left group-toggle" data-target="group-a-content" type="button">
+<div class="flex items-center gap-space-md">
+<span class="w-7 h-7 rounded-lg bg-primary-container text-on-primary font-badge-label text-badge-label flex items-center justify-center font-bold">GA</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-primary font-bold">Group A • Premier Seed</h3>
+<span class="font-table-cell text-table-cell text-surface-variant">4 Teams • Pitch 1 &amp; 5 Priority</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded-full bg-status-success-emerald text-on-primary font-badge-label text-badge-label">Verified</span>
+<span class="material-symbols-outlined text-on-primary transition-transform duration-200 group-arrow">expand_less</span>
+</div>
+</button>
+<div class="p-space-md flex flex-col gap-space-sm bg-surface-card" id="group-a-content">
+<!-- Compliance Notification -->
+<div class="flex items-center gap-space-xs p-space-xs px-space-sm bg-pitch-turf-surface rounded-lg">
+<span class="material-symbols-outlined text-status-success-emerald text-[16px]">task_alt</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">All 4 rosters compliant with tournament minimums (≥ 6 players)</span>
+</div>
+<!-- Team Rows -->
+<div class="flex flex-col gap-space-xs">
+<!-- Team 1 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="font-data-mono text-data-mono px-1.5 py-0.5 rounded bg-primary-container text-on-primary font-bold">S1</span>
+<div class="flex flex-col">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Apex Warriors</span>
+<span class="font-table-cell text-table-cell text-text-muted">Corporate Cap: HSBC Int.</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">8 Players</span>
+<div class="font-badge-label text-badge-label text-status-success-emerald">Captain Signed</div>
+</div>
+</div>
+<!-- Team 2 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="font-data-mono text-data-mono px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-fixed font-bold">S2</span>
+<div class="flex flex-col">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Colombo Thunder FC</span>
+<span class="font-table-cell text-table-cell text-text-muted">Corporate Cap: Brandix HQ</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">8 Players</span>
+<div class="font-badge-label text-badge-label text-status-success-emerald">Captain Signed</div>
+</div>
+</div>
+<!-- Team 3 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="font-data-mono text-data-mono px-1.5 py-0.5 rounded bg-surface-container text-text-muted font-bold">S3</span>
+<div class="flex flex-col">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Metro Strikers</span>
+<span class="font-table-cell text-table-cell text-text-muted">Corporate Cap: Virtusa Tech</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">7 Players</span>
+<div class="font-badge-label text-badge-label text-status-success-emerald">Captain Signed</div>
+</div>
+</div>
+<!-- Team 4 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="font-data-mono text-data-mono px-1.5 py-0.5 rounded bg-surface-container text-text-muted font-bold">S4</span>
+<div class="flex flex-col">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">City Lions</span>
+<span class="font-table-cell text-table-cell text-text-muted">Corporate Cap: Dialog Axiata</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">6 Players</span>
+<div class="font-badge-label text-badge-label text-status-warning-amber">Min Validated</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group B (Collapsed) -->
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden transition-all duration-200">
+<button class="w-full p-space-md bg-surface-card text-on-surface flex items-center justify-between text-left group-toggle hover:bg-state-hover-gray" data-target="group-b-content" type="button">
+<div class="flex items-center gap-space-md">
+<span class="w-7 h-7 rounded-lg bg-surface-container-highest text-floodlight-navy font-badge-label text-badge-label flex items-center justify-center font-bold">GB</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Group B • South Division</h3>
+<span class="font-table-cell text-table-cell text-text-muted">Red Dragons, Coastal Strikers, Island Titans, Lanka Vipers</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-badge-label">Verified (29 Pl)</span>
+<span class="material-symbols-outlined text-text-muted transition-transform duration-200 group-arrow">expand_more</span>
+</div>
+</button>
+<div class="hidden p-space-md flex-col gap-space-sm bg-surface-card" id="group-b-content">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Red Dragons • 8 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #1</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Coastal Strikers • 7 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #2</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Island Titans • 7 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #3</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Lanka Vipers • 7 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #4</span>
+</div>
+</div>
+</div>
+<!-- Group C (Collapsed) -->
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden transition-all duration-200">
+<button class="w-full p-space-md bg-surface-card text-on-surface flex items-center justify-between text-left group-toggle hover:bg-state-hover-gray" data-target="group-c-content" type="button">
+<div class="flex items-center gap-space-md">
+<span class="w-7 h-7 rounded-lg bg-surface-container-highest text-floodlight-navy font-badge-label text-badge-label flex items-center justify-center font-bold">GC</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Group C • Central Division</h3>
+<span class="font-table-cell text-table-cell text-text-muted">Kandy Kings, Royal Knights, Southern Hawks, Ocean Breeze</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-badge-label">Verified (31 Pl)</span>
+<span class="material-symbols-outlined text-text-muted transition-transform duration-200 group-arrow">expand_more</span>
+</div>
+</button>
+<div class="hidden p-space-md flex-col gap-space-sm bg-surface-card" id="group-c-content">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Kandy Kings • 8 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #1</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Royal Knights • 8 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #2</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Southern Hawks • 7 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #3</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Ocean Breeze • 8 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #4</span>
+</div>
+</div>
+</div>
+<!-- Group D (Collapsed) -->
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden transition-all duration-200">
+<button class="w-full p-space-md bg-surface-card text-on-surface flex items-center justify-between text-left group-toggle hover:bg-state-hover-gray" data-target="group-d-content" type="button">
+<div class="flex items-center gap-space-md">
+<span class="w-7 h-7 rounded-lg bg-surface-container-highest text-floodlight-navy font-badge-label text-badge-label flex items-center justify-center font-bold">GD</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Group D • Metro Division</h3>
+<span class="font-table-cell text-table-cell text-text-muted">Capital United, Harbour Storm, Peak Rangers, Rapid Fire FC</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-badge-label">Verified (30 Pl)</span>
+<span class="material-symbols-outlined text-text-muted transition-transform duration-200 group-arrow">expand_more</span>
+</div>
+</button>
+<div class="hidden p-space-md flex-col gap-space-sm bg-surface-card" id="group-d-content">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Capital United • 8 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #1</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Harbour Storm • 7 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #2</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Peak Rangers • 8 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #3</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex justify-between items-center">
+<span class="font-subheading text-subheading text-floodlight-navy font-bold">Rapid Fire FC • 7 Pl</span>
+<span class="font-badge-label text-badge-label text-status-success-emerald">Seeded #4</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Knockout Progression Map preview card -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-eyebrow text-eyebrow text-floodlight-navy uppercase tracking-wider">Tournament Path Matrix</span>
+<span class="font-badge-label text-badge-label text-primary uppercase">Quarter-Final Pathway</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-space-xs font-table-cell text-table-cell">
+<div class="flex items-center justify-between py-1">
+<span class="font-semibold text-floodlight-navy">Quarter-Final 1 (QF1)</span>
+<span class="font-data-mono text-data-mono text-primary font-bold">Winner Grp A × Runner-Up Grp B</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-semibold text-floodlight-navy">Quarter-Final 2 (QF2)</span>
+<span class="font-data-mono text-data-mono text-primary font-bold">Winner Grp B × Runner-Up Grp A</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-semibold text-floodlight-navy">Quarter-Final 3 (QF3)</span>
+<span class="font-data-mono text-data-mono text-primary font-bold">Winner Grp C × Runner-Up Grp D</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-semibold text-floodlight-navy">Quarter-Final 4 (QF4)</span>
+<span class="font-data-mono text-data-mono text-primary font-bold">Winner Grp D × Runner-Up Grp C</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION B: GENERATED MATCHDAY FIXTURE SCHEDULE PREVIEW (7 Cols) -->
+<section class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Tabs Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">calendar_today</span>
+<h2 class="font-headline-md text-headline-md text-floodlight-navy font-bold">Generated Matchday Schedule</h2>
+</div>
+<!-- Matchday Segmented Tabs -->
+<div class="flex p-0.5 rounded-lg bg-surface-container-highest shrink-0" role="tablist">
+<button class="matchday-tab px-space-md py-space-xs rounded-lg font-subheading text-subheading font-bold text-on-primary bg-primary shadow-sm transition-all" data-panel="panel-day1" role="tab" type="button">
+              Matchday 1 • Nov 14 (Groups)
+            </button>
+<button class="matchday-tab px-space-md py-space-xs rounded-lg font-subheading text-subheading font-medium text-text-muted hover:text-on-surface transition-all" data-panel="panel-day2" role="tab" type="button">
+              Matchday 2 • Nov 15 (Knockouts)
+            </button>
+</div>
+</div>
+<!-- Tab Panel: Matchday 1 -->
+<div class="flex flex-col gap-space-md" id="panel-day1">
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden">
+<!-- Table Header -->
+<div class="bg-surface-container-low px-space-md py-space-sm flex items-center justify-between text-text-muted font-badge-label text-badge-label uppercase tracking-wider">
+<div class="flex items-center gap-space-md">
+<span class="w-16">Time</span>
+<span>Court Allocation</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<span class="hidden md:inline">Match Commissioner</span>
+<span class="w-20 text-right">Status</span>
+</div>
+</div>
+<!-- Fixtures List -->
+<div class="flex flex-col">
+<!-- Match 1 -->
+<div class="p-space-md hover:bg-state-hover-gray transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-16 font-data-mono text-data-mono font-bold text-floodlight-navy">
+                    08:30
+                  </div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase">Court 5 (FIFA Turf)</span>
+<span class="font-badge-label text-badge-label text-text-muted">Group A • M01</span>
+</div>
+<div class="flex items-center gap-space-sm font-subheading text-subheading text-floodlight-navy font-bold">
+<span>Apex Warriors</span>
+<span class="font-data-mono text-data-mono text-text-muted font-normal">vs</span>
+<span>Colombo Thunder FC</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg pl-16 md:pl-0">
+<div class="flex flex-col text-right">
+<span class="font-table-cell text-table-cell font-medium text-floodlight-navy">R. Jayawardena</span>
+<span class="font-badge-label text-badge-label text-text-muted">FIFA Graded Ref</span>
+</div>
+<span class="w-20 text-right font-badge-label text-badge-label text-status-success-emerald uppercase flex items-center justify-end gap-1">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span>
+                    Validated
+                  </span>
+</div>
+</div>
+<!-- Match 2 -->
+<div class="p-space-md hover:bg-state-hover-gray transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm bg-canvas-alabaster">
+<div class="flex items-center gap-space-md">
+<div class="w-16 font-data-mono text-data-mono font-bold text-floodlight-navy">
+                    08:30
+                  </div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-floodlight-navy font-badge-label text-badge-label uppercase">Court 1 (Synthetic)</span>
+<span class="font-badge-label text-badge-label text-text-muted">Group A • M02</span>
+</div>
+<div class="flex items-center gap-space-sm font-subheading text-subheading text-floodlight-navy font-bold">
+<span>Metro Strikers</span>
+<span class="font-data-mono text-data-mono text-text-muted font-normal">vs</span>
+<span>City Lions</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg pl-16 md:pl-0">
+<div class="flex flex-col text-right">
+<span class="font-table-cell text-table-cell font-medium text-floodlight-navy">K. Perera</span>
+<span class="font-badge-label text-badge-label text-text-muted">Certified Ref</span>
+</div>
+<span class="w-20 text-right font-badge-label text-badge-label text-status-success-emerald uppercase flex items-center justify-end gap-1">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span>
+                    Validated
+                  </span>
+</div>
+</div>
+<!-- Match 3 -->
+<div class="p-space-md hover:bg-state-hover-gray transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-16 font-data-mono text-data-mono font-bold text-floodlight-navy">
+                    09:15
+                  </div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-floodlight-navy font-badge-label text-badge-label uppercase">Court 2 (Synthetic)</span>
+<span class="font-badge-label text-badge-label text-text-muted">Group B • M03</span>
+</div>
+<div class="flex items-center gap-space-sm font-subheading text-subheading text-floodlight-navy font-bold">
+<span>Red Dragons</span>
+<span class="font-data-mono text-data-mono text-text-muted font-normal">vs</span>
+<span>Coastal Strikers</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg pl-16 md:pl-0">
+<div class="flex flex-col text-right">
+<span class="font-table-cell text-table-cell font-medium text-floodlight-navy">D. Silva</span>
+<span class="font-badge-label text-badge-label text-text-muted">Certified Ref</span>
+</div>
+<span class="w-20 text-right font-badge-label text-badge-label text-status-success-emerald uppercase flex items-center justify-end gap-1">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span>
+                    Validated
+                  </span>
+</div>
+</div>
+<!-- Match 4 -->
+<div class="p-space-md hover:bg-state-hover-gray transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm bg-canvas-alabaster">
+<div class="flex items-center gap-space-md">
+<div class="w-16 font-data-mono text-data-mono font-bold text-floodlight-navy">
+                    09:15
+                  </div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase">Court 5 (FIFA Turf)</span>
+<span class="font-badge-label text-badge-label text-text-muted">Group B • M04</span>
+</div>
+<div class="flex items-center gap-space-sm font-subheading text-subheading text-floodlight-navy font-bold">
+<span>Island Titans</span>
+<span class="font-data-mono text-data-mono text-text-muted font-normal">vs</span>
+<span>Lanka Vipers</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg pl-16 md:pl-0">
+<div class="flex flex-col text-right">
+<span class="font-table-cell text-table-cell font-medium text-floodlight-navy">S. Fernando</span>
+<span class="font-badge-label text-badge-label text-text-muted">FIFA Graded Ref</span>
+</div>
+<span class="w-20 text-right font-badge-label text-badge-label text-status-success-emerald uppercase flex items-center justify-end gap-1">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span>
+                    Validated
+                  </span>
+</div>
+</div>
+<!-- Match 5 -->
+<div class="p-space-md hover:bg-state-hover-gray transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-16 font-data-mono text-data-mono font-bold text-floodlight-navy">
+                    10:00
+                  </div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-floodlight-navy font-badge-label text-badge-label uppercase">Court 1 (Synthetic)</span>
+<span class="font-badge-label text-badge-label text-text-muted">Group C • M05</span>
+</div>
+<div class="flex items-center gap-space-sm font-subheading text-subheading text-floodlight-navy font-bold">
+<span>Kandy Kings</span>
+<span class="font-data-mono text-data-mono text-text-muted font-normal">vs</span>
+<span>Royal Knights</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg pl-16 md:pl-0">
+<div class="flex flex-col text-right">
+<span class="font-table-cell text-table-cell font-medium text-floodlight-navy">R. Jayawardena</span>
+<span class="font-badge-label text-badge-label text-text-muted">FIFA Graded Ref</span>
+</div>
+<span class="w-20 text-right font-badge-label text-badge-label text-status-success-emerald uppercase flex items-center justify-end gap-1">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span>
+                    Validated
+                  </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Schedule Metrics Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="bg-surface-card p-space-sm rounded-lg shadow-sm flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">timer</span>
+<div class="flex flex-col">
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Match Duration</span>
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">30 mins (2 × 15m)</span>
+</div>
+</div>
+<div class="bg-surface-card p-space-sm rounded-lg shadow-sm flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">replay</span>
+<div class="flex flex-col">
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Turnaround Buffer</span>
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">15m Pitch Handover</span>
+</div>
+</div>
+<div class="bg-surface-card p-space-sm rounded-lg shadow-sm flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">nightlight</span>
+<div class="flex flex-col">
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Floodlights Mode</span>
+<span class="font-data-mono text-data-mono text-floodlight-navy font-bold">Reserved from 17:30</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Panel: Matchday 2 (Knockouts - Hidden by default) -->
+<div class="hidden flex-col gap-space-md" id="panel-day2">
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Sunday, 15 Nov • Championship Finals</h3>
+<span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary font-badge-label text-badge-label">8 Elimination Matches</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-badge-label text-badge-label text-primary uppercase">QF1 • 09:30 • Court 5</span>
+<span class="font-data-mono text-data-mono text-text-muted">40m</span>
+</div>
+<div class="font-subheading text-subheading text-floodlight-navy font-bold">Winner Group A vs Runner-Up Group B</div>
+<div class="font-table-cell text-table-cell text-text-muted">Referee: R. Jayawardena</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-badge-label text-badge-label text-primary uppercase">QF2 • 09:30 • Court 1</span>
+<span class="font-data-mono text-data-mono text-text-muted">40m</span>
+</div>
+<div class="font-subheading text-subheading text-floodlight-navy font-bold">Winner Group B vs Runner-Up Group A</div>
+<div class="font-table-cell text-table-cell text-text-muted">Referee: K. Perera</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-badge-label text-badge-label text-primary uppercase">Semi-Final 1 • 14:00 • Court 5</span>
+<span class="font-data-mono text-data-mono text-text-muted">50m Extra-Time Rule</span>
+</div>
+<div class="font-subheading text-subheading text-floodlight-navy font-bold">Winner QF1 vs Winner QF3</div>
+<div class="font-table-cell text-table-cell text-text-muted">Referee: S. Fernando</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-badge-label text-badge-label text-status-warning-amber uppercase">Grand Final • 17:00 • Court 5 (FIFA)</span>
+<span class="font-data-mono text-data-mono text-text-muted">60m Trophy Decider</span>
+</div>
+<div class="font-subheading text-subheading text-floodlight-navy font-bold">Finalist 1 vs Finalist 2</div>
+<div class="font-table-cell text-table-cell text-text-muted">Lead Official: R. Jayawardena</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- VENUE HOLD EXPIRY & LEGAL GUARANTEE NOTICE -->
+<div class="bg-info-reassign-surface p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-info-reassign-accent text-[28px] shrink-0">lock_clock</span>
+<div class="flex flex-col">
+<span class="font-subheading text-subheading text-info-reassign-blue font-bold">Temporary Venue Hold Active: 14 Minutes Remaining</span>
+<span class="font-body-md text-body-md text-floodlight-navy">
+            Court slots at Colombo Futsal Hub will be permanently reserved upon completion of advance payment in Step 4.
+          </span>
+</div>
+</div>
+<div class="font-data-mono text-data-mono text-info-reassign-blue font-bold px-space-md py-space-xs rounded bg-surface-card shadow-sm shrink-0">
+        HOLD TIMEOUT: 13:58
+      </div>
+</div>
+<!-- ACTION FOOTER BAR -->
+<section class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-lg bg-surface-card text-on-surface font-subheading text-subheading hover:bg-state-hover-gray transition-colors w-full sm:w-auto" data-path="wizard-step2" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span>Back to Team Roster Builder</span>
+</a>
+<div class="flex flex-col sm:flex-row items-center gap-space-md w-full sm:w-auto">
+<button class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-md rounded-lg bg-surface-container-high text-floodlight-navy font-subheading text-subheading hover:bg-surface-container-highest transition-colors w-full sm:w-auto" id="re-audit-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Re-Run Audit</span>
+</button>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-xl py-space-md rounded-lg bg-primary-container text-on-primary font-subheading text-subheading font-bold shadow-md hover:bg-pitch-turf-hover active:bg-pitch-turf-active transition-all w-full sm:w-auto" data-path="wizard-step4" href="#">
+<span>Proceed to Advance Payment &amp; Selective Options</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</section>
+</div>
+</div>
+<script>
+  // Group Accordion Interactivity
+  const toggles = document.querySelectorAll('.group-toggle');
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const targetId = toggle.getAttribute('data-target');
+      const targetContent = document.getElementById(targetId);
+      const arrow = toggle.querySelector('.group-arrow');
+      
+      const isExpanded = !targetContent.classList.contains('hidden');
+      
+      if (isExpanded) {
+        targetContent.classList.add('hidden');
+        if (arrow) arrow.textContent = 'expand_more';
+        toggle.classList.remove('bg-floodlight-navy', 'text-on-primary');
+        toggle.classList.add('bg-surface-card', 'text-on-surface');
+      } else {
+        targetContent.classList.remove('hidden');
+        if (arrow) arrow.textContent = 'expand_less';
+        toggle.classList.add('bg-floodlight-navy', 'text-on-primary');
+        toggle.classList.remove('bg-surface-card', 'text-on-surface');
+      }
+    });
+  });
+
+  // Matchday Tab Switching
+  const tabs = document.querySelectorAll('.matchday-tab');
+  const panels = {
+    'panel-day1': document.getElementById('panel-day1'),
+    'panel-day2': document.getElementById('panel-day2')
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetPanel = tab.getAttribute('data-panel');
+      
+      // Update Tab Styles
+      tabs.forEach(t => {
+        t.classList.remove('bg-primary', 'text-on-primary', 'font-bold', 'shadow-sm');
+        t.classList.add('text-text-muted', 'font-medium');
+      });
+      tab.classList.add('bg-primary', 'text-on-primary', 'font-bold', 'shadow-sm');
+      tab.classList.remove('text-text-muted', 'font-medium');
+
+      // Update Panel Visibility
+      Object.keys(panels).forEach(key => {
+        if (key === targetPanel) {
+          panels[key].classList.remove('hidden');
+        } else {
+          panels[key].classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Re-run Audit button micro-interaction
+  const reAuditBtn = document.getElementById('re-audit-btn');
+  if (reAuditBtn) {
+    reAuditBtn.addEventListener('click', () => {
+      const icon = reAuditBtn.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.classList.add('animate-spin');
+        setTimeout(() => {
+          icon.classList.remove('animate-spin');
+        }, 800);
+      }
+    });
+  }
+</script></main><footer class="w-full bg-surface-card border-t border-border-grid py-space-xl mt-auto"><div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase tracking-tight">Play Field</span><span class="text-text-muted font-body-md text-body-md">• Professional Tournament Management Engine</span></div><div class="flex items-center gap-space-lg text-text-muted font-table-cell text-table-cell"><a class="hover:text-primary transition-colors" data-path="public-live" href="#">Public Live Center</a><a class="hover:text-primary transition-colors" data-path="ongoing-tournaments" href="#">Tournaments</a><a class="hover:text-primary transition-colors" data-path="dashboard" href="#">Organizer Control Desk</a><span>© 2025 Play Field System. All Rights Reserved.</span></div></div></footer></body></html>

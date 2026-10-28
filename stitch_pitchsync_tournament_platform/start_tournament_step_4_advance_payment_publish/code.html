@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"card-red-border":"#fca5a5","card-red-hover":"#b91c1c","surface":"#f1fcf3","surface-variant":"#dae5dd","background":"#f1fcf3","pitch-turf-active":"#063b2a","primary-fixed":"#9ff4cc","error-container":"#ffdad6","card-red-danger":"#dc2626","on-secondary-fixed-variant":"#3a475c","secondary-fixed-dim":"#bac7e1","on-primary-fixed-variant":"#005139","secondary-fixed":"#d6e3fe","on-background":"#141e19","on-surface":"#141e19","live-orange-hover":"#c2410c","info-reassign-surface":"#eff6ff","inverse-surface":"#28332d","on-tertiary-fixed":"#370e00","border-grid":"#e2e8f0","surface-container":"#e5f1e8","surface-card":"#ffffff","live-orange-active":"#9a3412","on-error":"#ffffff","on-tertiary-fixed-variant":"#7f2b00","surface-container-lowest":"#ffffff","tertiary-container":"#ab3c00","inverse-primary":"#83d7b1","on-secondary":"#ffffff","info-reassign-blue":"#1d4ed8","on-surface-variant":"#3f4943","card-red-surface":"#fef2f2","tertiary-fixed-dim":"#ffb599","pitch-turf-hover":"#09523b","canvas-alabaster":"#f8fafc","tertiary":"#832c00","on-tertiary":"#ffffff","outline-variant":"#bec9c1","secondary":"#525f75","pitch-turf-surface":"#f0fdf4","surface-tint":"#076c4d","primary-container":"#0d6e4f","inverse-on-surface":"#e8f4eb","error":"#ba1a1a","card-red-active":"#991b1b","primary-fixed-dim":"#83d7b1","on-secondary-fixed":"#0e1c2f","info-reassign-border":"#bfdbfe","status-warning-amber":"#b45309","state-hover-gray":"#f1f5f9","secondary-container":"#d6e3fe","floodlight-navy":"#0b192c","status-success-emerald":"#047857","surface-container-high":"#e0ebe2","text-placeholder":"#94a3b8","on-primary-fixed":"#002115","on-primary-container":"#99edc6","surface-container-highest":"#dae5dd","text-muted":"#64748b","on-tertiary-container":"#ffd3c3","info-reassign-accent":"#2563eb","on-secondary-container":"#58657b","surface-dim":"#d1ddd4","primary":"#00543b","surface-bright":"#f1fcf3","border-control":"#cbd5e1","on-primary":"#ffffff","tertiary-fixed":"#ffdbce","outline":"#6f7a73","surface-container-low":"#ebf6ee","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","margin":"1rem","gutter-md":"1.25rem","space-lg":"1rem","space-xs":"0.25rem","space-md":"0.625rem","gutter-lg":"1.5rem","space-xl":"1.5rem","space-sm":"0.375rem","margin-md":"1.5rem","margin-lg":"2rem"},"fontFamily":{"table-cell":["Instrument Sans"],"score-display-mobile":["JetBrains Mono"],"headline-md-mobile":["Plus Jakarta Sans"],"input-entry":["Instrument Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"badge-label":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Instrument Sans"],"score-entry":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"eyebrow":["Barlow Condensed"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Instrument Sans"],"subheading":["Instrument Sans"],"data-mono":["JetBrains Mono"],"score-display":["JetBrains Mono"]},"fontSize":{"table-cell":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display-mobile":["28px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md-mobile":["18px",{"lineHeight":"24px","letterSpacing":"-0.015em","fontWeight":"700"}],"input-entry":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"badge-label":["12px",{"lineHeight":"12px","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"score-entry":["20px",{"lineHeight":"24px","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"eyebrow":["13px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"22px","fontWeight":"400"}],"subheading":["16px",{"lineHeight":"22px","fontWeight":"600"}],"data-mono":["14px",{"lineHeight":"20px","fontWeight":"500"}],"score-display":["36px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas-alabaster font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card border-b border-border-grid shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="landing" href="#"><img alt="Play Field Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpV83TVnr_8FNRkCuzr_oaoKFzsFHMvUZDfIktr5-0HscVW4DCqFgwNLP1Ffy40qsbLOTAmL03YfnxP28CAnW19nSuYYqSb_S1MjSp1fWg63HdYOJZZK_n-S69KDBzfy1gUkHrz4YxNTaLWehPs9k7f46YDA-ItedhhMJ_EttCpePbZzfxelC-yE39BXWB8Ez2DlxQ_rrUiNPLhtf8M2wphb0kSjF8fYe_bMj-b1A"/><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold tracking-tight uppercase">Play Field</span></a><span class="hidden lg:inline-flex items-center px-space-xs py-0.5 rounded-full bg-floodlight-navy text-surface-card font-badge-label text-badge-label uppercase tracking-wider">Broadcast Desk</span></div><nav class="hidden xl:flex items-center gap-space-xl" data-active-classes="text-primary font-subheading border-b-2 border-primary-container pb-1"><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ongoing-tournaments" href="#">Ongoing Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="ended-tournaments" href="#">Ended Tournaments</a><a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors" data-path="public-live" href="#">Public Live Match Center</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover hover:text-on-primary active:bg-pitch-turf-active font-subheading text-subheading shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap" data-path="wizard-step1" href="#"><span class="material-symbols-outlined text-[18px]">add_circle</span><span>+ Start Tournament</span></a><button aria-label="Notifications" class="p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-card-red-danger"></span></button><div class="flex items-center pl-space-xs border-l border-border-grid"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-border-grid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL2lTIHZNPd2I0gTfnEQCwWGxUmuuMWI9h3naoviZBXcbcUsT4P5Z-AhSXcJkjuRnu87yfKNVK8vJAYoGw5vqLdGpkgPjbBCQU0uQi64muj8Lpz7m_P6klaSVPhph4bELkYw77_GZ3ZQSTmcw0xb-r1tQ-reGHvGS1cASiqaeDCOwz9W3nBrA5Ob4K4ebf1HmuTOE-nqwsNbLp5KdRMOj6OHJPSUlWGWxtyS1xVs4"/></div></div></div></header><main class="w-full pt-16 bg-canvas-alabaster flex-1"><div class="flex flex-col w-full">
+<!-- Top Progress Stepper Tracker Bar -->
+<div class="w-full bg-surface-card shadow-sm py-space-lg px-margin md:px-margin-md lg:px-margin-lg">
+<div class="max-w-[1440px] mx-auto">
+<!-- Breadcrumb / Stepper Matrix -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter mb-space-md">
+<!-- Step 1 Complete -->
+<div class="flex items-center gap-space-sm p-space-xs rounded bg-surface-container-low text-on-surface-variant">
+<div class="w-7 h-7 rounded-full bg-status-success-emerald text-on-primary flex items-center justify-center font-badge-label text-badge-label">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow text-status-success-emerald uppercase tracking-wider">Step 01 • Passed</span>
+<span class="font-subheading text-table-cell truncate font-semibold text-on-surface">Tournament Meta</span>
+</div>
+</div>
+<!-- Step 2 Complete -->
+<div class="flex items-center gap-space-sm p-space-xs rounded bg-surface-container-low text-on-surface-variant">
+<div class="w-7 h-7 rounded-full bg-status-success-emerald text-on-primary flex items-center justify-center font-badge-label text-badge-label">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow text-status-success-emerald uppercase tracking-wider">Step 02 • Passed</span>
+<span class="font-subheading text-table-cell truncate font-semibold text-on-surface">Format &amp; Groups</span>
+</div>
+</div>
+<!-- Step 3 Complete -->
+<div class="flex items-center gap-space-sm p-space-xs rounded bg-surface-container-low text-on-surface-variant">
+<div class="w-7 h-7 rounded-full bg-status-success-emerald text-on-primary flex items-center justify-center font-badge-label text-badge-label">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow text-status-success-emerald uppercase tracking-wider">Step 03 • Passed</span>
+<span class="font-subheading text-table-cell truncate font-semibold text-on-surface">Courts &amp; Schedules</span>
+</div>
+</div>
+<!-- Step 4 Active -->
+<div class="flex items-center gap-space-sm p-space-xs rounded bg-primary-container text-on-primary shadow-sm">
+<div class="w-7 h-7 rounded-full bg-surface-card text-primary-container flex items-center justify-center font-badge-label text-badge-label font-bold">
+            04
+          </div>
+<div class="flex flex-col min-w-0">
+<span class="font-eyebrow text-eyebrow text-on-primary-container uppercase tracking-wider">Final Step • Active</span>
+<span class="font-subheading text-table-cell truncate font-bold text-on-primary">Payment &amp; Publication</span>
+</div>
+</div>
+</div>
+<!-- Header Content Block -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-gutter pt-space-xs">
+<div>
+<div class="inline-flex items-center gap-space-xs px-space-xs py-0.5 rounded-full bg-surface-container text-primary font-badge-label text-badge-label uppercase mb-space-xs">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald animate-pulse"></span>
+            Operational Gate 04 of 04
+          </div>
+<h1 class="font-headline-lg text-headline-lg text-floodlight-navy font-bold tracking-tight">
+            Step 4: Secure Booking &amp; Publish Live Tournament
+          </h1>
+<p class="font-body-md text-body-md text-text-muted mt-0.5 max-w-3xl">
+            Choose selective payment terms for venue reservation, lock your court schedule, and retrieve your public live match center URL with immediate broadcast sync.
+          </p>
+</div>
+<div class="hidden lg:flex items-center gap-space-md text-right">
+<div class="bg-surface-container-low px-space-md py-space-xs rounded">
+<div class="font-eyebrow text-eyebrow text-text-muted uppercase">Tournament State</div>
+<div class="font-data-mono text-data-mono font-bold text-status-warning-amber">STAGED / DRAFT</div>
+</div>
+<div class="bg-surface-container-low px-space-md py-space-xs rounded">
+<div class="font-eyebrow text-eyebrow text-text-muted uppercase">Allocated Venue</div>
+<div class="font-subheading text-table-cell font-semibold text-on-surface">Colombo Futsal Hub</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content 2-Column Work Desk -->
+<div class="max-w-[1440px] mx-auto w-full px-margin md:px-margin-md lg:px-margin-lg py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
+<!-- LEFT COLUMN: Payment & Venue Deposit Checkout (~58% / 7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Booking & Fee Breakdown Table Card -->
+<div class="bg-surface-card rounded-lg shadow-sm p-space-lg">
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">receipt_long</span>
+<h2 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Booking &amp; Court Fee Breakdown</h2>
+</div>
+<span class="font-badge-label text-badge-label px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant uppercase">
+              Pro-Forma Quotation #LK-2026-09
+            </span>
+</div>
+<div class="flex flex-col gap-space-sm font-table-cell text-table-cell text-on-surface">
+<!-- Line Item 1 -->
+<div class="flex items-start justify-between p-space-sm rounded bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-semibold text-floodlight-navy">Colombo Futsal Hub</span>
+<span class="text-text-muted text-[13px]">Courts 1, 2, &amp; 5 • 2 Full Tournament Days (16 Operating Hours)</span>
+</div>
+<span class="font-data-mono text-data-mono font-bold text-on-surface">LKR 126,000</span>
+</div>
+<!-- Line Item 2 -->
+<div class="flex items-start justify-between p-space-sm rounded bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-semibold text-floodlight-navy">Matchday Technical Ops &amp; Referee Allocation</span>
+<span class="text-text-muted text-[13px]">4 Official SLFA Level-2 Referees + 2 Pitch Marshals</span>
+</div>
+<span class="font-data-mono text-data-mono font-bold text-on-surface">LKR 14,000</span>
+</div>
+<!-- Line Item 3 -->
+<div class="flex items-start justify-between p-space-sm rounded bg-pitch-turf-surface">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-semibold text-primary">System Tournament Broadcast Desk License</span>
+<span class="font-badge-label text-badge-label px-1 py-0.2 rounded bg-surface-card text-status-success-emerald uppercase">Complimentary</span>
+</div>
+<span class="text-pitch-turf-hover text-[13px]">Zero latency live feed, referee stopwatch sync &amp; share link</span>
+</div>
+<span class="font-data-mono text-data-mono font-bold text-status-success-emerald">LKR 0 (FREE)</span>
+</div>
+</div>
+<!-- Total Calculation Ledger -->
+<div class="mt-space-md pt-space-md bg-surface-container-lowest flex items-center justify-between">
+<div>
+<span class="font-eyebrow text-eyebrow uppercase text-text-muted">Total Reserved Expenditure</span>
+<div class="font-body-md text-text-muted text-[13px]">Includes venue maintenance &amp; automated floodlight guarantee</div>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-floodlight-navy font-bold font-data-mono">LKR 140,000</span>
+</div>
+</div>
+</div>
+<!-- Payment Structure Selection (Selective Terms) -->
+<div class="bg-surface-card rounded-lg shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<h2 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">tune</span>
+              Select Settlement Terms
+            </h2>
+<span class="font-badge-label text-badge-label text-text-muted uppercase">Flexible Cashflow</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Option 1: 30% Advance Deposit (Selected) -->
+<label class="relative flex flex-col p-space-md rounded-lg bg-surface-container-low cursor-pointer transition-all shadow-sm" id="label-term-advance">
+<div class="flex items-start justify-between gap-space-xs">
+<input checked="" class="mt-1 text-primary focus:ring-0 w-4 h-4 cursor-pointer" name="payment_term" onclick="selectPaymentTerm('advance')" type="radio"/>
+<span class="font-badge-label text-badge-label px-space-xs py-0.5 rounded bg-primary-container text-on-primary uppercase">Recommended</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-subheading text-subheading font-bold text-floodlight-navy">
+                  30% Advance Deposit
+                </div>
+<div class="font-data-mono text-headline-md font-bold text-primary-container mt-1">
+                  LKR 42,000
+                </div>
+<p class="font-table-cell text-text-muted text-[13px] mt-space-xs">
+                  Instantly reserves &amp; locks Courts 1, 2, &amp; 5 on the schedule. Remaining balance of <strong>LKR 98,000</strong> settles at the tournament venue check-in desk on matchday.
+                </p>
+</div>
+</label>
+<!-- Option 2: 100% Upfront (Early Bird Discount) -->
+<label class="relative flex flex-col p-space-md rounded-lg bg-surface-container cursor-pointer transition-all" id="label-term-full">
+<div class="flex items-start justify-between gap-space-xs">
+<input class="mt-1 text-primary focus:ring-0 w-4 h-4 cursor-pointer" name="payment_term" onclick="selectPaymentTerm('full')" type="radio"/>
+<span class="font-badge-label text-badge-label px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-fixed uppercase">Save 5%</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-subheading text-subheading font-bold text-on-surface">
+                  100% Full Upfront Settlement
+                </div>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-data-mono text-headline-md font-bold text-floodlight-navy">LKR 133,000</span>
+<span class="font-data-mono text-table-cell line-through text-text-muted">LKR 140,000</span>
+</div>
+<p class="font-table-cell text-text-muted text-[13px] mt-space-xs">
+                  Pay full invoice now and enjoy zero check-in delays. Includes an automatic LKR 7,000 early organizer rebate applied across all 3 court slots.
+                </p>
+</div>
+</label>
+</div>
+</div>
+<!-- Payment Channels & Methods Selector -->
+<div class="bg-surface-card rounded-lg shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<h2 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">account_balance_wallet</span>
+              Payment Channels
+            </h2>
+<span class="font-badge-label text-badge-label text-status-success-emerald uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> 256-Bit SSL Enforced
+            </span>
+</div>
+<!-- Channel Navigation Pill Tabs -->
+<div class="flex flex-wrap gap-space-xs p-space-xs bg-surface-container-low rounded-lg mb-space-lg" role="tablist">
+<button class="flex-1 py-space-xs px-space-sm rounded font-subheading text-table-cell font-semibold text-text-muted hover:text-on-surface transition-all flex items-center justify-center gap-space-xs" id="tab-btn-card" onclick="switchPaymentMethod('card')">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>Credit / Debit</span>
+</button>
+<button class="flex-1 py-space-xs px-space-sm rounded font-subheading text-table-cell font-bold bg-surface-card text-floodlight-navy shadow-sm transition-all flex items-center justify-center gap-space-xs" id="tab-btn-bank" onclick="switchPaymentMethod('bank')">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+<span>Direct Bank / LQR</span>
+</button>
+<button class="flex-1 py-space-xs px-space-sm rounded font-subheading text-table-cell font-semibold text-text-muted hover:text-on-surface transition-all flex items-center justify-center gap-space-xs" id="tab-btn-wallet" onclick="switchPaymentMethod('wallet')">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+<span>Mobile Wallet</span>
+</button>
+<button class="flex-1 py-space-xs px-space-sm rounded font-subheading text-table-cell font-semibold text-text-muted hover:text-on-surface transition-all flex items-center justify-center gap-space-xs" id="tab-btn-split" onclick="switchPaymentMethod('split')">
+<span class="material-symbols-outlined text-[18px]">group_work</span>
+<span>Split Payment</span>
+</button>
+</div>
+<!-- Panel 1: Card Mock Fields -->
+<div class="hidden flex-col gap-space-md" id="panel-card">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<span class="font-table-cell font-semibold text-on-surface">Supported Cards:</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-surface-container font-mono text-floodlight-navy">VISA</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-surface-container font-mono text-floodlight-navy">MASTERCARD</span>
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-surface-container font-mono text-floodlight-navy">AMEX</span>
+</div>
+<div>
+<label class="block font-subheading text-table-cell text-on-surface-variant font-semibold mb-space-xs">Cardholder Full Name</label>
+<input class="w-full h-[42px] px-space-md rounded bg-surface-container-low text-on-surface font-input-entry text-input-entry outline-none focus:bg-surface-card focus:ring-2 focus:ring-primary-container" placeholder="e.g. K. V. D. Perera" type="text" value="Keshara Perera"/>
+</div>
+<div>
+<label class="block font-subheading text-table-cell text-on-surface-variant font-semibold mb-space-xs">Card Number</label>
+<input class="w-full h-[42px] px-space-md rounded bg-surface-container-low text-on-surface font-data-mono text-input-entry outline-none focus:bg-surface-card focus:ring-2 focus:ring-primary-container" placeholder="4532 •••• •••• 8841" type="text" value="4532 8841 0924 9912"/>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div>
+<label class="block font-subheading text-table-cell text-on-surface-variant font-semibold mb-space-xs">Expiration Date</label>
+<input class="w-full h-[42px] px-space-md rounded bg-surface-container-low text-on-surface font-data-mono text-input-entry outline-none focus:bg-surface-card focus:ring-2 focus:ring-primary-container" placeholder="MM / YY" type="text" value="11 / 28"/>
+</div>
+<div>
+<label class="block font-subheading text-table-cell text-on-surface-variant font-semibold mb-space-xs">Security Code (CVV)</label>
+<input class="w-full h-[42px] px-space-md rounded bg-surface-container-low text-on-surface font-data-mono text-input-entry outline-none focus:bg-surface-card focus:ring-2 focus:ring-primary-container" placeholder="3 digits" type="password" value="382"/>
+</div>
+</div>
+</div>
+<!-- Panel 2: Instant Bank Transfer / LQR (Default Selected) -->
+<div class="flex flex-col gap-space-md" id="panel-bank">
+<div class="p-space-md rounded-lg bg-info-reassign-surface text-info-reassign-blue flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-info-reassign-accent">info</span>
+<div class="font-table-cell text-[13px] leading-snug">
+                Instant confirmation via LankaPay National QR or Direct CEFT. Use your unique Tournament Reference Code below to trigger automated schedule lock.
+              </div>
+</div>
+<!-- Merchant Banking Table -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm font-table-cell text-table-cell">
+<div class="flex items-center justify-between">
+<span class="text-text-muted">Account Holder:</span>
+<span class="font-semibold text-floodlight-navy">Play Field Operations PVT LTD</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-text-muted">Commercial Bank:</span>
+<span class="font-semibold text-on-surface">Commercial Bank of Ceylon (Torrington Branch)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-text-muted">Account Number:</span>
+<span class="font-data-mono font-bold text-floodlight-navy text-[15px]">1000 8920 4410 02</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-text-muted">Branch Code:</span>
+<span class="font-data-mono text-on-surface">048</span>
+</div>
+</div>
+<!-- Reference Code Banner -->
+<div class="p-space-md rounded-lg bg-surface-container flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<span class="font-eyebrow text-eyebrow text-text-muted uppercase">Mandatory Bank Reference Remark</span>
+<div class="font-data-mono text-headline-sm font-bold text-primary tracking-wide" id="bank-ref-display">
+                  #LK-PF-2026-940
+                </div>
+</div>
+<button class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded bg-surface-card text-on-surface hover:bg-state-hover-gray font-subheading text-table-cell shadow-sm" onclick="copyRefCode()" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+<span id="copy-ref-text">Copy Ref Code</span>
+</button>
+</div>
+</div>
+<!-- Panel 3: Mobile Wallet (FriMi / Genie) -->
+<div class="hidden flex-col gap-space-md" id="panel-wallet">
+<div class="flex flex-col md:flex-row items-center gap-space-lg p-space-md bg-surface-container-low rounded-lg">
+<div class="w-36 h-36 bg-surface-card p-2 rounded shadow-sm flex flex-col items-center justify-center text-center">
+<!-- Inline QR Code SVG Representation -->
+<svg class="w-full h-full text-floodlight-navy" fill="currentColor" viewbox="0 0 100 100">
+<path d="M0,0 h30 v30 h-30 z M10,10 h10 v10 h-10 z M40,0 h20 v10 h-20 z M70,0 h30 v30 h-30 z M80,10 h10 v10 h-10 z M0,40 h10 v20 h-10 z M20,40 h20 v10 h-20 z M0,70 h30 v30 h-30 z M10,80 h10 v10 h-10 z M50,30 h20 v20 h-20 z M40,60 h10 v40 h-10 z M60,60 h20 v20 h-20 z M80,40 h20 v20 h-20 z M80,70 h20 v30 h-20 z"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-badge-label text-badge-label px-2 py-0.5 rounded bg-status-success-emerald text-on-primary w-max">LANKAQR ENABLED</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-floodlight-navy">Scan with FriMi, Genie, or Flash</h3>
+<p class="font-table-cell text-text-muted text-[13px]">
+                  Open your accredited Sri Lankan banking wallet app, scan the dynamic QR code above, and confirm transaction for instant automated verification.
+                </p>
+<span class="font-data-mono text-data-mono font-bold text-primary">Target Payable: LKR 42,000</span>
+</div>
+</div>
+</div>
+<!-- Panel 4: Split Organizer Payment -->
+<div class="hidden flex-col gap-space-md" id="panel-split">
+<div class="p-space-md rounded bg-surface-container-low">
+<h3 class="font-subheading text-subheading font-bold text-floodlight-navy mb-space-xs">Co-Organizer Expense Splitting</h3>
+<p class="font-table-cell text-text-muted text-[13px] mb-space-md">
+                Split the 30% deposit among 2 or 3 tournament co-organizers. Once all shares are remitted, the tournament goes live.
+              </p>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between p-space-xs bg-surface-card rounded text-table-cell font-table-cell">
+<span>Organizer 1 (You: Keshara)</span>
+<span class="font-data-mono font-bold text-status-success-emerald">LKR 21,000 (Paying Now)</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-card rounded text-table-cell font-table-cell">
+<span>Organizer 2 (Invite: dinesh@apex.lk)</span>
+<span class="font-data-mono text-text-muted">LKR 21,000 (Pending Link)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Checkout Final CTA -->
+<div class="mt-space-lg pt-space-md">
+<button class="w-full h-12 rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover active:bg-pitch-turf-active font-subheading text-body-lg font-bold flex items-center justify-center gap-space-sm shadow-md transition-all" id="btn-pay-action" onclick="simulatePaymentProcess()">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+<span id="btn-pay-text">Lock Courts &amp; Publish Tournament (LKR 42,000)</span>
+</button>
+<div class="flex items-center justify-center gap-space-md mt-space-sm text-text-muted font-badge-label text-badge-label uppercase">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">verified</span> Court Slot Hold: 20 Mins</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">receipt</span> Automated Tax Invoice</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Published State & Live Broadcast Center Preview (~42% / 5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Public Broadcast Desk Activation Link Card -->
+<div class="bg-surface-card rounded-lg shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">podium</span>
+<h2 class="font-headline-sm text-headline-sm text-floodlight-navy font-bold">Instant Live Public Link</h2>
+</div>
+<span class="font-badge-label text-badge-label px-space-xs py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald uppercase font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-status-success-emerald"></span>
+              Ready to Share (0-Delay Sync)
+            </span>
+</div>
+<p class="font-table-cell text-text-muted text-[13px] mb-space-md leading-relaxed">
+            This public link allows players, fans, and team captains to view live scores, goalscorers, court reassignment notices, and group standings with zero login required.
+          </p>
+<!-- Read-only URL box with copy interaction -->
+<div class="flex flex-col gap-space-xs mb-space-md">
+<div class="p-space-sm rounded bg-surface-container font-data-mono text-[13px] text-floodlight-navy break-all select-all flex items-center justify-between gap-space-sm">
+<span class="truncate font-semibold text-primary" id="broadcast-url">https://playfield.live/t/colombo-corporate-futsal-2026</span>
+<span class="material-symbols-outlined text-[16px] text-text-muted">link</span>
+</div>
+</div>
+<!-- Action Buttons Share Row -->
+<div class="grid grid-cols-2 gap-gutter">
+<button class="h-10 rounded bg-surface-container text-floodlight-navy hover:bg-state-hover-gray font-subheading text-table-cell font-bold flex items-center justify-center gap-space-xs transition-all shadow-sm" onclick="copyBroadcastLink()">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+<span id="copy-btn-text">Copy Link</span>
+</button>
+<a class="h-10 rounded bg-status-success-emerald text-on-primary hover:opacity-90 font-subheading text-table-cell font-bold flex items-center justify-center gap-space-xs transition-all shadow-sm" href="https://api.whatsapp.com/send?text=Follow%20the%20Colombo%20Corporate%20Futsal%202026%20Live%20Broadcast%20on%20PlayField:%20https://playfield.live/t/colombo-corporate-futsal-2026" target="_blank">
+<!-- WhatsApp Inline Simple Vector SVG -->
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"></path>
+</svg>
+<span>WhatsApp Share</span>
+</a>
+</div>
+<!-- Immediate Transition Notice Pill -->
+<div class="mt-space-md p-space-sm rounded bg-pitch-turf-surface text-pitch-turf-hover font-table-cell text-[12px] flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-status-success-emerald">broadcast_on_personal</span>
+<span>Status will transition from <strong>DRAFT</strong> to <strong>PUBLISHED</strong> immediately upon transaction verification.</span>
+</div>
+</div>
+<!-- Live Preview Snippet Card (Mock Public Viewer's Mobile View) -->
+<div class="bg-surface-card rounded-lg shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<h3 class="font-subheading text-subheading font-bold text-floodlight-navy">Spectator Viewport Preview</h3>
+<span class="font-badge-label text-badge-label px-space-xs py-0.5 rounded bg-floodlight-navy text-surface-card">Live Screen</span>
+</div>
+<!-- Miniature Mobile-like Broadcast Container -->
+<div class="bg-floodlight-navy rounded-lg p-space-md text-surface-card flex flex-col gap-space-md">
+<!-- Tournament Masthead Banner in preview -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-card-red-danger animate-ping"></span>
+<span class="font-badge-label text-badge-label text-surface-card font-mono uppercase tracking-wide">Court 05 • Match 01</span>
+</div>
+<span class="font-data-mono text-[11px] text-primary-fixed uppercase font-bold">Group B Opener</span>
+</div>
+<div class="font-headline-sm text-[16px] font-bold text-white tracking-tight leading-snug">
+              Colombo Corporate Futsal Super Cup 2026
+            </div>
+<!-- Scoreboard Match Matrix Miniature -->
+<div class="bg-inverse-surface rounded p-space-sm flex items-center justify-between font-headline-sm font-bold">
+<div class="flex flex-col">
+<span class="text-white text-[14px]">MAS Intimates</span>
+<span class="font-data-mono text-[11px] text-text-placeholder font-normal">Kit: Navy Blue</span>
+</div>
+<div class="font-data-mono text-headline-md text-primary-fixed tracking-widest px-2 py-0.5 rounded bg-pitch-turf-active">
+                0 : 0
+              </div>
+<div class="flex flex-col text-right">
+<span class="text-white text-[14px]">Dialog Axiata</span>
+<span class="font-data-mono text-[11px] text-text-placeholder font-normal">Kit: Crimson</span>
+</div>
+</div>
+<!-- Schedule Countdown & Court Marker -->
+<div class="flex items-center justify-between text-[12px] font-table-cell text-text-placeholder pt-space-xs">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary-fixed">schedule</span>
+                Kickoff: Saturday 08:30 AM
+              </span>
+<span class="font-badge-label text-badge-label px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface">
+                Turf 5 Covered
+              </span>
+</div>
+<!-- Mini Sparkline / Schedule visual bar -->
+<div class="w-full bg-inverse-surface rounded-full h-1.5 overflow-hidden">
+<div class="bg-status-success-emerald h-full w-1/4"></div>
+</div>
+</div>
+<!-- Feature Bullets for the Public URL -->
+<div class="grid grid-cols-2 gap-space-sm mt-space-md pt-space-sm text-text-muted font-table-cell text-[12px]">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-status-success-emerald">check_circle</span>
+<span>Instant WhatsApp Scores</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-status-success-emerald">check_circle</span>
+<span>Court Relocation Alerts</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-status-success-emerald">check_circle</span>
+<span>Live Group Standings</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-status-success-emerald">check_circle</span>
+<span>Referee Whistle Clock</span>
+</div>
+</div>
+</div>
+<!-- Venue Policy Reminder / Security Notice -->
+<div class="p-space-md rounded-lg bg-surface-container text-on-surface-variant flex items-start gap-space-sm font-table-cell text-[13px]">
+<span class="material-symbols-outlined text-[20px] text-text-muted mt-0.5">verified_user</span>
+<div>
+<strong class="text-floodlight-navy">Colombo Futsal Hub Reservation SLA:</strong>
+            Locking this booking ensures immediate exclusive court priority. Cancellations permitted up to 48 hours prior to kickoff with complete refundable deposit rollover.
+          </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Bottom Navigation Action Bar -->
+<div class="w-full bg-surface-card shadow-[0_-2px_10px_rgba(0,0,0,0.03)] py-space-md px-margin md:px-margin-md lg:px-margin-lg mt-space-xl">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Back Navigation Button -->
+<a class="inline-flex items-center gap-space-xs font-subheading text-table-cell font-semibold text-text-muted hover:text-on-surface transition-colors" data-path="wizard-step3" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span>Back to Structure Verification (Step 3)</span>
+</a>
+<!-- Quick Desk Direct Links -->
+<div class="flex items-center gap-space-md w-full md:w-auto justify-end">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded bg-surface-container text-on-surface hover:bg-state-hover-gray font-subheading text-table-cell font-semibold transition-all" data-path="dashboard" href="#">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span>View User Dashboard</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-space-xs rounded bg-floodlight-navy text-surface-card hover:bg-opacity-95 font-subheading text-table-cell font-bold transition-all shadow-sm" data-path="ongoing-tournaments" href="#">
+<span class="material-symbols-outlined text-[18px]">sports_soccer</span>
+<span>Go to Tournament Management Console</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Client-side Script for Selective Payment & Copying -->
+<script>
+  let currentTerm = 'advance';
+
+  function selectPaymentTerm(term) {
+    currentTerm = term;
+    const btnAction = document.getElementById('btn-pay-text');
+    const labelAdvance = document.getElementById('label-term-advance');
+    const labelFull = document.getElementById('label-term-full');
+
+    if (term === 'advance') {
+      btnAction.innerText = 'Lock Courts & Publish Tournament (LKR 42,000)';
+      labelAdvance.classList.remove('bg-surface-container');
+      labelAdvance.classList.add('bg-surface-container-low', 'shadow-sm');
+      labelFull.classList.remove('bg-surface-container-low', 'shadow-sm');
+      labelFull.classList.add('bg-surface-container');
+    } else {
+      btnAction.innerText = 'Pay Full Balance & Publish Tournament (LKR 133,000)';
+      labelFull.classList.remove('bg-surface-container');
+      labelFull.classList.add('bg-surface-container-low', 'shadow-sm');
+      labelAdvance.classList.remove('bg-surface-container-low', 'shadow-sm');
+      labelAdvance.classList.add('bg-surface-container');
+    }
+  }
+
+  function switchPaymentMethod(method) {
+    const panels = ['card', 'bank', 'wallet', 'split'];
+    panels.forEach(p => {
+      const el = document.getElementById('panel-' + p);
+      const btn = document.getElementById('tab-btn-' + p);
+      if (p === method) {
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        btn.classList.remove('text-text-muted', 'font-semibold');
+        btn.classList.add('bg-surface-card', 'text-floodlight-navy', 'font-bold', 'shadow-sm');
+      } else {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+        btn.classList.add('text-text-muted', 'font-semibold');
+        btn.classList.remove('bg-surface-card', 'text-floodlight-navy', 'font-bold', 'shadow-sm');
+      }
+    });
+  }
+
+  function copyBroadcastLink() {
+    const url = document.getElementById('broadcast-url').innerText;
+    navigator.clipboard.writeText(url).then(() => {
+      const btnText = document.getElementById('copy-btn-text');
+      btnText.innerText = 'Copied!';
+      setTimeout(() => {
+        btnText.innerText = 'Copy Link';
+      }, 2500);
+    });
+  }
+
+  function copyRefCode() {
+    const ref = document.getElementById('bank-ref-display').innerText.trim();
+    navigator.clipboard.writeText(ref).then(() => {
+      const copyText = document.getElementById('copy-ref-text');
+      copyText.innerText = 'Copied!';
+      setTimeout(() => {
+        copyText.innerText = 'Copy Ref Code';
+      }, 2500);
+    });
+  }
+
+  function simulatePaymentProcess() {
+    const btn = document.getElementById('btn-pay-action');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">refresh</span> Processing Ledger Verification...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span> Courts Locked & Tournament Published!';
+      btn.classList.remove('bg-primary-container', 'hover:bg-pitch-turf-hover');
+      btn.classList.add('bg-status-success-emerald');
+      setTimeout(() => {
+        alert('Payment verified! Colombo Corporate Futsal 2026 is officially published. Redirecting to Live Tournament Control Desk...');
+        window.location.hash = '#ongoing-tournaments';
+      }, 700);
+    }, 1800);
+  }
+</script></main><footer class="w-full bg-surface-card border-t border-border-grid py-space-xl mt-auto"><div class="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-floodlight-navy font-bold uppercase tracking-tight">Play Field</span><span class="text-text-muted font-body-md text-body-md">• Professional Tournament Management Engine</span></div><div class="flex items-center gap-space-lg text-text-muted font-table-cell text-table-cell"><a class="hover:text-primary transition-colors" data-path="public-live" href="#">Public Live Center</a><a class="hover:text-primary transition-colors" data-path="ongoing-tournaments" href="#">Tournaments</a><a class="hover:text-primary transition-colors" data-path="dashboard" href="#">Organizer Control Desk</a><span>© 2025 Play Field System. All Rights Reserved.</span></div></div></footer></body></html>
