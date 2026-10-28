@@ -22,6 +22,7 @@ export async function exportTournamentSummaryAsPNG(
       pixelRatio: 2, // High-DPI output for print / sharing
       backgroundColor: '#ffffff',
       cacheBust: true,
+      skipFonts: true, // Prevents cross-origin Google Fonts CSS access SecurityError
     });
 
     const link = document.createElement('a');

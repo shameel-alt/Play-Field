@@ -40,11 +40,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return null;
   });
 
-  // Check URL parameters for invitation links on initial load
+  // Check URL parameters (both search and hash queries) for invitation links on initial load
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const inviteToken = params.get('inviteToken');
-    const tournamentId = params.get('tournamentId');
+    const searchParams = new URLSearchParams(window.location.search);
+    const hashIndex = window.location.hash.indexOf('?');
+    const hashParams = hashIndex !== -1 ? new URLSearchParams(window.location.hash.substring(hashIndex + 1)) : null;
+
+    const inviteToken = searchParams.get('inviteToken') || hashParams?.get('inviteToken');
+    const tournamentId = searchParams.get('tournamentId') || hashParams?.get('tournamentId');
 
     if (inviteToken && tournamentId) {
       const invite = { token: inviteToken, tournamentId };
