@@ -4,6 +4,8 @@ import { Match, MatchEvent } from '../types/match';
 import { Team } from '../types/team';
 import { Venue, CourtBookingLock } from '../types/venue';
 import { CoOrganizer, UserProfile } from '../types/user';
+import { AppNotification } from '../types/notification';
+import { INITIAL_NOTIFICATIONS } from '../data/seedNotifications';
 import { SEED_ONGOING_TOURNAMENT } from '../data/seedOngoingTournament';
 import { SEED_ENDED_TOURNAMENT } from '../data/seedEndedTournament';
 import { SEED_VENUES } from '../data/venuesSeed';
@@ -17,6 +19,13 @@ interface TournamentContextType {
   venues: Venue[];
   activeVenueLocks: CourtBookingLock[];
   isLoading: boolean;
+  notifications: AppNotification[];
+  unreadNotificationCount: number;
+  markNotificationAsRead: (id: string) => void;
+  markAllNotificationsAsRead: () => void;
+  clearAllNotifications: () => void;
+  removeNotification: (id: string) => void;
+  addNotification: (notification: Omit<AppNotification, 'id' | 'createdAt' | 'read' | 'timestamp'> & { id?: string; timestamp?: string }) => void;
   getTournamentByIdOrSlug: (idOrSlug: string) => Tournament | undefined;
   getUserTournaments: (user: UserProfile | null) => { ongoing: Tournament[]; ended: Tournament[] };
   createTournament: (newTournament: Tournament) => Promise<string>;
@@ -67,6 +76,55 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [notifications, setNotifications] = useState<AppNotification[]>(() => {
+    const saved = localStorage.getItem('playfield_notifications');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      } catch (e) {
+        console.error('Failed to parse cached notifications', e);
+      }
+    }
+    return INITIAL_NOTIFICATIONS;
+  });
+
+  // Sync state to local storage whenever notifications change
+  useEffect(() => {
+    localStorage.setItem('playfield_notifications', JSON.stringify(notifications));
+  }, [notifications]);
+
+  const unreadNotificationCount = notifications.filter(n => !n.read).length;
+
+  const markNotificationAsRead = (id: string) => {
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+  };
+
+  const markAllNotificationsAsRead = () => {
+    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  };
+
+  const clearAllNotifications = () => {
+    setNotifications([]);
+  };
+
+  const removeNotification = (id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
+
+  const addNotification = (
+    notifData: Omit<AppNotification, 'id' | 'createdAt' | 'read' | 'timestamp'> & { id?: string; timestamp?: string }
+  ) => {
+    const newNotif: AppNotification = {
+      id: notifData.id || `notif-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
+      createdAt: Date.now(),
+      timestamp: notifData.timestamp || 'Just now',
+      read: false,
+      ...notifData
+    };
+    setNotifications(prev => [newNotif, ...prev]);
+  };
 
   // Sync state to local storage whenever tournaments change
   useEffect(() => {
@@ -264,6 +322,19 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         teams: updatedTeams
       };
     }));
+
+    if (eventData.eventType === 'GOAL') {
+      const currentTourney = tournaments.find(t => t.id === tournamentId);
+      const scorerName = eventData.playerName || 'Player';
+      addNotification({
+        type: 'LIVE',
+        title: `GOAL Logged (${eventData.minute}')`,
+        message: `${scorerName} scored. Live broadcast score updated.`,
+        tournamentId,
+        linkUrl: `/public/tournament/${currentTourney?.slug || tournamentId}`,
+        severity: 'warning'
+      });
+    }
   };
 
   const checkConflict = (
@@ -341,6 +412,15 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       };
     }));
 
+    addNotification({
+      type: 'RELOCATION',
+      title: `Match #${match.matchNumber || matchId.slice(-4)} Relocated to Court ${newCourtNumber}`,
+      message: `${match.homeTeamName || 'Home'} vs ${match.awayTeamName || 'Away'} transferred from Court ${previousCourt} → Court ${newCourtNumber}. Public broadcast updated.`,
+      tournamentId,
+      linkUrl: `/tournaments/${tournamentId}/manage`,
+      severity: 'info'
+    });
+
     return {
       success: true,
       message: `Court reallocated from Court ${previousCourt} to Court ${newCourtNumber}. Public broadcast banner updated.`
@@ -352,11 +432,18 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     matchId: string,
     forfeitingTeamId: string
   ) => {
+    let forfeitingTeamName = 'Forfeiting Team';
+    let matchNumber = '';
+
     setTournaments(prev => prev.map(t => {
       if (t.id !== tournamentId) return t;
 
       const match = t.matches.find(m => m.id === matchId);
       if (!match) return t;
+
+      matchNumber = String(match.matchNumber || '');
+      const teamObj = t.teams.find(tm => tm.id === forfeitingTeamId);
+      if (teamObj) forfeitingTeamName = teamObj.name;
 
       const { updatedMatch, updatedTeams } = issueWalkover(match, forfeitingTeamId, t.teams);
       const updatedMatches = t.matches.map(m => m.id === matchId ? updatedMatch : m);
@@ -377,6 +464,15 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         teams: finalTeams
       };
     }));
+
+    addNotification({
+      type: 'WALKOVER',
+      title: `Disciplinary Walkover (3-0 Forfeit)`,
+      message: `Match #${matchNumber}: ${forfeitingTeamName} forfeited. 3-0 default victory awarded.`,
+      tournamentId,
+      linkUrl: `/tournaments/${tournamentId}/manage`,
+      severity: 'danger'
+    });
   };
 
   const markDisqualified = async (
@@ -408,6 +504,15 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         coOrganizers: [...(t.coOrganizers || []), organizer]
       };
     }));
+
+    addNotification({
+      type: 'DELEGATION',
+      title: `Co-Organizer Added: ${organizer.name}`,
+      message: `${organizer.email} has been designated as ${organizer.role}.`,
+      tournamentId,
+      linkUrl: `/tournaments/${tournamentId}/manage`,
+      severity: 'success'
+    });
   };
 
   return (
@@ -417,6 +522,13 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         venues,
         activeVenueLocks,
         isLoading,
+        notifications,
+        unreadNotificationCount,
+        markNotificationAsRead,
+        markAllNotificationsAsRead,
+        clearAllNotifications,
+        removeNotification,
+        addNotification,
         getTournamentByIdOrSlug,
         getUserTournaments,
         createTournament,
