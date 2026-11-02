@@ -33,6 +33,9 @@ interface TournamentContextType {
   updateScore: (tournamentId: string, matchId: string, homeScore: number, awayScore: number) => Promise<void>;
   updateMatchPeriod: (tournamentId: string, matchId: string, period: MatchPeriod, minute?: string) => Promise<void>;
   endMatch: (tournamentId: string, matchId: string) => Promise<{ success: boolean; message: string; progressed: boolean }>;
+  reinstateMatch: (tournamentId: string, matchId: string) => Promise<{ success: boolean; message: string }>;
+  endedMatchGraceMap: Record<string, number>;
+  dismissGracePeriod: (matchId: string) => void;
   concludeTournament: (tournamentId: string, championTeamId?: string, runnerUpTeamId?: string) => Promise<{ success: boolean; message: string }>;
   recordMatchEvent: (tournamentId: string, matchId: string, eventData: Omit<MatchEvent, 'id' | 'createdAt'>) => Promise<void>;
   reassignCourt: (tournamentId: string, matchId: string, newCourtNumber: number, reason?: string) => Promise<{ success: boolean; message: string }>;
@@ -95,6 +98,33 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
     return INITIAL_NOTIFICATIONS;
   });
+
+  // Time-limited grace window state for accidental match endings (60-second countdown)
+  const [endedMatchGraceMap, setEndedMatchGraceMap] = useState<Record<string, number>>(() => {
+    const saved = localStorage.getItem('playfield_ended_match_grace');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed === 'object' && parsed !== null) {
+          const now = Date.now();
+          const valid: Record<string, number> = {};
+          for (const [k, v] of Object.entries(parsed)) {
+            if (typeof v === 'number' && v > now) {
+              valid[k] = v;
+            }
+          }
+          return valid;
+        }
+      } catch (e) {
+        console.error('Failed to parse cached grace periods', e);
+      }
+    }
+    return {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem('playfield_ended_match_grace', JSON.stringify(endedMatchGraceMap));
+  }, [endedMatchGraceMap]);
 
   // Sync state to local storage whenever notifications change
   useEffect(() => {
@@ -398,6 +428,12 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       return progressTournamentMatches(tourneyWithEndedMatch);
     }));
 
+    // Grant 60-second time-limited grace window for accidental reinstatement
+    setEndedMatchGraceMap(prev => ({
+      ...prev,
+      [matchId]: Date.now() + 60000
+    }));
+
     addNotification({
       type: 'LIVE',
       title: `Match #${matchNum} Ended • Full Time (${finalHomeScore}-${finalAwayScore})`,
@@ -412,6 +448,103 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       message: `Match #${matchNum} concluded (FT: ${finalHomeScore}-${finalAwayScore}). Progression updated.`,
       progressed: true
     };
+  };
+
+  /**
+   * Reinstates an accidentally ended match within the grace period window.
+   * Restores status to LIVE (2nd Half), reverts group standings, and issues operational alert.
+   */
+  const reinstateMatch = async (
+    tournamentId: string,
+    matchId: string
+  ): Promise<{ success: boolean; message: string }> => {
+    let matchNum = 0;
+    let homeTeamName = 'Home';
+    let awayTeamName = 'Away';
+
+    setTournaments(prev => prev.map(t => {
+      if (t.id !== tournamentId) return t;
+
+      const match = t.matches.find(m => m.id === matchId);
+      if (!match) return t;
+
+      matchNum = match.matchNumber;
+      homeTeamName = match.homeTeamName || 'Home';
+      awayTeamName = match.awayTeamName || 'Away';
+
+      const reinstateEvent: MatchEvent = {
+        id: `evt-reinstate-${Date.now()}`,
+        matchId,
+        tournamentId,
+        eventType: 'HALF_TIME',
+        minute: "40'",
+        details: { note: 'Match Reinstated: Restored to Live state from accidental Full Time trigger' },
+        createdAt: new Date().toISOString()
+      };
+
+      const updatedMatches = t.matches.map(m => {
+        if (m.id !== matchId) return m;
+        return {
+          ...m,
+          status: 'LIVE' as const,
+          currentHalf: '2ND_HALF' as const,
+          currentMinute: "40'",
+          events: [...m.events, reinstateEvent],
+          updatedAt: new Date().toISOString()
+        };
+      });
+
+      // Recalculate group standings with this match now LIVE (so excluded from completed matches)
+      let updatedTeams = t.teams;
+      if (match.groupName && match.groupName !== 'Knockout Series' && match.groupName !== 'Grand Final Series') {
+        const standings = calculateGroupStandings(t.teams, updatedMatches, match.groupName);
+        updatedTeams = t.teams.map(team => {
+          const matched = standings.find(s => s.id === team.id);
+          return matched || team;
+        });
+      }
+
+      const tourneyWithReinstatedMatch = {
+        ...t,
+        matches: updatedMatches,
+        teams: updatedTeams,
+        updatedAt: new Date().toISOString()
+      };
+
+      return progressTournamentMatches(tourneyWithReinstatedMatch);
+    }));
+
+    // Remove from grace map immediately
+    setEndedMatchGraceMap(prev => {
+      const copy = { ...prev };
+      delete copy[matchId];
+      return copy;
+    });
+
+    addNotification({
+      type: 'LIVE',
+      title: `Match #${matchNum} Reinstated to Live Play`,
+      message: `${homeTeamName} vs ${awayTeamName} was reinstated from accidental Full Time. Live scoring controls reopened.`,
+      tournamentId,
+      linkUrl: `/tournaments/${tournamentId}/manage`,
+      severity: 'warning'
+    });
+
+    return {
+      success: true,
+      message: `Match #${matchNum} successfully reinstated to Live state (2nd Half).`
+    };
+  };
+
+  /**
+   * Permanently dismisses the accidental grace period for an ended match, sealing it forever.
+   */
+  const dismissGracePeriod = (matchId: string) => {
+    setEndedMatchGraceMap(prev => {
+      const copy = { ...prev };
+      delete copy[matchId];
+      return copy;
+    });
   };
 
   const concludeTournament = async (
@@ -722,6 +855,9 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         updateScore,
         updateMatchPeriod,
         endMatch,
+        reinstateMatch,
+        endedMatchGraceMap,
+        dismissGracePeriod,
         concludeTournament,
         recordMatchEvent,
         reassignCourt,

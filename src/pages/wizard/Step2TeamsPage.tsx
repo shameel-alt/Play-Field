@@ -201,6 +201,35 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
     }));
   };
 
+  const handleDeleteTeam = (teamId: string) => {
+    const teamToDelete = teams.find(t => t.id === teamId);
+    if (!teamToDelete) return;
+
+    if (teams.length <= 2) {
+      alert('A tournament requires at least 2 participating squads. You cannot delete this squad.');
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Delete squad "${teamToDelete.name}"?\n\nThis will remove this squad and its ${teamToDelete.players.length} registered players from the tournament draw and schedule.`
+    );
+    if (!confirmed) return;
+
+    const remainingTeams = teams.filter(t => t.id !== teamId);
+    setTeams(remainingTeams);
+
+    // If the currently selected team was deleted, select first remaining squad
+    if (selectedTeamId === teamId) {
+      setSelectedTeamId(remainingTeams[0]?.id || '');
+    }
+
+    // Keep draft state synchronized
+    setDraftData({
+      ...draftData,
+      teams: remainingTeams
+    });
+  };
+
   const handleNext = () => {
     if (teams.length < 2) {
       alert('Please configure at least 2 teams to generate fixtures.');
@@ -295,11 +324,13 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
               {teams.map((team) => {
                 const isSelected = team.id === selectedTeamId;
                 return (
-                  <button
+                  <div
                     key={team.id}
-                    type="button"
                     onClick={() => setSelectedTeamId(team.id)}
-                    className={`p-space-md rounded-xl text-left border transition-all flex items-center justify-between ${
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedTeamId(team.id); }}
+                    className={`p-space-md rounded-xl text-left border transition-all flex items-center justify-between cursor-pointer ${
                       isSelected
                         ? 'bg-pitch-turf-surface border-primary-container ring-1 ring-primary-container shadow-xs'
                         : 'bg-canvas-alabaster border-border-grid hover:bg-state-hover-gray'
@@ -316,8 +347,8 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
                         <div className="font-subheading font-bold text-floodlight-navy text-sm">
                           {team.name}
                         </div>
-                        <div className="flex items-center gap-2 text-text-muted font-mono text-[11px] mt-0.5">
-                          <span className="px-1.5 py-0.2 rounded bg-surface-container font-bold text-floodlight-navy">
+                        <div className="flex items-center gap-2 text-text-muted font-body text-[11px] mt-0.5">
+                          <span className="px-1.5 py-0.2 rounded bg-surface-container font-bold text-floodlight-navy font-badge-label">
                             {team.groupName}
                           </span>
                           <span>•</span>
@@ -329,8 +360,19 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
                     <div className="flex items-center gap-2">
                       <span className="w-3.5 h-3.5 rounded-full border border-border-grid shadow-inner" style={{ backgroundColor: team.kitColorPrimary }} />
                       <span className="w-3.5 h-3.5 rounded-full border border-border-grid shadow-inner" style={{ backgroundColor: team.kitColorAway }} />
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteTeam(team.id);
+                        }}
+                        className="p-1.5 rounded-lg text-text-muted hover:text-card-red-danger hover:bg-card-red-surface transition-colors ml-1"
+                        title={`Delete ${team.name}`}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -359,14 +401,14 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
                         }}
                         className="font-headline font-bold text-xl text-floodlight-navy bg-transparent border-b border-border-grid focus:border-primary focus:outline-none"
                       />
-                      <div className="flex items-center gap-2 text-text-muted font-mono text-xs mt-1">
+                      <div className="flex items-center gap-2 text-text-muted font-body text-xs mt-1">
                         <select
                           value={selectedTeam.groupName}
                           onChange={(e) => {
                             const grp = e.target.value;
                             setTeams(prev => prev.map(t => t.id === selectedTeam.id ? { ...t, groupName: grp } : t));
                           }}
-                          className="bg-surface-container px-2 py-0.5 rounded font-bold text-floodlight-navy focus:outline-none"
+                          className="bg-surface-container px-2 py-0.5 rounded font-bold text-floodlight-navy focus:outline-none font-badge-label"
                         >
                           <option value="Group A">Group A</option>
                           <option value="Group B">Group B</option>
@@ -374,23 +416,33 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
                           <option value="Group D">Group D</option>
                         </select>
                         <span>•</span>
-                        <span>Seed #{selectedTeam.seed || 1}</span>
+                        <span className="font-badge-label">Seed #{selectedTeam.seed || 1}</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Eligibility check badge */}
-                  <div className="flex items-center gap-2 text-xs font-mono">
+                  {/* Eligibility check badge & Delete Squad CTA */}
+                  <div className="flex items-center gap-2">
                     {selectedTeam.players.length >= 5 ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-pitch-turf-surface text-status-success-emerald font-bold border border-status-success-emerald/30">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-pitch-turf-surface text-status-success-emerald font-bold border border-status-success-emerald/30 font-badge-label text-xs">
                         <ShieldCheck className="w-3.5 h-3.5" />
                         Eligible (Min 5)
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 text-status-warning-amber font-bold border border-amber-200">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 text-status-warning-amber font-bold border border-amber-200 font-badge-label text-xs">
                         Incomplete ({selectedTeam.players.length}/5)
                       </span>
                     )}
+
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteTeam(selectedTeam.id)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-card-red-surface hover:bg-card-red-danger text-card-red-danger hover:text-surface-card border border-card-red-border font-button text-xs font-semibold transition-all shadow-2xs ml-1"
+                      title="Delete this squad"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span>Delete Squad</span>
+                    </button>
                   </div>
                 </div>
 

@@ -2,9 +2,9 @@
 
 ## 1. Overview & Objective
 - **Goal**: Build a complete, responsive, production-grade web application for the **Smart Sports Tournament Scheduling & Live Match Management System** ("Play Field") using React (Tailwind CSS, Lucide icons), Supabase PostgreSQL (via MCP), GitHub integration, and modular component architecture based on the Stitch UI designs.
-- **Status**: Completed (Phase 12: Match Period Telemetry & Automated Tournament Progression Engine)
+- **Status**: Completed (Phase 13: Accidental Team Deletion Safety & Timed Match Reinstatement Engine)
 - **Started**: 2026-10-28 16:48:00
-- **Last Updated**: 2026-11-02 18:54:00
+- **Last Updated**: 2026-11-02 19:15:00
 
 ## 2. Process & Execution Log
 
@@ -195,12 +195,36 @@
   - `[MODIFIED]` `src/pages/PublicLiveTournamentPage.tsx` - Period badges in live banner and fixture cards.
   - `[MODIFIED]` `PROCESS_LOG.md` - Phase 12 completion records.
 
+### Phase 13: Accidental Team Deletion Safety & Timed Match Reinstatement Engine - [Completed]
+- **Current Action / Process**: Fully resolved two core user safety requirements:
+  1. **Team Deletion in Tournament Creation Wizard**: Teams added accidentally or no longer needed can be removed safely with confirmation prompts, minimum squad validation (preventing deletion below 2 squads), and automatic regeneration of fixtures and draft state.
+  2. **Accidental Match Ending & Timed Reinstatement**: Prohibited permanent, casual reopening of finished matches. When a match is ended, a strict 60-second time-limited grace window opens with a live countdown ("Ended by accident? Reinstate Match (57s)"), prompting the organizer with an explicit accidental-use confirmation before reverting live controls. After expiration or manual dismissal, the reinstate option permanently vanishes, locking the match as official Full Time.
+- **Actions Taken**:
+  - Authored `handleDeleteTeam` in `src/pages/wizard/Step2TeamsPage.tsx` with minimum 2-team validation, confirmation prompt, active squad selection fallback, and automatic draft synchronization. Added trash icon delete triggers on both individual squad cards in the left stack and in the active squad editor header.
+  - Implemented `endedMatchGraceMap`, `reinstateMatch`, and `dismissGracePeriod` in `src/context/TournamentContext.tsx` with `localStorage` persistence.
+  - In `reinstateMatch`: reverts match status to `LIVE`, sets `2ND_HALF` period, logs audit event, recalculates group standings (excluding the live fixture), and issues an operational notification.
+  - Updated `src/pages/TournamentManagementPage.tsx` and `src/pages/OngoingTournamentsPage.tsx`:
+    - Replaced permanent "Reopen" buttons with a real-time countdown timer (`60s -> 0s`).
+    - Added explicit accidental confirmation modal prompt.
+    - Disabled period switcher buttons (`1st H`, `HT`, `2nd H`, `ET`) and score steppers on completed matches to eliminate backdoor modifications.
+    - Added instant `(Lock Final)` trigger to immediately seal the match without waiting for the timer.
+  - Verified live in browser using Chrome DevTools MCP: tested adding and deleting squads, tested the 2-squad minimum delete guard, tested ending a live match with the 60s countdown, tested successful reinstatement, and tested locking the match permanently to `Official FT (Sealed)`.
+- **Changes Made**:
+  - `[MODIFIED]` `src/pages/wizard/Step2TeamsPage.tsx` - Added squad deletion controls, validation, and confirmation.
+  - `[MODIFIED]` `src/context/TournamentContext.tsx` - Added grace period state, `reinstateMatch`, and `dismissGracePeriod`.
+  - `[MODIFIED]` `src/pages/TournamentManagementPage.tsx` - Added 60s countdown, accidental confirmation, and disabled controls on completed fixtures.
+  - `[MODIFIED]` `src/pages/OngoingTournamentsPage.tsx` - Added 60s countdown, accidental confirmation, and disabled controls on completed fixtures.
+  - `[MODIFIED]` `PROCESS_LOG.md` - Phase 13 documentation and test records.
+
 ## 3. Summary of Changes
 | File | Action | Description |
 | :--- | :--- | :--- |
+| `src/pages/wizard/Step2TeamsPage.tsx` | Modified | Added squad deletion controls, confirmation modal prompt, and 2-squad minimum validation |
+| `src/context/TournamentContext.tsx` | Modified | Implemented 60s accidental grace window, `reinstateMatch`, and `dismissGracePeriod` |
+| `src/pages/TournamentManagementPage.tsx` | Modified | Replaced permanent Reopen with 60s countdown, accidental confirmation, and sealed fixture state |
+| `src/pages/OngoingTournamentsPage.tsx` | Modified | Replaced permanent Reopen with 60s countdown, accidental confirmation, and disabled controls |
 | `src/types/notification.ts` | Created | TypeScript definitions for operational notification categories & models |
 | `src/data/seedNotifications.ts` | Created | Initial operational alerts seed data |
-| `src/context/TournamentContext.tsx` | Modified | Integrated notifications state store, unread counter, and automated event emission |
 | `src/components/layout/Header.tsx` | Modified | Interactive Notification popover, filter tabs, dismiss controls, and unread badge |
 | `src/styles/*` | Created & Modified | Design tokens (Lora, Roboto, Inter), components, export canvas, and Tailwind CSS |
 | `src/lib/*` | Created & Modified | Tournament, standings, conflict, forfeit, and export engines |
@@ -213,6 +237,6 @@
 | `README.md` | Created | Comprehensive repository documentation |
 
 ## 4. Final Conclusion & Outcome
-- **Outcome**: The Play Field tournament operating system is fully built, tested, and validated end-to-end, including strict typography compliance (Lora, Roboto, Inter) and an interactive, real-time Operational Desk Alerts Notification Center.
-- **Verification**: Production build compiles with zero errors (`tsc && vite build`); all 13 core screens, interactive controls (score steppers, goal loggers, court reassignment mutex, walkover 3-0 forfeits, PNG download, selective payment, and co-organizer authentication guards) and live notification workflows verified via Chrome DevTools MCP.
-- **Conclusion**: All functional specifications, architectural requirements, design tokens, and live notifications have been fulfilled cleanly in a modular, maintainable structure.
+- **Outcome**: The Play Field tournament operating system has been enhanced with strict accidental prevention mechanisms: accidental squads created in the tournament creation wizard can be safely deleted with minimum participation safeguards, and ended matches can no longer be casually reopened, providing a strict 60-second time-limited accidental reinstate grace window with explicit confirmation before permanently sealing the match as official.
+- **Verification**: Production build compiles with zero errors (`tsc && vite build`); live DOM behavior, squad deletion, minimum 2-team deletion prevention, match conclusion, 60s grace countdown, accidental confirmation prompt, live match reinstatement, and permanent sealed match state verified via Chrome DevTools MCP.
+- **Conclusion**: Both user safety requests have been fulfilled cleanly and verified live in the running application.

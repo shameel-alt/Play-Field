@@ -40,6 +40,9 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
     updateScore,
     updateMatchPeriod,
     endMatch,
+    reinstateMatch,
+    endedMatchGraceMap,
+    dismissGracePeriod,
     concludeTournament,
     recordMatchEvent,
     markWalkover,
@@ -48,6 +51,13 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
   const { currentUser, isAuthenticated } = useAuth();
 
   const tournament = getTournamentByIdOrSlug(tournamentId);
+
+  // Live timer tick for real-time grace period countdowns
+  const [now, setNow] = useState(Date.now());
+  React.useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Modals state
   const [isCourtModalOpen, setIsCourtModalOpen] = useState(false);
@@ -177,6 +187,17 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
     );
     if (ok) {
       const res = await endMatch(tournament.id, activeMatch.id);
+      setLogFeedback(`${res.message} (Accidental reinstate available for 60s)`);
+      setTimeout(() => setLogFeedback(null), 5000);
+    }
+  };
+
+  const handleAccidentalReinstate = async (matchId: string, matchNumber: number) => {
+    const ok = window.confirm(
+      `Reinstate Match #${matchNumber}?\n\nUse this ONLY if the final whistle was logged by accident.\n\nLive scoring, clock, and period controls will be restored immediately and group progression updated.`
+    );
+    if (ok) {
+      const res = await reinstateMatch(tournament.id, matchId);
       setLogFeedback(res.message);
       setTimeout(() => setLogFeedback(null), 4000);
     }
@@ -427,9 +448,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <button
                       type="button"
+                      disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('1ST_HALF')}
                       className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
-                        activeMatch.currentHalf === '1ST_HALF' && activeMatch.status === 'LIVE'
+                        activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
+                          ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
+                          : activeMatch.currentHalf === '1ST_HALF' && activeMatch.status === 'LIVE'
                           ? 'bg-live-orange text-surface-card shadow-xs'
                           : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
                       }`}
@@ -438,9 +462,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                     </button>
                     <button
                       type="button"
+                      disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('HALF_TIME')}
                       className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
-                        activeMatch.currentHalf === 'HALF_TIME'
+                        activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
+                          ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
+                          : activeMatch.currentHalf === 'HALF_TIME'
                           ? 'bg-status-warning-amber text-surface-card shadow-xs'
                           : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
                       }`}
@@ -449,9 +476,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                     </button>
                     <button
                       type="button"
+                      disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('2ND_HALF')}
                       className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
-                        activeMatch.currentHalf === '2ND_HALF'
+                        activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
+                          ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
+                          : activeMatch.currentHalf === '2ND_HALF'
                           ? 'bg-live-orange text-surface-card shadow-xs'
                           : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
                       }`}
@@ -460,9 +490,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                     </button>
                     <button
                       type="button"
+                      disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('EXTRA_TIME')}
                       className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
-                        activeMatch.currentHalf === 'EXTRA_TIME'
+                        activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
+                          ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
+                          : activeMatch.currentHalf === 'EXTRA_TIME'
                           ? 'bg-purple-600 text-surface-card shadow-xs'
                           : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
                       }`}
@@ -470,7 +503,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                       Extra Time
                     </button>
 
-                    {/* End Match Action */}
+                    {/* End Match / Accidental Reinstate Action */}
                     {activeMatch.status !== 'COMPLETED' && activeMatch.status !== 'WALKOVER' ? (
                       <button
                         type="button"
@@ -480,15 +513,47 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                         <CheckCircle className="w-3.5 h-3.5" />
                         <span>End Match (FT)</span>
                       </button>
+                    ) : activeMatch.status === 'COMPLETED' ? (
+                      (() => {
+                        const graceEndTime = endedMatchGraceMap[activeMatch.id] || 0;
+                        const secondsLeft = Math.max(0, Math.ceil((graceEndTime - now) / 1000));
+
+                        if (secondsLeft > 0) {
+                          return (
+                            <div className="flex items-center gap-1.5 ml-2 p-1 px-2.5 rounded-lg bg-amber-50 border border-amber-300 shadow-2xs">
+                              <AlertTriangle className="w-3.5 h-3.5 text-status-warning-amber shrink-0 animate-pulse" />
+                              <span className="font-body text-xs text-amber-900 font-medium">Ended by accident?</span>
+                              <button
+                                type="button"
+                                onClick={() => handleAccidentalReinstate(activeMatch.id, activeMatch.matchNumber)}
+                                className="px-2 py-0.5 rounded bg-amber-200 hover:bg-amber-300 text-amber-950 font-button text-xs font-bold transition-all underline"
+                                title="Restore match to live play"
+                              >
+                                Reinstate Match ({secondsLeft}s)
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => dismissGracePeriod(activeMatch.id)}
+                                className="text-text-muted hover:text-on-surface font-button text-[11px] ml-1"
+                                title="Lock as permanently completed"
+                              >
+                                (Lock Final)
+                              </button>
+                            </div>
+                          );
+                        }
+
+                        return (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container font-badge-label text-xs font-bold text-status-success-emerald ml-1">
+                            <CheckCircle className="w-3.5 h-3.5" />
+                            Official FT (Sealed)
+                          </span>
+                        );
+                      })()
                     ) : (
-                      <button
-                        type="button"
-                        onClick={() => handlePeriodChange('2ND_HALF')}
-                        className="px-2 py-1 text-xs font-button text-text-muted hover:text-primary underline ml-1"
-                        title="Reopen match if needed"
-                      >
-                        Reopen
-                      </button>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-100 font-badge-label text-xs font-bold text-card-red-danger ml-1">
+                        Walkover
+                      </span>
                     )}
                   </div>
                 </div>
@@ -523,7 +588,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                         onScoreBChange={handleScoreBChange}
                         teamAName={homeTeam?.name || 'Home'}
                         teamBName={awayTeam?.name || 'Away'}
-                        disabled={activeMatch.status === 'WALKOVER'}
+                        disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       />
                     </div>
 

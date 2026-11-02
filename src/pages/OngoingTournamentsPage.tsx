@@ -12,7 +12,8 @@ import {
   Radio,
   ChevronRight,
   ShieldCheck,
-  AlertCircle
+  AlertCircle,
+  AlertTriangle
 } from 'lucide-react';
 
 interface OngoingTournamentsPageProps {
@@ -21,13 +22,27 @@ interface OngoingTournamentsPageProps {
 
 export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ onNavigate }) => {
   const { currentUser } = useAuth();
-  const { getUserTournaments, updateMatchPeriod, endMatch, concludeTournament } = useTournament();
+  const {
+    getUserTournaments,
+    updateMatchPeriod,
+    endMatch,
+    reinstateMatch,
+    endedMatchGraceMap,
+    concludeTournament
+  } = useTournament();
 
   const { ongoing } = getUserTournaments(currentUser);
   const [selectedTournamentId, setSelectedTournamentId] = useState<string>(
     ongoing[0]?.id || 'tournament-colombo-premier-2026'
   );
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
+
+  // Live timer tick for real-time grace countdown
+  const [now, setNow] = useState(Date.now());
+  React.useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const activeTournament = ongoing.find(t => t.id === selectedTournamentId) || ongoing[0];
 
@@ -45,6 +60,18 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
     );
     if (ok) {
       const res = await endMatch(activeTournament.id, matchId);
+      setActionFeedback(`${res.message} (Accidental reinstate available for 60s)`);
+      setTimeout(() => setActionFeedback(null), 5000);
+    }
+  };
+
+  const handleAccidentalReinstate = async (matchId: string, matchNumber: number) => {
+    if (!activeTournament) return;
+    const ok = window.confirm(
+      `Reinstate Match #${matchNumber}?\n\nUse this ONLY if the final whistle was logged by accident.\n\nLive scoring, clock, and period controls will be restored immediately and group standings updated.`
+    );
+    if (ok) {
+      const res = await reinstateMatch(activeTournament.id, matchId);
       setActionFeedback(res.message);
       setTimeout(() => setActionFeedback(null), 4000);
     }
@@ -259,55 +286,67 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                             <div className="inline-flex rounded-lg border border-border-grid bg-canvas-alabaster p-0.5">
                               <button
                                 type="button"
+                                disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, '1ST_HALF')}
                                 className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
-                                  match.currentHalf === '1ST_HALF' && match.status === 'LIVE'
+                                  isCompleted || isWalkover
+                                    ? 'opacity-40 cursor-not-allowed text-text-muted'
+                                    : match.currentHalf === '1ST_HALF' && match.status === 'LIVE'
                                     ? 'bg-live-orange text-surface-card shadow-xs'
                                     : 'text-text-muted hover:text-on-surface'
                                 }`}
-                                title="Set 1st Half"
+                                title={isCompleted ? "Match ended (FT)" : "Set 1st Half"}
                               >
                                 1st H
                               </button>
                               <button
                                 type="button"
+                                disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, 'HALF_TIME')}
                                 className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
-                                  match.currentHalf === 'HALF_TIME'
+                                  isCompleted || isWalkover
+                                    ? 'opacity-40 cursor-not-allowed text-text-muted'
+                                    : match.currentHalf === 'HALF_TIME'
                                     ? 'bg-status-warning-amber text-surface-card shadow-xs'
                                     : 'text-text-muted hover:text-on-surface'
                                 }`}
-                                title="Set Half Time"
+                                title={isCompleted ? "Match ended (FT)" : "Set Half Time"}
                               >
                                 HT
                               </button>
                               <button
                                 type="button"
+                                disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, '2ND_HALF')}
                                 className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
-                                  match.currentHalf === '2ND_HALF'
+                                  isCompleted || isWalkover
+                                    ? 'opacity-40 cursor-not-allowed text-text-muted'
+                                    : match.currentHalf === '2ND_HALF'
                                     ? 'bg-live-orange text-surface-card shadow-xs'
                                     : 'text-text-muted hover:text-on-surface'
                                 }`}
-                                title="Set 2nd Half"
+                                title={isCompleted ? "Match ended (FT)" : "Set 2nd Half"}
                               >
                                 2nd H
                               </button>
                               <button
                                 type="button"
+                                disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, 'EXTRA_TIME')}
                                 className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
-                                  match.currentHalf === 'EXTRA_TIME'
+                                  isCompleted || isWalkover
+                                    ? 'opacity-40 cursor-not-allowed text-text-muted'
+                                    : match.currentHalf === 'EXTRA_TIME'
                                     ? 'bg-purple-600 text-surface-card shadow-xs'
                                     : 'text-text-muted hover:text-on-surface'
                                 }`}
-                                title="Set Extra Time"
+                                title={isCompleted ? "Match ended (FT)" : "Set Extra Time"}
                               >
                                 ET
                               </button>
                             </div>
 
-                            {/* End Match CTA */}
+                            {/* End Match / Accidental Reinstate Action */}
                             {!isCompleted && !isWalkover ? (
                               <button
                                 type="button"
@@ -321,15 +360,35 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                               >
                                 End Match (FT)
                               </button>
+                            ) : isCompleted ? (
+                              (() => {
+                                const graceEndTime = endedMatchGraceMap[match.id] || 0;
+                                const secondsLeft = Math.max(0, Math.ceil((graceEndTime - now) / 1000));
+
+                                if (secondsLeft > 0) {
+                                  return (
+                                    <button
+                                      type="button"
+                                      onClick={() => handleAccidentalReinstate(match.id, match.matchNumber)}
+                                      className="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-button text-[11px] font-bold flex items-center gap-1 animate-pulse shadow-xs"
+                                      title="Ended by accident? Click to reinstate"
+                                    >
+                                      <AlertTriangle className="w-3 h-3 text-status-warning-amber" />
+                                      <span>Reinstate ({secondsLeft}s)</span>
+                                    </button>
+                                  );
+                                }
+
+                                return (
+                                  <span className="px-2 py-1 rounded bg-surface-container font-badge-label text-[11px] font-bold text-status-success-emerald">
+                                    Sealed FT
+                                  </span>
+                                );
+                              })()
                             ) : (
-                              <button
-                                type="button"
-                                onClick={() => handlePeriodChange(match.id, '2ND_HALF')}
-                                className="px-2 py-1 text-[10px] font-button text-text-muted hover:text-primary underline"
-                                title="Reopen match if needed"
-                              >
-                                Reopen
-                              </button>
+                              <span className="px-2 py-1 rounded bg-red-100 font-badge-label text-[11px] font-bold text-card-red-danger">
+                                Walkover
+                              </span>
                             )}
 
                             {/* Live Console Jump */}
