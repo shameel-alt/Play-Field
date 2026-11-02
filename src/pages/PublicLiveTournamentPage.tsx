@@ -3,6 +3,7 @@ import { useTournament } from '../context/TournamentContext';
 import { StandingsTable } from '../components/tournament/StandingsTable';
 import { KnockoutBracket } from '../components/tournament/KnockoutBracket';
 import { calculateGroupStandings } from '../lib/standingsEngine';
+import { formatMatchPeriod } from '../lib/tournamentEngine';
 import {
   Trophy,
   ShieldCheck,
@@ -142,9 +143,9 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
                     {liveMatch.round} • {liveMatch.groupName}
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-card-red-surface text-card-red-danger font-mono text-xs font-bold uppercase border border-card-red-border">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-card-red-surface text-card-red-danger font-badge-label text-xs font-bold uppercase border border-card-red-border">
                   <span className="w-2 h-2 rounded-full bg-card-red-danger animate-pulse"></span>
-                  {liveMatch.status === 'LIVE' ? `Live Clock: ${liveMatch.currentMinute}` : liveMatch.status}
+                  {formatMatchPeriod(liveMatch.currentHalf, liveMatch.currentMinute, liveMatch.status)}
                 </span>
               </div>
 
@@ -296,15 +297,17 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
                 className="bg-surface-card rounded-2xl border border-border-grid p-space-lg shadow-xs hover:shadow-md transition-shadow flex flex-col gap-space-sm"
               >
                 <div className="flex items-center justify-between text-xs font-mono text-text-muted">
-                  <span>Match #{m.matchNumber} • {m.round}</span>
-                  <span className={`px-2 py-0.5 rounded font-bold uppercase ${
+                  <span>Match #{m.matchNumber} • {m.round.replace('_', ' ')}</span>
+                  <span className={`px-2 py-0.5 rounded font-badge-label text-[10px] font-bold uppercase ${
                     m.status === 'LIVE'
-                      ? 'bg-card-red-surface text-card-red-danger'
+                      ? 'bg-orange-100 text-live-orange border border-orange-200'
                       : m.status === 'COMPLETED'
                       ? 'bg-pitch-turf-surface text-status-success-emerald'
+                      : m.status === 'WALKOVER'
+                      ? 'bg-red-100 text-card-red-danger'
                       : 'bg-surface-container text-text-muted'
                   }`}>
-                    {m.status}
+                    {formatMatchPeriod(m.currentHalf, m.currentMinute, m.status)}
                   </span>
                 </div>
 

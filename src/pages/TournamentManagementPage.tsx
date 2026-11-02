@@ -7,6 +7,7 @@ import { KnockoutBracket } from '../components/tournament/KnockoutBracket';
 import { CourtReassignModal } from '../components/tournament/CourtReassignModal';
 import { CoOrganizerModal } from '../components/tournament/CoOrganizerModal';
 import { calculateGroupStandings } from '../lib/standingsEngine';
+import { MatchPeriod } from '../types/match';
 import {
   Trophy,
   ShieldCheck,
@@ -20,7 +21,9 @@ import {
   ArrowRight,
   Clock,
   MapPin,
-  AlertCircle
+  AlertCircle,
+  CheckCircle,
+  Radio
 } from 'lucide-react';
 
 interface TournamentManagementPageProps {
@@ -32,7 +35,16 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
   tournamentId,
   onNavigate
 }) => {
-  const { getTournamentByIdOrSlug, updateScore, recordMatchEvent, markWalkover, markDisqualified } = useTournament();
+  const {
+    getTournamentByIdOrSlug,
+    updateScore,
+    updateMatchPeriod,
+    endMatch,
+    concludeTournament,
+    recordMatchEvent,
+    markWalkover,
+    markDisqualified
+  } = useTournament();
   const { currentUser, isAuthenticated } = useAuth();
 
   const tournament = getTournamentByIdOrSlug(tournamentId);
@@ -151,6 +163,38 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
     }
   };
 
+  const handlePeriodChange = async (period: MatchPeriod) => {
+    if (!activeMatch) return;
+    await updateMatchPeriod(tournament.id, activeMatch.id, period);
+    setLogFeedback(`Match period set to ${period.replace('_', ' ')}`);
+    setTimeout(() => setLogFeedback(null), 3000);
+  };
+
+  const handleEndActiveMatch = async () => {
+    if (!activeMatch) return;
+    const ok = window.confirm(
+      `Conclude and End Match #${activeMatch.matchNumber}?\n\n${homeTeam?.name || 'Home'} vs ${awayTeam?.name || 'Away'}\nFinal Score: ${activeMatch.homeScore} - ${activeMatch.awayScore}\n\nThis will mark the match as COMPLETED (Full Time), finalize group standings, and advance qualified teams forward.`
+    );
+    if (ok) {
+      const res = await endMatch(tournament.id, activeMatch.id);
+      setLogFeedback(res.message);
+      setTimeout(() => setLogFeedback(null), 4000);
+    }
+  };
+
+  const handleConcludeTournament = async () => {
+    const ok = window.confirm(
+      'Conclude tournament and archive?\n\nThis will declare the champion and runner-up and move the competition into the Ended Tournaments summary archives.'
+    );
+    if (ok) {
+      await concludeTournament(tournament.id);
+      onNavigate(`/tournaments/${tournament.id}/summary`);
+    }
+  };
+
+  const finalMatch = tournament.matches.find(m => m.round === 'FINAL');
+  const isFinalCompleted = finalMatch && (finalMatch.status === 'COMPLETED' || finalMatch.status === 'WALKOVER');
+
   const publicLink = `${window.location.origin}/#/public/tournament/${tournament.slug || tournament.id}`;
 
   const copyPublicLink = () => {
@@ -256,9 +300,33 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
 
       {/* 3-ZONE MAIN WORKSPACE */}
       <main className="w-full max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg py-space-xl flex flex-col gap-space-xl">
+        {/* Championship Conclude Banner */}
+        {isFinalCompleted && (
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-surface-card flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md animate-fade">
+            <div className="flex items-center gap-3">
+              <Trophy className="w-8 h-8 text-amber-300 shrink-0" />
+              <div>
+                <h3 className="font-headline font-bold text-base">
+                  Championship Grand Final Concluded!
+                </h3>
+                <p className="font-body text-xs opacity-90">
+                  Apex Warriors has been officially crowned Champion! Move to historical archive to review final stats and export summary.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={handleConcludeTournament}
+              className="px-4 py-2 rounded-xl bg-surface-card text-floodlight-navy font-button text-xs font-bold hover:bg-slate-100 shadow-sm shrink-0 transition-colors"
+            >
+              Conclude Tournament & Archive →
+            </button>
+          </div>
+        )}
+
         {/* Match Selector Strip */}
         <div className="flex items-center justify-between bg-surface-card p-space-sm rounded-xl border border-border-grid shadow-xs overflow-x-auto">
-          <span className="font-eyebrow text-xs uppercase text-text-muted font-bold shrink-0 pl-2">
+          <span className="font-badge-label text-xs uppercase text-text-muted font-bold shrink-0 pl-2">
             Select Fixture to Control:
           </span>
           <div className="flex items-center gap-2 overflow-x-auto tactical-scrollbar">
@@ -267,15 +335,28 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                 key={m.id}
                 type="button"
                 onClick={() => setSelectedMatchId(m.id)}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
+                className={`px-3 py-1.5 rounded-lg font-button text-xs font-bold transition-all whitespace-nowrap shrink-0 flex items-center gap-1.5 ${
                   activeMatch?.id === m.id
                     ? 'bg-floodlight-navy text-surface-card shadow-xs'
                     : 'bg-canvas-alabaster text-on-surface hover:bg-state-hover-gray border border-border-grid'
                 }`}
               >
                 <span>#{m.matchNumber} {m.homeTeamCode || 'H'} vs {m.awayTeamCode || 'A'}</span>
-                {m.status === 'LIVE' && <span className="ml-1.5 text-card-red-danger font-extrabold animate-pulse">● LIVE</span>}
-                {m.status === 'WALKOVER' && <span className="ml-1 text-status-warning-amber">(W/O)</span>}
+                {m.status === 'LIVE' && (
+                  <span className="px-1.5 py-0.5 rounded bg-live-orange text-surface-card text-[10px] uppercase font-bold animate-pulse">
+                    {m.currentHalf === 'HALF_TIME' ? 'HT' : m.currentHalf === '2ND_HALF' ? '2H' : m.currentHalf === 'EXTRA_TIME' ? 'ET' : '1H'}
+                  </span>
+                )}
+                {m.status === 'COMPLETED' && (
+                  <span className="px-1.5 py-0.5 rounded bg-pitch-turf-surface text-status-success-emerald text-[10px] font-bold">
+                    FT {m.homeScore}-{m.awayScore}
+                  </span>
+                )}
+                {m.status === 'WALKOVER' && (
+                  <span className="px-1.5 py-0.5 rounded bg-red-100 text-card-red-danger text-[10px] font-bold">
+                    W/O
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -290,28 +371,125 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                 {/* Masthead Slot Status & Reassignment trigger */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pb-space-md border-b border-border-grid">
                   <div className="flex items-center gap-space-sm">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-card-red-surface text-card-red-danger font-mono text-xs font-bold uppercase border border-card-red-border">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-card-red-surface text-card-red-danger font-badge-label text-xs font-bold uppercase border border-card-red-border">
                       <span className="w-2 h-2 rounded-full bg-card-red-danger animate-pulse"></span>
-                      {activeMatch.status === 'LIVE' ? `1st Half • ${activeMatch.currentMinute}` : activeMatch.status}
+                      {activeMatch.status === 'LIVE'
+                        ? activeMatch.currentHalf === 'HALF_TIME'
+                          ? 'Half Time Break'
+                          : activeMatch.currentHalf === '2ND_HALF'
+                          ? `2nd Half • ${activeMatch.currentMinute}`
+                          : activeMatch.currentHalf === 'EXTRA_TIME'
+                          ? `Extra Time • ${activeMatch.currentMinute}`
+                          : `1st Half • ${activeMatch.currentMinute}`
+                        : activeMatch.status === 'COMPLETED'
+                        ? `Match Ended • FT ${activeMatch.homeScore}-${activeMatch.awayScore}`
+                        : activeMatch.status}
                     </span>
-                    <span className="font-eyebrow text-xs uppercase text-text-muted">
+                    <span className="font-badge-label text-xs uppercase text-text-muted">
                       Match #{activeMatch.matchNumber} ({activeMatch.groupName || 'Group A'})
                     </span>
                   </div>
 
                   {/* Court Reassignment Widget with Two-Tier Collision Trigger */}
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold text-floodlight-navy bg-pitch-turf-surface px-2.5 py-1 rounded-lg border border-primary-container/20">
+                    <span className="font-badge-label text-xs font-bold text-floodlight-navy bg-pitch-turf-surface px-2.5 py-1 rounded-lg border border-primary-container/20">
                       Allocated: {activeMatch.courtName}
                     </span>
                     <button
                       type="button"
                       onClick={() => setIsCourtModalOpen(true)}
-                      className="btn-secondary text-xs py-1 px-2.5 flex items-center gap-1 border-primary text-primary hover:bg-pitch-turf-surface"
+                      className="btn-secondary text-xs py-1 px-2.5 flex items-center gap-1 border-primary text-primary hover:bg-pitch-turf-surface font-button"
                     >
                       <MapPin className="w-3.5 h-3.5" />
                       <span>Change Court Slot</span>
                     </button>
+                  </div>
+                </div>
+
+                {/* Match Period & Live Clock State Controller */}
+                <div className="p-3.5 rounded-xl bg-canvas-alabaster border border-border-grid flex flex-col md:flex-row md:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-primary shrink-0" />
+                    <span className="font-headline font-bold text-xs text-floodlight-navy">
+                      Period State:
+                    </span>
+                    <span className="font-badge-label font-bold text-xs px-2.5 py-0.5 rounded-full bg-floodlight-navy text-surface-card">
+                      {activeMatch.status === 'COMPLETED' ? 'Match Ended (Full Time)' :
+                       activeMatch.status === 'WALKOVER' ? 'Walkover Forfeit' :
+                       activeMatch.currentHalf === 'HALF_TIME' ? 'Half Time Break' :
+                       activeMatch.currentHalf === '2ND_HALF' ? `2nd Half (${activeMatch.currentMinute})` :
+                       activeMatch.currentHalf === 'EXTRA_TIME' ? `Extra Time (${activeMatch.currentMinute})` :
+                       activeMatch.status === 'LIVE' ? `1st Half (${activeMatch.currentMinute})` : 'Upcoming / Scheduled'}
+                    </span>
+                  </div>
+
+                  {/* Period Switcher Actions */}
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => handlePeriodChange('1ST_HALF')}
+                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                        activeMatch.currentHalf === '1ST_HALF' && activeMatch.status === 'LIVE'
+                          ? 'bg-live-orange text-surface-card shadow-xs'
+                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                      }`}
+                    >
+                      1st Half
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handlePeriodChange('HALF_TIME')}
+                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                        activeMatch.currentHalf === 'HALF_TIME'
+                          ? 'bg-status-warning-amber text-surface-card shadow-xs'
+                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                      }`}
+                    >
+                      Half Time
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handlePeriodChange('2ND_HALF')}
+                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                        activeMatch.currentHalf === '2ND_HALF'
+                          ? 'bg-live-orange text-surface-card shadow-xs'
+                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                      }`}
+                    >
+                      2nd Half
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handlePeriodChange('EXTRA_TIME')}
+                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                        activeMatch.currentHalf === 'EXTRA_TIME'
+                          ? 'bg-purple-600 text-surface-card shadow-xs'
+                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                      }`}
+                    >
+                      Extra Time
+                    </button>
+
+                    {/* End Match Action */}
+                    {activeMatch.status !== 'COMPLETED' && activeMatch.status !== 'WALKOVER' ? (
+                      <button
+                        type="button"
+                        onClick={handleEndActiveMatch}
+                        className="px-3 py-1 rounded-lg bg-card-red-surface hover:bg-card-red-danger text-card-red-danger hover:text-surface-card border border-card-red-border font-button text-xs font-bold transition-all shadow-xs ml-1 flex items-center gap-1"
+                      >
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        <span>End Match (FT)</span>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => handlePeriodChange('2ND_HALF')}
+                        className="px-2 py-1 text-xs font-button text-text-muted hover:text-primary underline ml-1"
+                        title="Reopen match if needed"
+                      >
+                        Reopen
+                      </button>
+                    )}
                   </div>
                 </div>
 

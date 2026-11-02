@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Tournament } from '../types/tournament';
-import { Match, MatchEvent } from '../types/match';
+import { Match, MatchEvent, MatchPeriod } from '../types/match';
 import { Team } from '../types/team';
 import { Venue, CourtBookingLock } from '../types/venue';
 import { CoOrganizer, UserProfile } from '../types/user';
@@ -12,6 +12,7 @@ import { SEED_VENUES } from '../data/venuesSeed';
 import { calculateGroupStandings } from '../lib/standingsEngine';
 import { checkCourtAvailability, ConflictCheckResult } from '../lib/conflictEngine';
 import { issueWalkover, issueDisqualification } from '../lib/forfeitEngine';
+import { progressTournamentMatches, formatMatchPeriod } from '../lib/tournamentEngine';
 import { supabase } from '../lib/supabase';
 
 interface TournamentContextType {
@@ -30,6 +31,9 @@ interface TournamentContextType {
   getUserTournaments: (user: UserProfile | null) => { ongoing: Tournament[]; ended: Tournament[] };
   createTournament: (newTournament: Tournament) => Promise<string>;
   updateScore: (tournamentId: string, matchId: string, homeScore: number, awayScore: number) => Promise<void>;
+  updateMatchPeriod: (tournamentId: string, matchId: string, period: MatchPeriod, minute?: string) => Promise<void>;
+  endMatch: (tournamentId: string, matchId: string) => Promise<{ success: boolean; message: string; progressed: boolean }>;
+  concludeTournament: (tournamentId: string, championTeamId?: string, runnerUpTeamId?: string) => Promise<{ success: boolean; message: string }>;
   recordMatchEvent: (tournamentId: string, matchId: string, eventData: Omit<MatchEvent, 'id' | 'createdAt'>) => Promise<void>;
   reassignCourt: (tournamentId: string, matchId: string, newCourtNumber: number, reason?: string) => Promise<{ success: boolean; message: string }>;
   markWalkover: (tournamentId: string, matchId: string, forfeitingTeamId: string) => Promise<void>;
@@ -46,7 +50,9 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.map(t => t.status === 'PUBLISHED_ONGOING' ? progressTournamentMatches(t) : t);
+        }
       } catch (e) {
         console.error('Failed to parse cached tournaments', e);
       }
@@ -265,6 +271,187 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         updatedAt: new Date().toISOString()
       };
     }));
+  };
+
+  const updateMatchPeriod = async (
+    tournamentId: string,
+    matchId: string,
+    period: MatchPeriod,
+    minute?: string
+  ) => {
+    if (period === 'FULL_TIME') {
+      await endMatch(tournamentId, matchId);
+      return;
+    }
+
+    setTournaments(prev => prev.map(t => {
+      if (t.id !== tournamentId) return t;
+
+      const updatedMatches = t.matches.map(m => {
+        if (m.id !== matchId) return m;
+
+        let newMinute = minute || m.currentMinute;
+        if (period === 'HALF_TIME') newMinute = 'HT';
+        else if (period === '1ST_HALF' && (m.status === 'UPCOMING' || m.currentMinute === "0'")) newMinute = "1'";
+        else if (period === '2ND_HALF' && (m.currentMinute === 'HT' || parseInt(m.currentMinute) < 25)) newMinute = "25'";
+        else if (period === 'EXTRA_TIME' && parseInt(m.currentMinute) < 50) newMinute = "51'";
+
+        const periodEvent: MatchEvent = {
+          id: `evt-period-${Date.now()}`,
+          matchId,
+          tournamentId,
+          eventType: period === 'HALF_TIME' ? 'HALF_TIME' : 'TIMEOUT',
+          minute: newMinute,
+          details: { note: `Match Period set to ${formatMatchPeriod(period, newMinute, 'LIVE')}` },
+          createdAt: new Date().toISOString()
+        };
+
+        return {
+          ...m,
+          status: 'LIVE' as const,
+          currentHalf: period,
+          currentMinute: newMinute,
+          events: [...m.events, periodEvent],
+          updatedAt: new Date().toISOString()
+        };
+      });
+
+      return {
+        ...t,
+        matches: updatedMatches,
+        updatedAt: new Date().toISOString()
+      };
+    }));
+
+    addNotification({
+      type: 'LIVE',
+      title: `Match Period Changed: ${formatMatchPeriod(period, minute, 'LIVE')}`,
+      message: `Match status actively transitioned to ${formatMatchPeriod(period, minute, 'LIVE')}.`,
+      tournamentId,
+      linkUrl: `/tournaments/${tournamentId}/manage`,
+      severity: 'info'
+    });
+  };
+
+  const endMatch = async (
+    tournamentId: string,
+    matchId: string
+  ): Promise<{ success: boolean; message: string; progressed: boolean }> => {
+    let matchNum = 0;
+    let homeTeamName = 'Home';
+    let awayTeamName = 'Away';
+    let finalHomeScore = 0;
+    let finalAwayScore = 0;
+
+    setTournaments(prev => prev.map(t => {
+      if (t.id !== tournamentId) return t;
+
+      const match = t.matches.find(m => m.id === matchId);
+      if (!match) return t;
+
+      matchNum = match.matchNumber;
+      homeTeamName = match.homeTeamName || 'Home';
+      awayTeamName = match.awayTeamName || 'Away';
+      finalHomeScore = match.homeScore;
+      finalAwayScore = match.awayScore;
+
+      const endEvent: MatchEvent = {
+        id: `evt-end-${Date.now()}`,
+        matchId,
+        tournamentId,
+        eventType: 'HALF_TIME',
+        minute: 'FT',
+        details: { note: `Match Ended • Full Time: ${match.homeScore}-${match.awayScore}` },
+        createdAt: new Date().toISOString()
+      };
+
+      const updatedMatches = t.matches.map(m => {
+        if (m.id !== matchId) return m;
+        return {
+          ...m,
+          status: 'COMPLETED' as const,
+          currentHalf: 'FULL_TIME' as const,
+          currentMinute: 'FT',
+          events: [...m.events, endEvent],
+          updatedAt: new Date().toISOString()
+        };
+      });
+
+      // Recalculate standings for group if not knockout
+      let updatedTeams = t.teams;
+      if (match.groupName && match.groupName !== 'Knockout Series' && match.groupName !== 'Grand Final Series') {
+        const standings = calculateGroupStandings(t.teams, updatedMatches, match.groupName);
+        updatedTeams = t.teams.map(team => {
+          const matched = standings.find(s => s.id === team.id);
+          return matched || team;
+        });
+      }
+
+      const tourneyWithEndedMatch = {
+        ...t,
+        matches: updatedMatches,
+        teams: updatedTeams,
+        updatedAt: new Date().toISOString()
+      };
+
+      // Progress forward into Semi-Finals / Final / Champion
+      return progressTournamentMatches(tourneyWithEndedMatch);
+    }));
+
+    addNotification({
+      type: 'LIVE',
+      title: `Match #${matchNum} Ended • Full Time (${finalHomeScore}-${finalAwayScore})`,
+      message: `${homeTeamName} vs ${awayTeamName} concluded. Group standings and knockout progression advanced.`,
+      tournamentId,
+      linkUrl: `/tournaments/${tournamentId}/manage`,
+      severity: 'success'
+    });
+
+    return {
+      success: true,
+      message: `Match #${matchNum} concluded (FT: ${finalHomeScore}-${finalAwayScore}). Progression updated.`,
+      progressed: true
+    };
+  };
+
+  const concludeTournament = async (
+    tournamentId: string,
+    championTeamId?: string,
+    runnerUpTeamId?: string
+  ): Promise<{ success: boolean; message: string }> => {
+    setTournaments(prev => prev.map(t => {
+      if (t.id !== tournamentId) return t;
+
+      let teams = t.teams;
+      if (championTeamId) {
+        teams = teams.map(tm => {
+          if (tm.id === championTeamId) return { ...tm, status: 'CHAMPION' as const };
+          if (tm.id === runnerUpTeamId) return { ...tm, status: 'RUNNER_UP' as const };
+          return tm;
+        });
+      }
+
+      return {
+        ...t,
+        status: 'ENDED' as const,
+        teams,
+        updatedAt: new Date().toISOString()
+      };
+    }));
+
+    addNotification({
+      type: 'SYSTEM',
+      title: `Tournament Concluded & Archived`,
+      message: `All matches completed. Final stats archived to Ended Tournaments.`,
+      tournamentId,
+      linkUrl: `/tournaments/${tournamentId}/summary`,
+      severity: 'success'
+    });
+
+    return {
+      success: true,
+      message: 'Tournament successfully concluded and moved to historical archives.'
+    };
   };
 
   const recordMatchEvent = async (
@@ -533,6 +720,9 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         getUserTournaments,
         createTournament,
         updateScore,
+        updateMatchPeriod,
+        endMatch,
+        concludeTournament,
         recordMatchEvent,
         reassignCourt,
         markWalkover,

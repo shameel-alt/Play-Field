@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tournament } from '../../types/tournament';
-import { Calendar, MapPin, Trophy, ArrowRight, Play, CheckCircle } from 'lucide-react';
+import { formatMatchPeriod } from '../../lib/tournamentEngine';
+import { Calendar, MapPin, Trophy, ArrowRight, Play, CheckCircle, ChevronDown, ChevronUp, Radio } from 'lucide-react';
 
 interface TournamentCardProps {
   tournament: Tournament;
@@ -15,13 +16,71 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({
   onViewPublic,
   onViewSummary
 }) => {
+  const [showFixtures, setShowFixtures] = useState(false);
   const isEnded = tournament.status === 'ENDED';
   const isOngoing = tournament.status === 'PUBLISHED_ONGOING';
   const isDraft = tournament.status === 'DRAFT';
 
   // Find next upcoming or live match
-  const nextMatch = tournament.matches.find(m => m.status === 'LIVE') ||
-                    tournament.matches.find(m => m.status === 'UPCOMING');
+  const liveMatch = tournament.matches.find(m => m.status === 'LIVE');
+  const nextMatch = liveMatch ||
+                    tournament.matches.find(m => m.status === 'UPCOMING') ||
+                    tournament.matches[tournament.matches.length - 1];
+
+  const getPeriodBadge = (match: typeof tournament.matches[0]) => {
+    if (match.status === 'COMPLETED' || match.currentHalf === 'FULL_TIME') {
+      return (
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-[10px] font-bold uppercase">
+          <CheckCircle className="w-3 h-3 text-status-success-emerald" />
+          <span>Match Ended (FT)</span>
+        </span>
+      );
+    }
+    if (match.status === 'WALKOVER') {
+      return (
+        <span className="px-2 py-0.5 rounded-full bg-red-100 text-card-red-danger font-badge-label text-[10px] font-bold uppercase">
+          Walkover (3-0)
+        </span>
+      );
+    }
+    if (match.currentHalf === 'HALF_TIME') {
+      return (
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-status-warning-amber font-badge-label text-[10px] font-bold uppercase border border-amber-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-status-warning-amber animate-pulse"></span>
+          <span>Half Time</span>
+        </span>
+      );
+    }
+    if (match.currentHalf === '2ND_HALF') {
+      return (
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-orange-100 text-live-orange font-badge-label text-[10px] font-bold uppercase border border-orange-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-live-orange animate-ping"></span>
+          <span>2nd Half ({match.currentMinute || "25'"})</span>
+        </span>
+      );
+    }
+    if (match.currentHalf === 'EXTRA_TIME') {
+      return (
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-badge-label text-[10px] font-bold uppercase border border-purple-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse"></span>
+          <span>Extra Time ({match.currentMinute || "51'"})</span>
+        </span>
+      );
+    }
+    if (match.status === 'LIVE' || match.currentHalf === '1ST_HALF') {
+      return (
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-orange-100 text-live-orange font-badge-label text-[10px] font-bold uppercase border border-orange-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-live-orange animate-pulse"></span>
+          <span>1st Half ({match.currentMinute || "12'"})</span>
+        </span>
+      );
+    }
+    return (
+      <span className="px-2 py-0.5 rounded-full bg-surface-container font-badge-label text-[10px] font-bold text-text-muted uppercase">
+        Upcoming
+      </span>
+    );
+  };
 
   return (
     <div className="bg-surface-card rounded-xl border border-border-grid shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group">
@@ -29,28 +88,28 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({
       <div className="p-space-lg flex flex-col gap-space-md">
         <div className="flex items-center justify-between gap-space-sm">
           <div className="flex items-center gap-2">
-            <span className="font-eyebrow text-xs uppercase px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold">
+            <span className="font-badge-label text-xs uppercase px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold">
               {tournament.sport.toUpperCase()} 5v5
             </span>
-            <span className="font-mono text-xs text-text-muted">
+            <span className="font-badge-label text-xs text-text-muted">
               {tournament.teams?.length || 8} Teams
             </span>
           </div>
 
           {isOngoing && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-mono text-xs font-bold uppercase">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-xs font-bold uppercase">
               <span className="w-2 h-2 rounded-full bg-status-success-emerald animate-pulse"></span>
               Live Ongoing
             </span>
           )}
           {isEnded && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-mono text-xs font-bold uppercase">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-badge-label text-xs font-bold uppercase">
               <CheckCircle className="w-3.5 h-3.5 text-status-success-emerald" />
               Concluded
             </span>
           )}
           {isDraft && (
-            <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-status-warning-amber font-mono text-xs font-bold uppercase border border-amber-200">
+            <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-status-warning-amber font-badge-label text-xs font-bold uppercase border border-amber-200">
               Draft Staged
             </span>
           )}
@@ -65,23 +124,68 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({
             <MapPin className="w-3.5 h-3.5 text-primary" />
             <span className="truncate">{tournament.venue?.name || 'Colombo Futsal Hub'}</span>
             <span>•</span>
-            <span className="font-mono">Courts {tournament.selectedCourtNumbers?.join(', ') || '1, 2, 5'}</span>
+            <span className="font-badge-label">Courts {tournament.selectedCourtNumbers?.join(', ') || '1, 2, 5'}</span>
           </div>
         </div>
 
-        {/* Next Match Telemetry Strip (Mandatory dynamic calculation) */}
+        {/* Next / Active Match Telemetry Strip */}
         {!isEnded && nextMatch && (
-          <div className="p-space-sm rounded-lg bg-canvas-alabaster border border-border-grid flex flex-col gap-1">
-            <span className="font-eyebrow text-[11px] uppercase text-text-muted tracking-wider flex items-center justify-between">
-              <span>Next Match Action</span>
-              <span className="font-mono text-primary font-bold">{nextMatch.courtName}</span>
-            </span>
-            <div className="flex items-center justify-between font-subheading text-sm text-floodlight-navy font-bold">
-              <span className="truncate">{nextMatch.homeTeamName || 'Team A'} vs {nextMatch.awayTeamName || 'Team B'}</span>
-              <span className="font-mono text-xs text-live-orange-active">
-                {nextMatch.status === 'LIVE' ? "LIVE NOW (24')" : '17:30 PM'}
-              </span>
+          <div className="p-space-sm rounded-lg bg-canvas-alabaster border border-border-grid flex flex-col gap-1.5">
+            <div className="flex items-center justify-between font-badge-label text-[11px] uppercase text-text-muted tracking-wider">
+              <span>{nextMatch.status === 'LIVE' ? 'Active Match in Play' : 'Next Fixture'}</span>
+              <span className="text-primary font-bold">{nextMatch.courtName}</span>
             </div>
+
+            <div className="flex items-center justify-between font-headline text-sm text-floodlight-navy font-bold">
+              <div className="flex items-center gap-2 truncate">
+                <span className="truncate">{nextMatch.homeTeamName || 'Team A'}</span>
+                {(nextMatch.status === 'LIVE' || nextMatch.status === 'COMPLETED') && (
+                  <span className="font-badge-label text-primary font-extrabold px-1.5 py-0.5 bg-pitch-turf-surface rounded">
+                    {nextMatch.homeScore} – {nextMatch.awayScore}
+                  </span>
+                )}
+                <span className="text-text-muted font-body font-normal">vs</span>
+                <span className="truncate">{nextMatch.awayTeamName || 'Team B'}</span>
+              </div>
+              <div className="shrink-0 ml-2">
+                {getPeriodBadge(nextMatch)}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Collapsible Match Schedule / Periods Strip */}
+        {!isEnded && tournament.matches && tournament.matches.length > 0 && (
+          <div className="border border-border-grid rounded-lg bg-surface-card overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setShowFixtures(!showFixtures)}
+              className="w-full px-3 py-2 bg-canvas-alabaster hover:bg-state-hover-gray flex items-center justify-between text-xs font-button font-semibold text-floodlight-navy transition-colors"
+            >
+              <span>Match Periods & Fixtures ({tournament.matches.length})</span>
+              <div className="flex items-center gap-1 text-primary">
+                <span className="font-body text-[11px]">{showFixtures ? 'Hide' : 'View Schedule'}</span>
+                {showFixtures ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              </div>
+            </button>
+
+            {showFixtures && (
+              <div className="max-h-48 overflow-y-auto divide-y divide-border-grid p-2 flex flex-col gap-1.5">
+                {tournament.matches.map(m => (
+                  <div key={m.id} className="py-1 px-1.5 flex items-center justify-between text-xs font-body hover:bg-canvas-alabaster rounded transition-colors">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className="font-badge-label text-[10px] font-bold text-text-muted">#{m.matchNumber}</span>
+                      <span className="font-headline font-semibold text-floodlight-navy truncate">
+                        {m.homeTeamCode || m.homeTeamName?.substring(0, 10)} {m.status === 'LIVE' || m.status === 'COMPLETED' ? `${m.homeScore}-${m.awayScore}` : 'v'} {m.awayTeamCode || m.awayTeamName?.substring(0, 10)}
+                      </span>
+                    </div>
+                    <div className="shrink-0 ml-2">
+                      {getPeriodBadge(m)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -90,11 +194,11 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({
             <div className="flex items-center gap-2">
               <Trophy className="w-4 h-4 text-status-warning-amber" />
               <div className="flex flex-col">
-                <span className="font-eyebrow text-[10px] uppercase text-status-success-emerald font-bold">Champion</span>
+                <span className="font-badge-label text-[10px] uppercase text-status-success-emerald font-bold">Champion</span>
                 <span className="font-headline text-xs font-bold text-pitch-turf-active">Apex Warriors (6-0-0)</span>
               </div>
             </div>
-            <span className="font-mono text-xs font-bold text-pitch-turf-active">LKR 250,000</span>
+            <span className="font-badge-label text-xs font-bold text-pitch-turf-active">LKR 250,000</span>
           </div>
         )}
       </div>
@@ -111,7 +215,7 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({
               <span>View Report & Export PNG</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
-            <span className="font-badge text-[11px] text-text-muted">SLFA Certified</span>
+            <span className="font-badge-label text-[11px] text-text-muted">SLFA Certified</span>
           </>
         ) : (
           <>

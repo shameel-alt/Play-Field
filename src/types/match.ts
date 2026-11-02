@@ -1,5 +1,6 @@
 export type MatchRound = 'GROUP_STAGE' | 'QUARTER_FINAL' | 'SEMI_FINAL' | 'FINAL' | 'THIRD_PLACE';
 export type MatchStatus = 'UPCOMING' | 'LIVE' | 'COMPLETED' | 'WALKOVER' | 'CANCELLED';
+export type MatchPeriod = '1ST_HALF' | 'HALF_TIME' | '2ND_HALF' | 'EXTRA_TIME' | 'FULL_TIME';
 
 export type MatchEventType = 
   | 'GOAL' 
@@ -54,7 +55,7 @@ export interface Match {
   homeScore: number;
   awayScore: number;
   currentMinute: string;
-  currentHalf: '1ST_HALF' | 'HALF_TIME' | '2ND_HALF' | 'EXTRA_TIME' | 'FULL_TIME';
+  currentHalf: MatchPeriod;
   walkoverTeamId?: string;
   disqualifiedTeamId?: string;
   events: MatchEvent[];
