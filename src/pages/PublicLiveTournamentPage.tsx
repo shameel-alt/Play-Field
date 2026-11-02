@@ -241,7 +241,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
           <button
             type="button"
             onClick={() => setActiveTab('fixtures')}
-            className={`px-space-lg py-2 rounded-xl font-subheading text-sm font-bold transition-all ${
+            className={`px-space-lg py-2 rounded-xl font-button text-sm font-bold transition-all ${
               activeTab === 'fixtures'
                 ? 'bg-floodlight-navy text-surface-card shadow-sm'
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'
@@ -253,7 +253,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
           <button
             type="button"
             onClick={() => setActiveTab('standings')}
-            className={`px-space-lg py-2 rounded-xl font-subheading text-sm font-bold transition-all ${
+            className={`px-space-lg py-2 rounded-xl font-button text-sm font-bold transition-all ${
               activeTab === 'standings'
                 ? 'bg-floodlight-navy text-surface-card shadow-sm'
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'
@@ -265,7 +265,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
           <button
             type="button"
             onClick={() => setActiveTab('knockout')}
-            className={`px-space-lg py-2 rounded-xl font-subheading text-sm font-bold transition-all ${
+            className={`px-space-lg py-2 rounded-xl font-button text-sm font-bold transition-all ${
               activeTab === 'knockout'
                 ? 'bg-floodlight-navy text-surface-card shadow-sm'
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'
@@ -277,7 +277,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
           <button
             type="button"
             onClick={() => setActiveTab('scorers')}
-            className={`px-space-lg py-2 rounded-xl font-subheading text-sm font-bold transition-all ${
+            className={`px-space-lg py-2 rounded-xl font-button text-sm font-bold transition-all ${
               activeTab === 'scorers'
                 ? 'bg-floodlight-navy text-surface-card shadow-sm'
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'

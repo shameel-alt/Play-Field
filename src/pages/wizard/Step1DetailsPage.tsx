@@ -155,7 +155,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Western Province Futsal Championship 2026"
-                className="w-full h-11 px-3 bg-canvas-alabaster rounded-lg border border-border-control font-headline font-bold text-base text-floodlight-navy focus:outline-none focus:ring-2 focus:ring-primary shadow-2xs"
+                className="w-full h-11 px-3 bg-canvas-alabaster rounded-lg border border-border-control font-body font-semibold text-base text-floodlight-navy focus:outline-none focus:ring-2 focus:ring-primary shadow-2xs"
               />
             </div>
 

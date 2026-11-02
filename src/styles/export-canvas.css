@@ -6,9 +6,21 @@
   color: #0b192c;
   padding: 48px;
   box-sizing: border-box;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   position: relative;
   overflow: hidden;
+}
+
+#tournament-export-canvas h1,
+#tournament-export-canvas h2,
+#tournament-export-canvas h3,
+#tournament-export-canvas .headline {
+  font-family: 'Lora', Georgia, serif;
+}
+
+#tournament-export-canvas .badge,
+#tournament-export-canvas .btn {
+  font-family: 'Inter', sans-serif;
 }
 
 #tournament-export-canvas .masthead {
@@ -40,7 +52,8 @@
   align-items: center;
   gap: 8px;
   color: #047857;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
   font-weight: 700;
   font-size: 14px;
 }

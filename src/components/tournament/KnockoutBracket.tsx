@@ -127,7 +127,7 @@ export const KnockoutBracket: React.FC<KnockoutBracketProps> = ({ matches }) => 
               </span>
             </div>
 
-            <div className="mt-2 pt-2 border-t border-border-grid flex items-center justify-between text-xs font-mono text-text-muted">
+            <div className="mt-2 pt-2 border-t border-border-grid flex items-center justify-between text-xs font-body text-text-muted">
               <span>Main Showcase: Court 5</span>
               <span className="text-status-success-emerald font-bold">Prize: LKR 250,000 + Trophy</span>
             </div>

@@ -106,12 +106,12 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({
             <button
               type="button"
               onClick={() => onViewSummary?.(tournament.id)}
-              className="text-xs font-body font-semibold text-primary hover:underline flex items-center gap-1"
+              className="text-xs font-button font-semibold text-primary hover:underline flex items-center gap-1"
             >
               <span>View Report & Export PNG</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
-            <span className="font-mono text-[11px] text-text-muted">SLFA Certified</span>
+            <span className="font-badge text-[11px] text-text-muted">SLFA Certified</span>
           </>
         ) : (
           <>
@@ -126,7 +126,7 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({
             <button
               type="button"
               onClick={() => onViewPublic?.(tournament.id)}
-              className="text-xs font-body font-semibold text-on-surface-variant hover:text-primary transition-colors"
+              className="text-xs font-button font-semibold text-on-surface-variant hover:text-primary transition-colors"
             >
               Public Link →
             </button>

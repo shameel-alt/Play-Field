@@ -81,22 +81,35 @@ export default {
         "surface-variant": "#dae5dd"
       },
       fontFamily: {
-        headline: ["'Plus Jakarta Sans'", "sans-serif"],
-        body: ["'Instrument Sans'", "sans-serif"],
-        eyebrow: ["'Barlow Condensed'", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
-        "headline-lg": ["'Plus Jakarta Sans'", "sans-serif"],
-        "headline-md": ["'Plus Jakarta Sans'", "sans-serif"],
-        "headline-sm": ["'Plus Jakarta Sans'", "sans-serif"],
-        "subheading": ["'Instrument Sans'", "sans-serif"],
-        "body-lg": ["'Instrument Sans'", "sans-serif"],
-        "body-md": ["'Instrument Sans'", "sans-serif"],
-        "table-cell": ["'Instrument Sans'", "sans-serif"],
-        "data-mono": ["'JetBrains Mono'", "monospace"],
-        "badge-label": ["'JetBrains Mono'", "monospace"],
-        "score-display": ["'JetBrains Mono'", "monospace"],
-        "score-entry": ["'JetBrains Mono'", "monospace"],
-        "input-entry": ["'Instrument Sans'", "sans-serif"]
+        // Headings & Subheadings: Lora
+        headline: ["'Lora'", "Georgia", "serif"],
+        subheading: ["'Lora'", "Georgia", "serif"],
+        "headline-lg": ["'Lora'", "Georgia", "serif"],
+        "headline-md": ["'Lora'", "Georgia", "serif"],
+        "headline-sm": ["'Lora'", "Georgia", "serif"],
+        lora: ["'Lora'", "Georgia", "serif"],
+
+        // Paragraphs & Other Details: Roboto
+        body: ["'Roboto'", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        paragraph: ["'Roboto'", "sans-serif"],
+        details: ["'Roboto'", "sans-serif"],
+        "body-lg": ["'Roboto'", "sans-serif"],
+        "body-md": ["'Roboto'", "sans-serif"],
+        "table-cell": ["'Roboto'", "sans-serif"],
+        "input-entry": ["'Roboto'", "sans-serif"],
+        roboto: ["'Roboto'", "sans-serif"],
+
+        // Badges, Buttons & Interactive Elements: Inter
+        badge: ["'Inter'", "sans-serif"],
+        "badge-label": ["'Inter'", "sans-serif"],
+        button: ["'Inter'", "sans-serif"],
+        btn: ["'Inter'", "sans-serif"],
+        eyebrow: ["'Inter'", "sans-serif"],
+        inter: ["'Inter'", "sans-serif"],
+        mono: ["'Inter'", "sans-serif"],
+        "data-mono": ["'Inter'", "sans-serif"],
+        "score-display": ["'Inter'", "sans-serif"],
+        "score-entry": ["'Inter'", "sans-serif"]
       },
       spacing: {
         "space-xs": "0.25rem",

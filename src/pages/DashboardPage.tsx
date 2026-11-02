@@ -57,7 +57,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => onNavigate('/tournaments/new/details')}
-              className="inline-flex items-center justify-center gap-space-xs px-space-lg py-2 rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover active:bg-pitch-turf-active font-subheading text-subheading shadow-sm transition-all whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-space-xs px-space-lg py-2 rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover active:bg-pitch-turf-active font-button text-sm font-semibold shadow-sm transition-all whitespace-nowrap"
             >
               <PlusCircle className="w-4 h-4" />
               <span>+ Start Tournament</span>
@@ -175,7 +175,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('/tournaments/ended')}
-                className="text-primary hover:underline"
+                className="font-button text-primary hover:underline font-semibold"
               >
                 View Archive →
               </button>
@@ -189,7 +189,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => setActiveTab('all')}
-              className={`px-4 py-2 rounded-lg font-subheading text-sm font-semibold transition-colors ${
+              className={`px-4 py-2 rounded-lg font-button text-sm font-semibold transition-colors ${
                 activeTab === 'all'
                   ? 'bg-floodlight-navy text-surface-card shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray'
@@ -200,7 +200,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => setActiveTab('ongoing')}
-              className={`px-4 py-2 rounded-lg font-subheading text-sm font-semibold transition-colors ${
+              className={`px-4 py-2 rounded-lg font-button text-sm font-semibold transition-colors ${
                 activeTab === 'ongoing'
                   ? 'bg-floodlight-navy text-surface-card shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray'
@@ -211,7 +211,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => setActiveTab('ended')}
-              className={`px-4 py-2 rounded-lg font-subheading text-sm font-semibold transition-colors ${
+              className={`px-4 py-2 rounded-lg font-button text-sm font-semibold transition-colors ${
                 activeTab === 'ended'
                   ? 'bg-floodlight-navy text-surface-card shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray'

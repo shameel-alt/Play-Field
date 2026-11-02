@@ -12,7 +12,23 @@
     padding: 0;
     background-color: #f8fafc;
     color: #141e19;
-    font-family: 'Instrument Sans', sans-serif;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  /* Headings & Subheadings: Lora */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Paragraphs and descriptions: Roboto */
+  p, span.details, td, input, textarea, select {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  /* Buttons & Badges: Inter */
+  button, .badge, [role="button"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   /* Prevent iOS input auto-zoom by enforcing 16px font size on inputs */

@@ -77,8 +77,12 @@ erDiagram
 
 ---
 
-## 5. UI/UX Design System & Tactile Guidelines
+## 5. UI/UX Design System & Typography Guidelines
 
+- **Typography System (3 Strict Families)**:
+  - **Headings & Subheadings**: `Lora` (editorial prestige serif for mastheads, tournament titles, and squad cards)
+  - **Paragraphs & Details**: `Roboto` (clean sans-serif for narrative text, descriptions, table cells, and form inputs)
+  - **Badges & Buttons**: `Inter` (high-contrast geometric grotesque for interactive buttons, status pills, and tabular scores)
 - **Pitch Turf Emerald** (`#0D6E4F`): Primary CTA and pitch turf branding.
 - **Floodlight Navy** (`#0B192C`): Stadium broadcast mastheads and dark cards.
 - **Signal Live Orange** (`#EA580C`): Live pulses and active timers.

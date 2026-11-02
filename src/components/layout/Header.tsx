@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
           <a
             href="#/tournaments/new/details"
             onClick={(e) => handleNav('/tournaments/new/details', e)}
-            className="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover active:bg-pitch-turf-active font-subheading text-subheading shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap"
+            className="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover active:bg-pitch-turf-active font-button text-sm font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap"
           >
             <PlusCircle className="w-4 h-4" />
             <span>+ Start Tournament</span>

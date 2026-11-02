@@ -27,10 +27,9 @@ Play Field loads four Google Fonts, each assigned to a distinct operational role
 
 | Font Family | Weight(s) | Primary Purpose |
 | :--- | :--- | :--- |
-| **Plus Jakarta Sans** | 600, 700, 800 | Section headers, card titles, navigation items. |
-| **Barlow Condensed** | 700, 800 | Large broadcast scores, match countdown clocks, stadium banners. |
-| **Instrument Sans** | 400, 500, 600 | Body text, explanations, form labels, player rosters. |
-| **JetBrains Mono** | 500, 700 | Monospaced score steppers, fixture timestamps, court numbers, audit codes. |
+| **Lora** | 500, 600, 700, Italic | Headings, subheadings, tournament titles, and squad branding. |
+| **Roboto** | 300, 400, 500, 700 | Body paragraphs, match schedules, forms, details, and descriptions. |
+| **Inter** | 500, 600, 700, 800 | Badges, buttons, live status pills, court tags, and tabular scores. |
 
 ### 1.3 Tactile Mobile Guidelines
 - **Zero iOS Zoom**: All form `<input>` and `<select>` elements enforce `font-size: 16px` to avoid automatic browser zoom triggers on iPhones.

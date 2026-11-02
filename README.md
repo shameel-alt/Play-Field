@@ -39,7 +39,7 @@ Play Field is a responsive, production-grade tournament operating system designe
 ## 🛠️ Tech Stack & Architecture
 
 - **Frontend**: React 18, Vite 6, TypeScript
-- **Styling**: Tailwind CSS, Google Fonts (`Plus Jakarta Sans`, `Barlow Condensed`, `Instrument Sans`, `JetBrains Mono`), Lucide Icons
+- **Styling**: Tailwind CSS, Google Fonts (`Lora` for Headings/Subheadings, `Roboto` for Paragraphs/Details, `Inter` for Badges/Buttons), Lucide Icons
 - **Database & Persistence**: Supabase PostgreSQL 17 (11 relational tables + RLS + Realtime channels) with LocalStorage offline caching
 - **Canvas Export**: `html-to-image` for high-resolution 1200x1200px summary graphics
 - **Hosting / Deployment**: Compatible with Vercel, Netlify, Cloudflare Pages, Supabase Hosting

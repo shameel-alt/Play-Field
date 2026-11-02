@@ -38,7 +38,7 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
   <meta charset="UTF-8">
   <title>${title}</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
 
     @page {
       size: A4;
@@ -55,7 +55,7 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #0F172A;
       background: #FFFFFF;
       margin: 0;
@@ -83,6 +83,7 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
     .brand-logo-pill {
       background: #0B192C;
       color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
       font-size: 10pt;
       font-weight: 800;
       padding: 5px 12px;
@@ -91,6 +92,7 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
     }
 
     .brand-sub {
+      font-family: 'Roboto', sans-serif;
       font-size: 8.5pt;
       color: #64748B;
       text-transform: uppercase;
@@ -102,6 +104,7 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
       background: #ECFDF5;
       color: #065F46;
       border: 1px solid #A7F3D0;
+      font-family: 'Inter', sans-serif;
       font-size: 8pt;
       font-weight: 700;
       padding: 4px 10px;
@@ -110,25 +113,29 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
       letter-spacing: 0.5px;
     }
 
-    /* Titles */
+    /* Titles - Lora Headings & Subheadings */
     h1.doc-title {
+      font-family: 'Lora', Georgia, serif;
       font-size: 22pt;
-      font-weight: 800;
+      font-weight: 700;
       color: #0B192C;
       margin: 0 0 4px 0;
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     p.doc-subtitle {
+      font-family: 'Lora', Georgia, serif;
       font-size: 11pt;
-      color: #475569;
+      color: #334155;
       margin: 0 0 20px 0;
       font-weight: 500;
+      font-style: italic;
     }
 
     h2 {
+      font-family: 'Lora', Georgia, serif;
       font-size: 14pt;
-      font-weight: 800;
+      font-weight: 700;
       color: #0B192C;
       margin: 24px 0 10px 0;
       padding-bottom: 6px;
@@ -137,14 +144,16 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
     }
 
     h3 {
+      font-family: 'Lora', Georgia, serif;
       font-size: 11.5pt;
-      font-weight: 700;
+      font-weight: 600;
       color: #0D6E4F;
       margin: 16px 0 6px 0;
       page-break-after: avoid;
     }
 
     p, ul, ol {
+      font-family: 'Roboto', sans-serif;
       margin: 0 0 12px 0;
       color: #334155;
     }
@@ -157,15 +166,16 @@ function buildHtmlDocument({ title, subtitle, badge, contentHtml }) {
       color: #0F172A;
     }
 
-    /* Code & Badges */
+    /* Code & Badges - Inter */
     code {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', monospace;
       font-size: 9pt;
       background: #F1F5F9;
       color: #0F172A;
       padding: 2px 6px;
       border-radius: 4px;
       border: 1px solid #E2E8F0;
+      font-weight: 600;
     }
 
     /* Tables */

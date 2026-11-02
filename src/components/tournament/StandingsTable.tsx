@@ -128,7 +128,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, group
         </table>
       </div>
 
-      <div className="px-space-md py-2 bg-canvas-alabaster border-t border-border-grid flex items-center justify-between text-xs text-text-muted font-mono">
+      <div className="px-space-md py-2 bg-canvas-alabaster border-t border-border-grid flex items-center justify-between text-xs text-text-muted font-body">
         <span className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-status-success-emerald inline-block"></span>
           Top 2 Advance to Knockout Semifinals

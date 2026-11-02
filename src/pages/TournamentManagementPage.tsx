@@ -199,7 +199,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                 <button
                   type="button"
                   onClick={copyPublicLink}
-                  className="px-3 py-1.5 rounded-lg bg-surface-card text-floodlight-navy font-subheading text-xs font-bold hover:bg-state-hover-gray flex items-center gap-1 transition-all"
+                  className="px-3 py-1.5 rounded-lg bg-surface-card text-floodlight-navy font-button text-xs font-bold hover:bg-state-hover-gray flex items-center gap-1 transition-all"
                 >
                   {copiedLink ? <Check className="w-3.5 h-3.5 text-status-success-emerald" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{copiedLink ? 'Copied!' : 'Copy Link'}</span>
@@ -208,7 +208,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                   href={`#/public/tournament/${tournament.slug || tournament.id}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-subheading text-xs font-bold hover:bg-pitch-turf-hover flex items-center gap-1 shadow-xs transition-all"
+                  className="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-button text-xs font-bold hover:bg-pitch-turf-hover flex items-center gap-1 shadow-xs transition-all"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>Public Center</span>
@@ -238,7 +238,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
               <button
                 type="button"
                 onClick={() => setIsCoOrganizerModalOpen(true)}
-                className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-card/15 hover:bg-surface-card/25 text-surface-card font-subheading text-xs transition-all"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-card/15 hover:bg-surface-card/25 text-surface-card font-button text-xs font-semibold transition-all"
               >
                 <UserPlus className="w-3.5 h-3.5" />
                 <span>+ Add Organizing Member</span>
