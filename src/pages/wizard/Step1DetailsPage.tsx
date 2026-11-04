@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useTournament } from '../../context/TournamentContext';
 import { useAuth } from '../../context/AuthContext';
-import { SportType, TournamentStyle } from '../../types/tournament';
-import { ShieldCheck, MapPin, Check, ArrowRight, Calendar, Clock, DollarSign } from 'lucide-react';
+import { SportType, TournamentStyle, WizardDraftData } from '../../types/tournament';
+import { ShieldCheck, MapPin, Check, ArrowRight } from 'lucide-react';
 
 interface Step1DetailsPageProps {
   onNavigate: (path: string) => void;
-  draftData: any;
+  draftData: WizardDraftData;
   setDraftData: (data: any) => void;
 }
 
@@ -31,6 +31,30 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
   const [daysCount, setDaysCount] = useState<number>(draftData?.daysCount || 2);
 
   const selectedVenue = venues.find(v => v.id === selectedVenueId) || venues[0];
+
+  const handleStartDateChange = (val: string) => {
+    setStartDate(val);
+    if (val && endDate) {
+      const start = new Date(val).getTime();
+      const end = new Date(endDate).getTime();
+      if (!isNaN(start) && !isNaN(end) && end >= start) {
+        const diffDays = Math.max(1, Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1);
+        setDaysCount(diffDays);
+      }
+    }
+  };
+
+  const handleEndDateChange = (val: string) => {
+    setEndDate(val);
+    if (startDate && val) {
+      const start = new Date(startDate).getTime();
+      const end = new Date(val).getTime();
+      if (!isNaN(start) && !isNaN(end) && end >= start) {
+        const diffDays = Math.max(1, Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1);
+        setDaysCount(diffDays);
+      }
+    }
+  };
 
   const handleCourtToggle = (courtNum: number) => {
     setSelectedCourts(prev =>
@@ -146,10 +170,12 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
           <div className="lg:col-span-8 flex flex-col gap-space-xl">
             {/* Block 0: Tournament Title */}
             <div className="bg-surface-card rounded-2xl border border-border-grid p-space-lg shadow-sm flex flex-col gap-space-xs">
-              <label className="font-eyebrow text-xs uppercase text-primary font-bold">
+              <label htmlFor="tournament-title" className="font-eyebrow text-xs uppercase text-primary font-bold">
                 Tournament Title / Public Name
               </label>
               <input
+                id="tournament-title"
+                name="title"
                 type="text"
                 required
                 value={title}
@@ -339,30 +365,36 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               {/* Dates & Hours */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-xs">
                 <div className="flex flex-col gap-1">
-                  <label className="font-eyebrow text-xs uppercase text-text-muted">Start Date</label>
+                  <label htmlFor="tournament-start-date" className="font-eyebrow text-xs uppercase text-text-muted">Start Date</label>
                   <input
+                    id="tournament-start-date"
+                    name="startDate"
                     type="date"
                     required
                     value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
+                    onChange={(e) => handleStartDateChange(e.target.value)}
                     className="h-10 px-3 bg-canvas-alabaster rounded-lg border border-border-control font-body text-sm focus:outline-none"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="font-eyebrow text-xs uppercase text-text-muted">End Date</label>
+                  <label htmlFor="tournament-end-date" className="font-eyebrow text-xs uppercase text-text-muted">End Date</label>
                   <input
+                    id="tournament-end-date"
+                    name="endDate"
                     type="date"
                     required
                     value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
+                    onChange={(e) => handleEndDateChange(e.target.value)}
                     className="h-10 px-3 bg-canvas-alabaster rounded-lg border border-border-control font-body text-sm focus:outline-none"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="font-eyebrow text-xs uppercase text-text-muted">Total Days</label>
+                  <label htmlFor="tournament-days-count" className="font-eyebrow text-xs uppercase text-text-muted">Total Days</label>
                   <input
+                    id="tournament-days-count"
+                    name="daysCount"
                     type="number"
                     min="1"
                     max="14"

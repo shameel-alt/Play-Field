@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTournament } from '../context/TournamentContext';
 import { TournamentCard } from '../components/tournament/TournamentCard';
-import { PlusCircle, ShieldCheck, Trophy, Activity, History, Users, Search, ArrowRight, Play } from 'lucide-react';
+import { PlusCircle, ShieldCheck, Trophy, Activity, History, Users, Search, ArrowRight } from 'lucide-react';
 
 interface DashboardPageProps {
   onNavigate: (path: string) => void;
@@ -224,6 +224,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
           <div className="relative w-full sm:w-64">
             <Search className="w-4 h-4 text-text-placeholder absolute left-3 top-2.5" />
             <input
+              id="tournament-search"
+              name="search"
+              aria-label="Search tournament title"
               type="text"
               value={filterText}
               onChange={(e) => setFilterText(e.target.value)}

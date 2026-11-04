@@ -13,8 +13,6 @@ import {
   RefreshCw,
   Share2,
   Check,
-  ArrowRight,
-  AlertTriangle,
   Award,
   Zap,
   Radio
@@ -44,9 +42,21 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
   const relocationEvent = liveMatch?.events?.find(e => e.eventType === 'COURT_RELOCATION');
 
   const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback for non-HTTPS contexts
+      const textArea = document.createElement('textarea');
+      textArea.value = window.location.href;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   const handleRefresh = () => {

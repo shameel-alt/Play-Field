@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  const login = async (email: string): Promise<boolean> => {
+  const login = async (email: string, _password?: string): Promise<boolean> => {
     const user: UserProfile = {
       id: `user-${email.replace(/[^a-zA-Z0-9]/g, '-')}`,
       email,

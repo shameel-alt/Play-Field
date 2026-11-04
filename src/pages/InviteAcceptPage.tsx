@@ -16,12 +16,23 @@ export const InviteAcceptPage: React.FC<InviteAcceptPageProps> = ({ token, onNav
 
   // Parse tournament ID from token or take default ongoing tournament
   const targetTournament = tournaments.find(t => token.includes(t.id.slice(-6))) || tournaments[0];
+  const targetTournamentId = targetTournament?.id;
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      setPendingInvite({ token, tournamentId: targetTournament.id });
+    if (!isAuthenticated && targetTournamentId) {
+      setPendingInvite({ token, tournamentId: targetTournamentId });
     }
-  }, [isAuthenticated, token, targetTournament, setPendingInvite]);
+  }, [isAuthenticated, token, targetTournamentId, setPendingInvite]);
+
+  if (!targetTournament) {
+    return (
+      <div className="min-h-[75vh] flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-surface-card p-space-xl rounded-2xl border border-border-grid shadow-xl text-center">
+          <p className="font-body text-text-muted">No tournament found for this invitation.</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleAccept = async () => {
     if (!currentUser) {

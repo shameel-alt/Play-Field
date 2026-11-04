@@ -71,12 +71,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-space-md">
           <div className="flex flex-col gap-space-xs">
-            <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+            <label htmlFor="login-email" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
               Organizer Email Address
             </label>
             <div className="relative">
               <Mail className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
               <input
+                id="login-email"
+                name="email"
                 type="email"
                 required
                 value={email}
@@ -88,12 +90,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="flex flex-col gap-space-xs">
-            <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+            <label htmlFor="login-password" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
               Access Password
             </label>
             <div className="relative">
               <Lock className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
               <input
+                id="login-password"
+                name="password"
                 type="password"
                 required
                 value={password}

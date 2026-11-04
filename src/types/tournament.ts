@@ -47,3 +47,22 @@ export interface Tournament {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface WizardDraftData {
+  id?: string;
+  title: string;
+  sport: SportType;
+  tournamentStyle: TournamentStyle;
+  venueId: string;
+  venue?: Venue;
+  selectedCourtNumbers: number[];
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+  daysCount: number;
+  pricingType?: 'hourly' | 'day';
+  totalCost?: number;
+  teams?: Team[];
+  matches?: Match[];
+}

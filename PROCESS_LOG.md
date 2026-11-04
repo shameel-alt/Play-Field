@@ -2,9 +2,9 @@
 
 ## 1. Overview & Objective
 - **Goal**: Build a complete, responsive, production-grade web application for the **Smart Sports Tournament Scheduling & Live Match Management System** ("Play Field") using React (Tailwind CSS, Lucide icons), Supabase PostgreSQL (via MCP), GitHub integration, and modular component architecture based on the Stitch UI designs.
-- **Status**: Completed (Phase 13: Accidental Team Deletion Safety & Timed Match Reinstatement Engine)
+- **Status**: Completed (Phase 14: Comprehensive Full-App Investigation & Remediation)
 - **Started**: 2026-10-28 16:48:00
-- **Last Updated**: 2026-11-02 19:15:00
+- **Last Updated**: 2026-11-04 17:05:00
 
 ## 2. Process & Execution Log
 
@@ -216,27 +216,79 @@
   - `[MODIFIED]` `src/pages/OngoingTournamentsPage.tsx` - Added 60s countdown, accidental confirmation, and disabled controls on completed fixtures.
   - `[MODIFIED]` `PROCESS_LOG.md` - Phase 13 documentation and test records.
 
+### Phase 14: Comprehensive Full-App Investigation & Remediation - [Completed]
+- **Current Action / Process**: Conducted an end-to-end audit across all 14 views of the Play Field application using Chrome DevTools MCP and deep static codebase analysis. Categorized and resolved 34 issues spanning Type Safety, State Management, Accessibility (a11y), Performance, Error Boundaries, and dead code.
+- **Actions Taken**:
+  - **Type Safety & Wizard Draft Interface**: Defined strongly-typed `WizardDraftData` interface in `src/types/tournament.ts` and replaced all loose `any` types across `App.tsx`, `Step1DetailsPage.tsx`, `Step2TeamsPage.tsx`, `Step3ConfirmPage.tsx`, and `Step4PaymentPage.tsx`. Fixed payment method and match mapping casts.
+  - **Auth Contract Harmonization**: Updated `login` method signature in `src/context/AuthContext.tsx` to accept `_password?: string`, resolving interface contract mismatch.
+  - **State Guarding & Auto-Podium Assignment**: Enhanced `concludeTournament` in `src/context/TournamentContext.tsx` to automatically deduce `winnerTeamId` and `runnerUpTeamId` from completed Grand Final match fixtures when not explicitly passed, updating team statuses and archival records.
+  - **Accidental Notification State Guard**: Enforced `read: false` at the end of the notification spread in `addNotification` to prevent external defaults from prematurely marking alerts as read.
+  - **Global Error Boundary**: Implemented React `ErrorBoundary` in `src/App.tsx` with friendly branded crash recovery UI and return-to-dashboard fallback, guarding against unexpected runtime crashes.
+  - **Accessibility (a11y) Overhaul**:
+    - Added `id`, `name`, and explicit `htmlFor` label bindings across all forms: `LoginPage.tsx`, `SignUpPage.tsx`, `Step1DetailsPage.tsx`, `Step2TeamsPage.tsx`, `TournamentManagementPage.tsx`, and `DashboardPage.tsx`.
+    - Added `aria-label="Search tournament title"` on the Dashboard tournament filter input.
+    - Added `aria-pressed` selection attributes to sport discipline and authority role selectors in `OnboardingPage.tsx`.
+    - Updated notification bell button in `Header.tsx` with dynamic `aria-label` including unread count, marked badge as `aria-hidden="true"`, and corrected width class to standard Tailwind `w-80 sm:w-96`.
+  - **Null Safety & Resilience**:
+    - Added empty-state guards and safe ID extraction in `InviteAcceptPage.tsx` with stable dependency array to avoid infinite re-render loops.
+    - Added fallback empty-state view for `EndedTournamentsPage.tsx` when no concluded tournaments exist.
+    - Added try/catch and fallback `execCommand('copy')` clipboard handlers for non-HTTPS/unsupported environments in `Step4PaymentPage.tsx`, `TournamentManagementPage.tsx`, and `PublicLiveTournamentPage.tsx`.
+    - Safeguarded uppercase ID rendering in `TournamentManagementPage.tsx` via `(tournament.slug || tournament.id).toUpperCase()`.
+  - **Performance Optimization**:
+    - Conditioned the 1-second live timer interval in `OngoingTournamentsPage.tsx` and `TournamentManagementPage.tsx` to only run when `endedMatchGraceMap` contains active countdown entries, saving unnecessary re-renders.
+    - Added automated `daysCount` synchronization in `Step1DetailsPage.tsx` whenever `startDate` or `endDate` are modified.
+  - **Dead Code Cleanup**: Removed unused imports across 9 files (`LandingPage.tsx`, `OnboardingPage.tsx`, `DashboardPage.tsx`, `Step1DetailsPage.tsx`, `Step2TeamsPage.tsx`, `Step3ConfirmPage.tsx`, `Step4PaymentPage.tsx`, `EndedTournamentsPage.tsx`, `PublicLiveTournamentPage.tsx`, `Header.tsx`).
+  - **Verification**: Verified zero TypeScript errors and successful production bundling with `npm run build` (`tsc && vite build` built in 8.31s); visually inspected and confirmed all views (Landing, Auth, Onboarding, Dashboard, Wizard Steps 1-4, Ongoing, Management, Ended Archives, Public Live, Notification Center) in Chrome via Chrome DevTools MCP.
+- **Changes Made**:
+  - `[MODIFIED]` `src/types/tournament.ts` - Added `WizardDraftData` interface with optional `id`.
+  - `[MODIFIED]` `src/App.tsx` - Added `ErrorBoundary`, typed `wizardDraft`, wrapped root tree.
+  - `[MODIFIED]` `src/context/AuthContext.tsx` - Updated `login` signature to match interface.
+  - `[MODIFIED]` `src/context/TournamentContext.tsx` - Auto-podium deduction in `concludeTournament`, strict `read: false` notification assignment.
+  - `[MODIFIED]` `src/components/layout/Header.tsx` - Cleaned unused `Shield`, fixed duplicate `aria-label`, added unread count to aria-label, fixed `w-80` width.
+  - `[MODIFIED]` `src/pages/LoginPage.tsx` - Added `id`, `name`, `htmlFor` to email and password fields.
+  - `[MODIFIED]` `src/pages/SignUpPage.tsx` - Added `id`, `name`, `htmlFor` to name, email, password fields; removed unused `ShieldCheck`.
+  - `[MODIFIED]` `src/pages/OnboardingPage.tsx` - Added `aria-pressed` to all sport and role options; removed unused imports.
+  - `[MODIFIED]` `src/pages/DashboardPage.tsx` - Added accessible attributes to search input; removed unused `Play`.
+  - `[MODIFIED]` `src/pages/wizard/Step1DetailsPage.tsx` - Added auto-calculated `daysCount`, accessible form labels/IDs; removed unused imports.
+  - `[MODIFIED]` `src/pages/wizard/Step2TeamsPage.tsx` - Added accessible athlete form attributes; typed draft data.
+  - `[MODIFIED]` `src/pages/wizard/Step3ConfirmPage.tsx` - Typed team/player mappings; removed unused imports.
+  - `[MODIFIED]` `src/pages/wizard/Step4PaymentPage.tsx` - Added clipboard fallback, try/catch/finally in publish, typed draft/matches; removed unused `ExternalLink`.
+  - `[MODIFIED]` `src/pages/OngoingTournamentsPage.tsx` - Conditioned 1-second interval timer; removed unused `AlertCircle`.
+  - `[MODIFIED]` `src/pages/TournamentManagementPage.tsx` - Conditioned 1-second interval timer, added accessible logger labels/IDs, clipboard fallback, slug null check.
+  - `[MODIFIED]` `src/pages/EndedTournamentsPage.tsx` - Added empty-state fallback guard; removed unused imports.
+  - `[MODIFIED]` `src/pages/PublicLiveTournamentPage.tsx` - Added clipboard fallback; removed unused imports.
+  - `[MODIFIED]` `src/pages/InviteAcceptPage.tsx` - Added empty tournament guard, fixed useEffect infinite loop.
+  - `[MODIFIED]` `PROCESS_LOG.md` - Phase 14 documentation and test records.
+
 ## 3. Summary of Changes
 | File | Action | Description |
 | :--- | :--- | :--- |
-| `src/pages/wizard/Step2TeamsPage.tsx` | Modified | Added squad deletion controls, confirmation modal prompt, and 2-squad minimum validation |
-| `src/context/TournamentContext.tsx` | Modified | Implemented 60s accidental grace window, `reinstateMatch`, and `dismissGracePeriod` |
-| `src/pages/TournamentManagementPage.tsx` | Modified | Replaced permanent Reopen with 60s countdown, accidental confirmation, and sealed fixture state |
-| `src/pages/OngoingTournamentsPage.tsx` | Modified | Replaced permanent Reopen with 60s countdown, accidental confirmation, and disabled controls |
-| `src/types/notification.ts` | Created | TypeScript definitions for operational notification categories & models |
-| `src/data/seedNotifications.ts` | Created | Initial operational alerts seed data |
-| `src/components/layout/Header.tsx` | Modified | Interactive Notification popover, filter tabs, dismiss controls, and unread badge |
+| `src/types/tournament.ts` | Modified | Defined `WizardDraftData` interface with typed tournament creation fields |
+| `src/App.tsx` | Modified | Integrated React `ErrorBoundary`, typed `wizardDraft` state, wrapped application tree |
+| `src/context/AuthContext.tsx` | Modified | Harmonized `login` function parameter contract with interface |
+| `src/context/TournamentContext.tsx` | Modified | Added automated podium deduction in `concludeTournament`, fixed `addNotification` spread |
+| `src/components/layout/Header.tsx` | Modified | Fixed duplicate `aria-label`, added unread count to screen-reader label, cleaned unused imports |
+| `src/pages/LoginPage.tsx` | Modified | Added accessible `id`, `name`, and `htmlFor` bindings to login inputs |
+| `src/pages/SignUpPage.tsx` | Modified | Added accessible `id`, `name`, and `htmlFor` bindings to registration inputs |
+| `src/pages/OnboardingPage.tsx` | Modified | Added `aria-pressed` selection states to sports and operational roles; cleaned unused imports |
+| `src/pages/DashboardPage.tsx` | Modified | Added accessible label and name to search input; removed unused imports |
+| `src/pages/wizard/Step1DetailsPage.tsx` | Modified | Automated `daysCount` date calculation, added form accessibility IDs, typed draft |
+| `src/pages/wizard/Step2TeamsPage.tsx` | Modified | Added athlete form accessibility attributes, typed draft data, removed unused imports |
+| `src/pages/wizard/Step3ConfirmPage.tsx` | Modified | Strongly typed team and player iterations, removed unused imports |
+| `src/pages/wizard/Step4PaymentPage.tsx` | Modified | Added clipboard fallback, publish try/catch/finally, typed draft and matches |
+| `src/pages/OngoingTournamentsPage.tsx` | Modified | Conditioned 1s live countdown timer to active grace windows only; removed unused imports |
+| `src/pages/TournamentManagementPage.tsx` | Modified | Conditioned timer interval, added accessible event logger attributes, clipboard fallback |
+| `src/pages/EndedTournamentsPage.tsx` | Modified | Added empty tournament state guard, removed unused imports |
+| `src/pages/PublicLiveTournamentPage.tsx` | Modified | Added fallback clipboard copy, removed unused imports |
+| `src/pages/InviteAcceptPage.tsx` | Modified | Added null tournament fallback, stabilized useEffect dependencies |
 | `src/styles/*` | Created & Modified | Design tokens (Lora, Roboto, Inter), components, export canvas, and Tailwind CSS |
 | `src/lib/*` | Created & Modified | Tournament, standings, conflict, forfeit, and export engines |
-| `src/types/*` | Created | Complete TypeScript domain models |
+| `src/types/*` | Created & Modified | Complete TypeScript domain models |
 | `src/data/*` | Created | Realistic ongoing & ended tournament seeds and venue catalogue |
-| `src/context/*` | Created & Modified | AuthContext and TournamentContext state stores |
-| `src/components/*` | Created & Modified | Modular layout, cards, steppers, brackets, modals, and export canvas |
-| `src/pages/*` | Created | 14 standalone views covering all user journeys |
 | `PROCESS_LOG.md` | Updated | Living process and progress tracking log |
 | `README.md` | Created | Comprehensive repository documentation |
 
 ## 4. Final Conclusion & Outcome
-- **Outcome**: The Play Field tournament operating system has been enhanced with strict accidental prevention mechanisms: accidental squads created in the tournament creation wizard can be safely deleted with minimum participation safeguards, and ended matches can no longer be casually reopened, providing a strict 60-second time-limited accidental reinstate grace window with explicit confirmation before permanently sealing the match as official.
-- **Verification**: Production build compiles with zero errors (`tsc && vite build`); live DOM behavior, squad deletion, minimum 2-team deletion prevention, match conclusion, 60s grace countdown, accidental confirmation prompt, live match reinstatement, and permanent sealed match state verified via Chrome DevTools MCP.
-- **Conclusion**: Both user safety requests have been fulfilled cleanly and verified live in the running application.
+- **Outcome**: Completed an exhaustive full-application audit and remediation across all 14 screens and underlying systems of Play Field. Eliminated loose `any` types with strongly-typed wizard interfaces, deployed a global `ErrorBoundary` for runtime crash resilience, resolved form accessibility (a11y) issues with explicit label-input associations and ARIA selection states, optimized polling timers to prevent unnecessary re-renders, added robust clipboard fallbacks, and automated tournament champion/runner-up podium calculation upon match conclusion.
+- **Verification**: Production build compiles with zero errors (`tsc && vite build` completed cleanly in 8.31s); live rendering, navigation, and interactive controls verified across all 14 views using Chrome DevTools MCP.
+- **Conclusion**: The entire application has been thoroughly investigated, debugged, and hardened to production-grade quality.

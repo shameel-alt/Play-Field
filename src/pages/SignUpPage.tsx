@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTournament } from '../context/TournamentContext';
-import { Trophy, Mail, Lock, User, ArrowRight, AlertCircle, ShieldCheck } from 'lucide-react';
+import { Trophy, Mail, Lock, User, ArrowRight, AlertCircle } from 'lucide-react';
 
 interface SignUpPageProps {
   onNavigate: (path: string) => void;
@@ -72,12 +72,14 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
         {/* Signup Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-space-md">
           <div className="flex flex-col gap-space-xs">
-            <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+            <label htmlFor="signup-name" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
               Full Legal / Organizer Name
             </label>
             <div className="relative">
               <User className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
               <input
+                id="signup-name"
+                name="fullName"
                 type="text"
                 required
                 value={fullName}
@@ -89,12 +91,14 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="flex flex-col gap-space-xs">
-            <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+            <label htmlFor="signup-email" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
               Official Email Address
             </label>
             <div className="relative">
               <Mail className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
               <input
+                id="signup-email"
+                name="email"
                 type="email"
                 required
                 value={email}
@@ -106,12 +110,14 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="flex flex-col gap-space-xs">
-            <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+            <label htmlFor="signup-password" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
               Secure Password
             </label>
             <div className="relative">
               <Lock className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
               <input
+                id="signup-password"
+                name="password"
                 type="password"
                 required
                 value={password}

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useTournament } from '../../context/TournamentContext';
 import { useAuth } from '../../context/AuthContext';
-import { Tournament } from '../../types/tournament';
-import { CheckCircle2, Copy, Check, ExternalLink, ShieldCheck, CreditCard, QrCode, Building, Lock, ArrowRight } from 'lucide-react';
+import { Tournament, WizardDraftData } from '../../types/tournament';
+import { Match } from '../../types/match';
+import { CheckCircle2, Copy, Check, ShieldCheck, CreditCard, QrCode, Building, Lock, ArrowRight } from 'lucide-react';
 
 interface Step4PaymentPageProps {
   onNavigate: (path: string) => void;
-  draftData: any;
+  draftData: WizardDraftData;
 }
 
 export const Step4PaymentPage: React.FC<Step4PaymentPageProps> = ({ onNavigate, draftData }) => {
@@ -27,60 +28,74 @@ export const Step4PaymentPage: React.FC<Step4PaymentPageProps> = ({ onNavigate, 
   const handlePayAndPublish = async () => {
     setIsProcessing(true);
 
-    const generatedId = `tournament-${Date.now()}`;
-    const generatedSlug = (draftData?.title || 'colombo-cup-2026')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+    try {
+      const generatedId = `tournament-${Date.now()}`;
+      const generatedSlug = (draftData?.title || 'colombo-cup-2026')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
 
-    const newTournament: Tournament = {
-      id: generatedId,
-      slug: generatedSlug,
-      title: draftData?.title || 'Colombo Corporate Futsal Super Cup 2026',
-      sport: draftData?.sport || 'futsal',
-      tournamentStyle: draftData?.tournamentStyle || 'GROUP_KNOCKOUT',
-      status: 'PUBLISHED_ONGOING',
-      venueId: draftData?.venueId || 'venue-colombo-futsal-hub',
-      venue: draftData?.venue,
-      selectedCourtNumbers: draftData?.selectedCourtNumbers || [1, 2, 5],
-      startDate: draftData?.startDate || '2026-11-15',
-      endDate: draftData?.endDate || '2026-11-16',
-      startTime: draftData?.startTime || '08:00',
-      endTime: draftData?.endTime || '20:00',
-      daysCount: draftData?.daysCount || 2,
-      createdBy: currentUser?.id || 'user-demo-organizer',
-      coOrganizers: [
-        {
-          id: currentUser?.id || 'user-demo-organizer',
-          email: currentUser?.email || 'shameel.organizer@playfield.lk',
-          name: currentUser?.fullName || 'Muhammed Shameel',
-          role: 'LEAD'
-        }
-      ],
-      advancePaymentStatus: paymentTerm === 'advance' ? 'PARTIAL_30' : 'FULL',
-      advancePaymentAmount: payableAmount,
-      totalCost,
-      paymentMethod,
-      paymentReference: `#LK-PF-2026-${Date.now().toString().slice(-4)}`,
-      teams: draftData?.teams || [],
-      matches: (draftData?.matches || []).map((m: any) => ({
-        ...m,
-        tournamentId: generatedId
-      })),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    };
+      const newTournament: Tournament = {
+        id: generatedId,
+        slug: generatedSlug,
+        title: draftData?.title || 'Colombo Corporate Futsal Super Cup 2026',
+        sport: draftData?.sport || 'futsal',
+        tournamentStyle: draftData?.tournamentStyle || 'GROUP_KNOCKOUT',
+        status: 'PUBLISHED_ONGOING',
+        venueId: draftData?.venueId || 'venue-colombo-futsal-hub',
+        venue: draftData?.venue,
+        selectedCourtNumbers: draftData?.selectedCourtNumbers || [1, 2, 5],
+        startDate: draftData?.startDate || '2026-11-15',
+        endDate: draftData?.endDate || '2026-11-16',
+        startTime: draftData?.startTime || '08:00',
+        endTime: draftData?.endTime || '20:00',
+        daysCount: draftData?.daysCount || 2,
+        createdBy: currentUser?.id || 'user-demo-organizer',
+        coOrganizers: [
+          {
+            id: currentUser?.id || 'user-demo-organizer',
+            email: currentUser?.email || 'shameel.organizer@playfield.lk',
+            name: currentUser?.fullName || 'Muhammed Shameel',
+            role: 'LEAD'
+          }
+        ],
+        advancePaymentStatus: paymentTerm === 'advance' ? 'PARTIAL_30' : 'FULL',
+        advancePaymentAmount: payableAmount,
+        totalCost,
+        paymentMethod,
+        paymentReference: `#LK-PF-2026-${Date.now().toString().slice(-4)}`,
+        teams: draftData?.teams || [],
+        matches: (draftData?.matches || []).map((m: Match) => ({
+          ...m,
+          tournamentId: generatedId
+        })),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
 
-    await createTournament(newTournament);
-    setPublishedTournamentId(generatedId);
-    setIsProcessing(false);
-    setIsPaid(true);
+      await createTournament(newTournament);
+      setPublishedTournamentId(generatedId);
+      setIsPaid(true);
+    } catch (err) {
+      console.error('Failed to publish tournament:', err);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const publicUrl = `${window.location.origin}/#/public/tournament/${publishedTournamentId || 'colombo-premier-futsal-2026'}`;
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(publicUrl);
+    try {
+      navigator.clipboard.writeText(publicUrl);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = publicUrl;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -262,7 +277,7 @@ export const Step4PaymentPage: React.FC<Step4PaymentPageProps> = ({ onNavigate, 
                       <button
                         key={m.id}
                         type="button"
-                        onClick={() => setPaymentMethod(m.id as any)}
+                        onClick={() => setPaymentMethod(m.id as 'BANK_TRANSFER' | 'CARD' | 'QR_WALLET')}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all ${
                           isSelected
                             ? 'bg-floodlight-navy text-surface-card border-floodlight-navy shadow-xs'

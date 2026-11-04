@@ -12,7 +12,6 @@ import {
   Radio,
   ChevronRight,
   ShieldCheck,
-  AlertCircle,
   AlertTriangle
 } from 'lucide-react';
 
@@ -37,12 +36,14 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
   );
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
 
-  // Live timer tick for real-time grace countdown
+  // Live timer tick for real-time grace countdown (only runs when active grace periods exist)
+  const hasActiveGracePeriods = Object.keys(endedMatchGraceMap).length > 0;
   const [now, setNow] = useState(Date.now());
   React.useEffect(() => {
+    if (!hasActiveGracePeriods) return;
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [hasActiveGracePeriods]);
 
   const activeTournament = ongoing.find(t => t.id === selectedTournamentId) || ongoing[0];
 

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Team, Player, PlayerPosition } from '../../types/team';
+import { WizardDraftData } from '../../types/tournament';
 import { generateTournamentFixtures } from '../../lib/tournamentEngine';
-import { Plus, Trash2, ArrowRight, ArrowLeft, ShieldCheck, UserPlus, Trophy, Check } from 'lucide-react';
+import { Plus, Trash2, ArrowRight, ArrowLeft, ShieldCheck, UserPlus, Check } from 'lucide-react';
 
 interface Step2TeamsPageProps {
   onNavigate: (path: string) => void;
-  draftData: any;
+  draftData: WizardDraftData;
   setDraftData: (data: any) => void;
 }
 
@@ -483,8 +484,10 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
                 {/* Add Athlete Inline Form */}
                 <form onSubmit={handleAddPlayer} className="p-space-md bg-canvas-alabaster rounded-xl border border-border-grid flex flex-col sm:flex-row sm:items-end gap-3">
                   <div className="flex-1 flex flex-col gap-1">
-                    <label className="font-eyebrow text-xs uppercase text-text-muted">Player Full Name</label>
+                    <label htmlFor="player-full-name" className="font-eyebrow text-xs uppercase text-text-muted">Player Full Name</label>
                     <input
+                      id="player-full-name"
+                      name="playerName"
                       type="text"
                       required
                       value={newPlayerName}
@@ -495,8 +498,10 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
                   </div>
 
                   <div className="w-24 flex flex-col gap-1">
-                    <label className="font-eyebrow text-xs uppercase text-text-muted">Jersey #</label>
+                    <label htmlFor="player-jersey-number" className="font-eyebrow text-xs uppercase text-text-muted">Jersey #</label>
                     <input
+                      id="player-jersey-number"
+                      name="jerseyNumber"
                       type="number"
                       min="1"
                       max="99"
@@ -507,8 +512,10 @@ export const Step2TeamsPage: React.FC<Step2TeamsPageProps> = ({
                   </div>
 
                   <div className="w-32 flex flex-col gap-1">
-                    <label className="font-eyebrow text-xs uppercase text-text-muted">Position</label>
+                    <label htmlFor="player-position" className="font-eyebrow text-xs uppercase text-text-muted">Position</label>
                     <select
+                      id="player-position"
+                      name="position"
                       value={newPosition}
                       onChange={(e) => setNewPosition(e.target.value as PlayerPosition)}
                       className="h-10 px-2 bg-surface-card rounded-lg border border-border-control font-body text-xs focus:outline-none"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Check, ShieldCheck, ArrowRight, Activity, Calendar, Trophy, Share2 } from 'lucide-react';
+import { Check, ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface OnboardingPageProps {
   onNavigate: (path: string) => void;
@@ -46,6 +46,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({ onNavigate }) =>
           {/* Futsal 5v5 (Default Selected) */}
           <button
             type="button"
+            aria-pressed={selectedSport === 'futsal'}
             onClick={() => setSelectedSport('futsal')}
             className={`p-space-md rounded-xl text-left border flex flex-col justify-between transition-all ${
               selectedSport === 'futsal'
@@ -83,6 +84,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({ onNavigate }) =>
           {/* 7-a-side */}
           <button
             type="button"
+            aria-pressed={selectedSport === 'football7'}
             onClick={() => setSelectedSport('football7')}
             className={`p-space-md rounded-xl text-left border flex flex-col justify-between transition-all ${
               selectedSport === 'football7'
@@ -120,6 +122,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({ onNavigate }) =>
           {/* Indoor Cricket */}
           <button
             type="button"
+            aria-pressed={selectedSport === 'cricket'}
             onClick={() => setSelectedSport('cricket')}
             className={`p-space-md rounded-xl text-left border flex flex-col justify-between transition-all ${
               selectedSport === 'cricket'
@@ -157,6 +160,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({ onNavigate }) =>
           {/* Badminton */}
           <button
             type="button"
+            aria-pressed={selectedSport === 'badminton'}
             onClick={() => setSelectedSport('badminton')}
             className={`p-space-md rounded-xl text-left border flex flex-col justify-between transition-all ${
               selectedSport === 'badminton'
@@ -205,6 +209,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({ onNavigate }) =>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
           <button
             type="button"
+            aria-pressed={selectedRole === 'director'}
             onClick={() => setSelectedRole('director')}
             className={`p-space-lg rounded-xl text-left border flex flex-col gap-2 transition-all ${
               selectedRole === 'director'
@@ -228,6 +233,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({ onNavigate }) =>
 
           <button
             type="button"
+            aria-pressed={selectedRole === 'scorer'}
             onClick={() => setSelectedRole('scorer')}
             className={`p-space-lg rounded-xl text-left border flex flex-col gap-2 transition-all ${
               selectedRole === 'scorer'

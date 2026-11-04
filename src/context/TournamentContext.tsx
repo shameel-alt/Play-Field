@@ -156,8 +156,8 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       id: notifData.id || `notif-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
       createdAt: Date.now(),
       timestamp: notifData.timestamp || 'Just now',
-      read: false,
-      ...notifData
+      ...notifData,
+      read: false
     };
     setNotifications(prev => [newNotif, ...prev]);
   };
@@ -555,11 +555,27 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setTournaments(prev => prev.map(t => {
       if (t.id !== tournamentId) return t;
 
+      let effectiveChampionId = championTeamId;
+      let effectiveRunnerUpId = runnerUpTeamId;
+
+      if (!effectiveChampionId) {
+        const finalMatch = t.matches.find(m => m.round === 'FINAL');
+        if (finalMatch && (finalMatch.status === 'COMPLETED' || finalMatch.status === 'WALKOVER')) {
+          if (finalMatch.homeScore > finalMatch.awayScore) {
+            effectiveChampionId = finalMatch.homeTeamId;
+            effectiveRunnerUpId = finalMatch.awayTeamId;
+          } else if (finalMatch.awayScore > finalMatch.homeScore) {
+            effectiveChampionId = finalMatch.awayTeamId;
+            effectiveRunnerUpId = finalMatch.homeTeamId;
+          }
+        }
+      }
+
       let teams = t.teams;
-      if (championTeamId) {
+      if (effectiveChampionId) {
         teams = teams.map(tm => {
-          if (tm.id === championTeamId) return { ...tm, status: 'CHAMPION' as const };
-          if (tm.id === runnerUpTeamId) return { ...tm, status: 'RUNNER_UP' as const };
+          if (tm.id === effectiveChampionId) return { ...tm, status: 'CHAMPION' as const };
+          if (tm.id === effectiveRunnerUpId) return { ...tm, status: 'RUNNER_UP' as const };
           return tm;
         });
       }
@@ -568,6 +584,8 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         ...t,
         status: 'ENDED' as const,
         teams,
+        winnerTeamId: effectiveChampionId || t.winnerTeamId,
+        runnerUpTeamId: effectiveRunnerUpId || t.runnerUpTeamId,
         updatedAt: new Date().toISOString()
       };
     }));

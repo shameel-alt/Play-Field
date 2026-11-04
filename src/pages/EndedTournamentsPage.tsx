@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTournament } from '../context/TournamentContext';
 import { TournamentExportCanvas } from '../components/tournament/TournamentExportCanvas';
 import { exportTournamentSummaryAsPNG, exportMatchesToCSV } from '../lib/exportEngine';
-import { Trophy, Download, FileSpreadsheet, ShieldCheck, CheckCircle2, Award, Calendar, MapPin, ArrowRight } from 'lucide-react';
+import { Trophy, Download, FileSpreadsheet, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface EndedTournamentsPageProps {
   onNavigate: (path: string) => void;
@@ -21,8 +21,17 @@ export const EndedTournamentsPage: React.FC<EndedTournamentsPageProps> = ({
   // If a specific ID is selected, or default to first ended tournament
   const activeEndedTournament = tournaments.find(t => t.id === selectedTournamentId) ||
                                ended[0] ||
-                               tournaments.find(t => t.status === 'ENDED') ||
-                               tournaments[1];
+                               tournaments.find(t => t.status === 'ENDED');
+
+  if (!activeEndedTournament) {
+    return (
+      <div className="p-12 text-center text-text-muted font-body">
+        <Trophy className="w-12 h-12 mx-auto mb-4 text-text-muted opacity-40" />
+        <h2 className="font-headline text-xl font-bold text-floodlight-navy mb-2">No Concluded Tournaments</h2>
+        <p>Once a tournament finishes, it will appear here with the full podium report and export options.</p>
+      </div>
+    );
+  }
 
   const [isExporting, setIsExporting] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);

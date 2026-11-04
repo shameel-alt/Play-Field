@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTournament } from '../../context/TournamentContext';
 import {
-  PlusCircle, Bell, Trophy, Shield, ExternalLink, LogOut, User,
+  PlusCircle, Bell, Trophy, ExternalLink, LogOut, User,
   CheckCheck, Trash2, X, ArrowRightLeft, Radio, AlertOctagon,
   UserCheck, CalendarClock, Info
 } from 'lucide-react';
@@ -190,7 +190,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
           {/* Notifications Center */}
           <div className="relative" ref={notifRef}>
             <button
-              aria-label="Operational Notifications"
               aria-expanded={showNotifications}
               onClick={() => setShowNotifications(prev => !prev)}
               className={`p-space-xs rounded-lg transition-all relative ${
@@ -199,11 +198,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray'
               }`}
               type="button"
+              aria-label={`Operational Notifications: ${unreadNotificationCount} unread`}
               title="Operational Alerts"
             >
               <Bell className="w-5 h-5" />
               {unreadNotificationCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-4 min-w-4 px-1 items-center justify-center rounded-full bg-live-orange text-surface-card font-badge-label text-[10px] font-bold shadow-sm animate-pulse">
+                <span aria-hidden="true" className="absolute -top-1 -right-1 flex h-4 min-w-4 px-1 items-center justify-center rounded-full bg-live-orange text-surface-card font-badge-label text-[10px] font-bold shadow-sm animate-pulse">
                   {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
                 </span>
               )}
@@ -211,7 +211,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
 
             {/* Notifications Popover Dropdown */}
             {showNotifications && (
-              <div className="absolute right-0 mt-3 w-84 sm:w-96 bg-surface-card rounded-2xl shadow-2xl border border-border-grid overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-150">
+              <div className="absolute right-0 mt-3 w-80 sm:w-96 bg-surface-card rounded-2xl shadow-2xl border border-border-grid overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-150">
                 {/* Popover Header */}
                 <div className="p-4 border-b border-border-grid bg-canvas-alabaster">
                   <div className="flex items-center justify-between mb-2">

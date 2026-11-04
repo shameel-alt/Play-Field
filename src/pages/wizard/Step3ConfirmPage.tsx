@@ -1,10 +1,12 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, ShieldCheck, Check, Calendar, MapPin, Trophy, Users } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ShieldCheck, Check } from 'lucide-react';
 import { Match } from '../../types/match';
+import { Team, Player } from '../../types/team';
+import { WizardDraftData } from '../../types/tournament';
 
 interface Step3ConfirmPageProps {
   onNavigate: (path: string) => void;
-  draftData: any;
+  draftData: WizardDraftData;
 }
 
 export const Step3ConfirmPage: React.FC<Step3ConfirmPageProps> = ({ onNavigate, draftData }) => {
@@ -88,7 +90,7 @@ export const Step3ConfirmPage: React.FC<Step3ConfirmPageProps> = ({ onNavigate, 
               </h3>
 
               <div className="space-y-space-md">
-                {teams.map((team: any) => (
+                {teams.map((team: Team) => (
                   <div key={team.id} className="p-space-sm rounded-xl bg-canvas-alabaster border border-border-grid flex flex-col gap-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -108,7 +110,7 @@ export const Step3ConfirmPage: React.FC<Step3ConfirmPageProps> = ({ onNavigate, 
                     </div>
 
                     <div className="text-xs font-mono text-text-muted flex flex-wrap gap-2 pt-1 border-t border-border-grid">
-                      {team.players.map((p: any) => (
+                      {team.players.map((p: Player) => (
                         <span key={p.id} className="bg-surface-card px-2 py-0.5 rounded border border-border-grid">
                           #{p.jerseyNumber} {p.name}
                         </span>

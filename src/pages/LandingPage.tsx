@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Trophy, ShieldCheck, Zap, Calendar, MapPin, Users, Share2, Play } from 'lucide-react';
+import { ArrowRight, Trophy, ShieldCheck, Zap, Calendar, MapPin, Users, Share2 } from 'lucide-react';
 
 interface LandingPageProps {
   onNavigate: (path: string) => void;

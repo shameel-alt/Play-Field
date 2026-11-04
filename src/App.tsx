@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component, ErrorInfo, ReactNode } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { TournamentProvider } from './context/TournamentContext';
 import { Header } from './components/layout/Header';
@@ -19,6 +19,48 @@ import { TournamentManagementPage } from './pages/TournamentManagementPage';
 import { EndedTournamentsPage } from './pages/EndedTournamentsPage';
 import { PublicLiveTournamentPage } from './pages/PublicLiveTournamentPage';
 import { InviteAcceptPage } from './pages/InviteAcceptPage';
+import { WizardDraftData } from './types/tournament';
+
+// Error Boundary component to prevent white-screen crashes
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('Play Field Error Boundary:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center p-8 bg-canvas-alabaster">
+          <div className="max-w-md w-full bg-surface-card p-space-xl rounded-2xl border border-border-grid shadow-xl text-center">
+            <div className="w-16 h-16 rounded-2xl bg-red-50 text-card-red-danger flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl">⚠️</span>
+            </div>
+            <h2 className="font-headline text-xl font-bold text-floodlight-navy mb-2">Something Went Wrong</h2>
+            <p className="font-body text-sm text-text-muted mb-4">
+              {this.state.error?.message || 'An unexpected error occurred.'}
+            </p>
+            <button
+              onClick={() => { this.setState({ hasError: false, error: null }); window.location.hash = '#/'; }}
+              className="btn-primary px-6 py-2.5 text-sm"
+            >
+              Return to Dashboard
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 export function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -27,7 +69,7 @@ export function App() {
   });
 
   // Shared wizard draft state across Steps 1-4
-  const [wizardDraft, setWizardDraft] = useState<any>({
+  const [wizardDraft, setWizardDraft] = useState<WizardDraftData>({
     title: 'Colombo Corporate Futsal Super Cup 2026',
     sport: 'futsal',
     tournamentStyle: 'GROUP_KNOCKOUT',
@@ -137,17 +179,19 @@ export function App() {
   };
 
   return (
-    <AuthProvider>
-      <TournamentProvider>
-        <div className="flex flex-col min-h-screen">
-          <Header currentPath={currentPath} onNavigate={navigate} />
-          <main className="flex-1 pt-16">
-            {renderRoute()}
-          </main>
-          <Footer onNavigate={navigate} />
-        </div>
-      </TournamentProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <TournamentProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header currentPath={currentPath} onNavigate={navigate} />
+            <main className="flex-1 pt-16">
+              {renderRoute()}
+            </main>
+            <Footer onNavigate={navigate} />
+          </div>
+        </TournamentProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

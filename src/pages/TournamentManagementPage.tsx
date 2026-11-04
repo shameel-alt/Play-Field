@@ -52,12 +52,14 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
 
   const tournament = getTournamentByIdOrSlug(tournamentId);
 
-  // Live timer tick for real-time grace period countdowns
+  // Live timer tick for real-time grace period countdowns (only runs when active grace periods exist)
+  const hasActiveGracePeriods = Object.keys(endedMatchGraceMap).length > 0;
   const [now, setNow] = useState(Date.now());
   React.useEffect(() => {
+    if (!hasActiveGracePeriods) return;
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [hasActiveGracePeriods]);
 
   // Modals state
   const [isCourtModalOpen, setIsCourtModalOpen] = useState(false);
@@ -219,7 +221,16 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
   const publicLink = `${window.location.origin}/#/public/tournament/${tournament.slug || tournament.id}`;
 
   const copyPublicLink = () => {
-    navigator.clipboard.writeText(publicLink);
+    try {
+      navigator.clipboard.writeText(publicLink);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = publicLink;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);
   };
@@ -242,7 +253,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                   Live Operations Feed
                 </span>
                 <span className="text-surface-variant font-mono text-xs uppercase tracking-wider">
-                  • ID: #{tournament.slug.toUpperCase()}
+                  • ID: #{(tournament.slug || tournament.id).toUpperCase()}
                 </span>
                 <span className="px-2 py-0.5 rounded bg-surface-variant/20 text-surface-card font-mono text-[11px] uppercase font-bold">
                   Phase: Group Stage Matchday
@@ -629,10 +640,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                   <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
                     {/* Goal Scorer */}
                     <div className="sm:col-span-5 flex flex-col gap-1">
-                      <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+                      <label htmlFor="goal-scorer-select" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
                         Goal Scorer
                       </label>
                       <select
+                        id="goal-scorer-select"
+                        name="goalScorer"
                         value={selectedScorerId || participatingPlayers[0]?.id}
                         onChange={(e) => setSelectedScorerId(e.target.value)}
                         className="h-10 px-3 bg-surface-card rounded-lg border border-border-control font-body text-xs focus:outline-none focus:ring-1 focus:ring-primary"
@@ -647,10 +660,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
 
                     {/* Primary Assist */}
                     <div className="sm:col-span-4 flex flex-col gap-1">
-                      <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+                      <label htmlFor="primary-assist-select" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
                         Primary Assist
                       </label>
                       <select
+                        id="primary-assist-select"
+                        name="primaryAssist"
                         value={selectedAssistId}
                         onChange={(e) => setSelectedAssistId(e.target.value)}
                         className="h-10 px-3 bg-surface-card rounded-lg border border-border-control font-body text-xs focus:outline-none focus:ring-1 focus:ring-primary"
@@ -666,10 +681,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
 
                     {/* Minute */}
                     <div className="sm:col-span-1 flex flex-col gap-1">
-                      <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
+                      <label htmlFor="event-minute-input" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
                         Min
                       </label>
                       <input
+                        id="event-minute-input"
+                        name="minute"
                         type="text"
                         value={eventMinute}
                         onChange={(e) => setEventMinute(e.target.value)}
