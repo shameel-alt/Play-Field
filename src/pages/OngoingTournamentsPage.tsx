@@ -20,7 +20,7 @@ interface OngoingTournamentsPageProps {
 }
 
 export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ onNavigate }) => {
-  const { currentUser } = useAuth();
+  const { currentUser, isAuthenticated } = useAuth();
   const {
     getUserTournaments,
     updateMatchPeriod,
@@ -116,7 +116,7 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
 
           <button
             type="button"
-            onClick={() => onNavigate('/tournaments/new/details')}
+            onClick={() => onNavigate(isAuthenticated ? '/tournaments/new/details' : '/login')}
             className="btn-primary py-2.5 px-5 text-sm font-bold shadow-md flex items-center gap-2 self-start md:self-auto font-button"
           >
             <PlusCircle className="w-4 h-4" />
@@ -289,12 +289,12 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                 type="button"
                                 disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, '1ST_HALF')}
-                                className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
+                                className={`px-2 py-1 text-[11px] font-button font-bold rounded transition-colors ${
                                   isCompleted || isWalkover
                                     ? 'opacity-40 cursor-not-allowed text-text-muted'
-                                    : match.currentHalf === '1ST_HALF' && match.status === 'LIVE'
-                                    ? 'bg-live-orange text-surface-card shadow-xs'
-                                    : 'text-text-muted hover:text-on-surface'
+                                    : match.currentHalf === '1ST_HALF' && !isCompleted
+                                    ? 'bg-live-orange text-white shadow-xs'
+                                    : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
                                 title={isCompleted ? "Match ended (FT)" : "Set 1st Half"}
                               >
@@ -304,12 +304,12 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                 type="button"
                                 disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, 'HALF_TIME')}
-                                className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
+                                className={`px-2 py-1 text-[11px] font-button font-bold rounded transition-colors ${
                                   isCompleted || isWalkover
                                     ? 'opacity-40 cursor-not-allowed text-text-muted'
                                     : match.currentHalf === 'HALF_TIME'
-                                    ? 'bg-status-warning-amber text-surface-card shadow-xs'
-                                    : 'text-text-muted hover:text-on-surface'
+                                    ? 'bg-status-warning-amber text-white shadow-xs'
+                                    : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
                                 title={isCompleted ? "Match ended (FT)" : "Set Half Time"}
                               >
@@ -319,12 +319,12 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                 type="button"
                                 disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, '2ND_HALF')}
-                                className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
+                                className={`px-2 py-1 text-[11px] font-button font-bold rounded transition-colors ${
                                   isCompleted || isWalkover
                                     ? 'opacity-40 cursor-not-allowed text-text-muted'
-                                    : match.currentHalf === '2ND_HALF'
-                                    ? 'bg-live-orange text-surface-card shadow-xs'
-                                    : 'text-text-muted hover:text-on-surface'
+                                    : match.currentHalf === '2ND_HALF' && !isCompleted
+                                    ? 'bg-live-orange text-white shadow-xs'
+                                    : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
                                 title={isCompleted ? "Match ended (FT)" : "Set 2nd Half"}
                               >
@@ -334,12 +334,12 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                 type="button"
                                 disabled={isCompleted || isWalkover}
                                 onClick={() => handlePeriodChange(match.id, 'EXTRA_TIME')}
-                                className={`px-2 py-1 text-[11px] font-button font-semibold rounded ${
+                                className={`px-2 py-1 text-[11px] font-button font-bold rounded transition-colors ${
                                   isCompleted || isWalkover
                                     ? 'opacity-40 cursor-not-allowed text-text-muted'
-                                    : match.currentHalf === 'EXTRA_TIME'
-                                    ? 'bg-purple-600 text-surface-card shadow-xs'
-                                    : 'text-text-muted hover:text-on-surface'
+                                    : match.currentHalf === 'EXTRA_TIME' && !isCompleted
+                                    ? 'bg-purple-600 text-white shadow-xs'
+                                    : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
                                 title={isCompleted ? "Match ended (FT)" : "Set Extra Time"}
                               >

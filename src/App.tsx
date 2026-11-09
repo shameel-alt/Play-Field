@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component, ErrorInfo, ReactNode } from 'react';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { TournamentProvider } from './context/TournamentContext';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -62,7 +62,8 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
   }
 }
 
-export function App() {
+function AppContent() {
+  const { isAuthenticated } = useAuth();
   const [currentPath, setCurrentPath] = useState<string>(() => {
     const hash = window.location.hash.replace(/^#/, '');
     return hash || '/';
@@ -81,7 +82,7 @@ export function App() {
     endTime: '20:00',
     daysCount: 2,
     pricingType: 'day',
-    totalCost: 140000
+    totalCost: 126000
   });
 
   useEffect(() => {
@@ -101,6 +102,10 @@ export function App() {
     window.scrollTo(0, 0);
   };
 
+  const isPublic = currentPath.startsWith('/public');
+  const showHeader = isAuthenticated && !isPublic;
+  const showFooter = !isPublic;
+
   // Route dispatcher
   const renderRoute = () => {
     // 1. Landing Page
@@ -118,26 +123,33 @@ export function App() {
 
     // 3. Onboarding
     if (currentPath === '/onboarding') {
+      if (!isAuthenticated) return <LoginPage onNavigate={navigate} />;
       return <OnboardingPage onNavigate={navigate} />;
     }
 
     // 4. Dashboard
     if (currentPath === '/dashboard') {
+      if (!isAuthenticated) return <LoginPage onNavigate={navigate} />;
       return <DashboardPage onNavigate={navigate} />;
     }
 
-    // 5. Wizard Steps
-    if (currentPath === '/tournaments/new/details') {
-      return <Step1DetailsPage onNavigate={navigate} draftData={wizardDraft} setDraftData={setWizardDraft} />;
-    }
-    if (currentPath === '/tournaments/new/teams') {
-      return <Step2TeamsPage onNavigate={navigate} draftData={wizardDraft} setDraftData={setWizardDraft} />;
-    }
-    if (currentPath === '/tournaments/new/confirm') {
-      return <Step3ConfirmPage onNavigate={navigate} draftData={wizardDraft} />;
-    }
-    if (currentPath === '/tournaments/new/payment') {
-      return <Step4PaymentPage onNavigate={navigate} draftData={wizardDraft} />;
+    // 5. Wizard Steps (Protected: require sign in)
+    if (currentPath.startsWith('/tournaments/new/')) {
+      if (!isAuthenticated) {
+        return <LoginPage onNavigate={navigate} />;
+      }
+      if (currentPath === '/tournaments/new/details') {
+        return <Step1DetailsPage onNavigate={navigate} draftData={wizardDraft} setDraftData={setWizardDraft} />;
+      }
+      if (currentPath === '/tournaments/new/teams') {
+        return <Step2TeamsPage onNavigate={navigate} draftData={wizardDraft} setDraftData={setWizardDraft} />;
+      }
+      if (currentPath === '/tournaments/new/confirm') {
+        return <Step3ConfirmPage onNavigate={navigate} draftData={wizardDraft} />;
+      }
+      if (currentPath === '/tournaments/new/payment') {
+        return <Step4PaymentPage onNavigate={navigate} draftData={wizardDraft} />;
+      }
     }
 
     // 6. Ongoing Tournaments List
@@ -147,6 +159,7 @@ export function App() {
 
     // 7. Live Tournament Management Console (/tournaments/:id/manage)
     if (currentPath.startsWith('/tournaments/') && currentPath.endsWith('/manage')) {
+      if (!isAuthenticated) return <LoginPage onNavigate={navigate} />;
       const parts = currentPath.split('/');
       const tournamentId = parts[2];
       return <TournamentManagementPage tournamentId={tournamentId} onNavigate={navigate} />;
@@ -179,16 +192,22 @@ export function App() {
   };
 
   return (
+    <div className="flex flex-col min-h-screen">
+      {showHeader && <Header currentPath={currentPath} onNavigate={navigate} />}
+      <main className={`flex-1 ${showHeader ? 'pt-16' : 'pt-0'}`}>
+        {renderRoute()}
+      </main>
+      {showFooter && <Footer onNavigate={navigate} />}
+    </div>
+  );
+}
+
+export function App() {
+  return (
     <ErrorBoundary>
       <AuthProvider>
         <TournamentProvider>
-          <div className="flex flex-col min-h-screen">
-            <Header currentPath={currentPath} onNavigate={navigate} />
-            <main className="flex-1 pt-16">
-              {renderRoute()}
-            </main>
-            <Footer onNavigate={navigate} />
-          </div>
+          <AppContent />
         </TournamentProvider>
       </AuthProvider>
     </ErrorBoundary>

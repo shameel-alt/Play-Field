@@ -461,12 +461,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                       type="button"
                       disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('1ST_HALF')}
-                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                      className={`px-3 py-1.5 rounded-lg font-button text-xs font-bold transition-all ${
                         activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
                           ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
-                          : activeMatch.currentHalf === '1ST_HALF' && activeMatch.status === 'LIVE'
-                          ? 'bg-live-orange text-surface-card shadow-xs'
-                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                          : activeMatch.currentHalf === '1ST_HALF'
+                          ? 'bg-live-orange text-white shadow-sm ring-1 ring-live-orange'
+                          : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
                       1st Half
@@ -475,12 +475,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                       type="button"
                       disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('HALF_TIME')}
-                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                      className={`px-3 py-1.5 rounded-lg font-button text-xs font-bold transition-all ${
                         activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
                           ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
                           : activeMatch.currentHalf === 'HALF_TIME'
-                          ? 'bg-status-warning-amber text-surface-card shadow-xs'
-                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                          ? 'bg-status-warning-amber text-white shadow-sm ring-1 ring-status-warning-amber'
+                          : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
                       Half Time
@@ -489,12 +489,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                       type="button"
                       disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('2ND_HALF')}
-                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                      className={`px-3 py-1.5 rounded-lg font-button text-xs font-bold transition-all ${
                         activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
                           ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
                           : activeMatch.currentHalf === '2ND_HALF'
-                          ? 'bg-live-orange text-surface-card shadow-xs'
-                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                          ? 'bg-live-orange text-white shadow-sm ring-1 ring-live-orange'
+                          : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
                       2nd Half
@@ -503,12 +503,12 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                       type="button"
                       disabled={activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'}
                       onClick={() => handlePeriodChange('EXTRA_TIME')}
-                      className={`px-2.5 py-1 rounded-lg font-button text-xs font-semibold transition-all ${
+                      className={`px-3 py-1.5 rounded-lg font-button text-xs font-bold transition-all ${
                         activeMatch.status === 'COMPLETED' || activeMatch.status === 'WALKOVER'
                           ? 'opacity-40 cursor-not-allowed bg-canvas-alabaster text-text-muted border border-border-grid'
                           : activeMatch.currentHalf === 'EXTRA_TIME'
-                          ? 'bg-purple-600 text-surface-card shadow-xs'
-                          : 'bg-surface-card text-on-surface hover:bg-state-hover-gray border border-border-grid'
+                          ? 'bg-purple-600 text-white shadow-sm ring-1 ring-purple-600'
+                          : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
                       Extra Time

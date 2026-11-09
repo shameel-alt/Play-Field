@@ -12,6 +12,7 @@ export default {
         "pitch-turf-active": "#063b2a",
         "pitch-turf-surface": "#f0fdf4",
         "floodlight-navy": "#0b192c",
+        "live-orange": "#ea580c",
         "live-orange-hover": "#c2410c",
         "live-orange-active": "#9a3412",
         "card-red-danger": "#dc2626",

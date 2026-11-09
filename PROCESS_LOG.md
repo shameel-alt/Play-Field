@@ -2,9 +2,9 @@
 
 ## 1. Overview & Objective
 - **Goal**: Build a complete, responsive, production-grade web application for the **Smart Sports Tournament Scheduling & Live Match Management System** ("Play Field") using React (Tailwind CSS, Lucide icons), Supabase PostgreSQL (via MCP), GitHub integration, and modular component architecture based on the Stitch UI designs.
-- **Status**: Completed (Phase 14: Comprehensive Full-App Investigation & Remediation)
+- **Status**: Completed (Phase 15: Auth Visibility, Searchable Selectors, Ledger Realignment & Match Period Contrast Fixes)
 - **Started**: 2026-10-28 16:48:00
-- **Last Updated**: 2026-11-04 17:05:00
+- **Last Updated**: 2026-11-09 14:40:00
 
 ## 2. Process & Execution Log
 
@@ -260,35 +260,77 @@
   - `[MODIFIED]` `src/pages/InviteAcceptPage.tsx` - Added empty tournament guard, fixed useEffect infinite loop.
   - `[MODIFIED]` `PROCESS_LOG.md` - Phase 14 documentation and test records.
 
+### Phase 15: Auth Visibility, Searchable Selectors, Ledger Realignment & Match Period Contrast Fixes - [Completed]
+- **Current Action / Process**: Resolved all 6 user requirements across authentication visibility, multi-sport venue cataloging, searchable combobox dropdowns, match period button contrast, spectator public link view-only isolation, and dynamic schedule ledger computation without "5v5".
+- **Actions Taken**:
+  1. **Logged Out Header & Start Tournament Auth Redirection**:
+     - Updated `src/components/layout/Header.tsx` to return `null` whenever `!isAuthenticated` or when visiting public routes (`/public/*`).
+     - Refactored `src/App.tsx` with an `AppContent` component inside `AuthProvider`, removing top padding (`pt-0`) when the header is hidden.
+     - Protected routes (`/tournaments/new/*`, `/dashboard`, `/onboarding`, `/tournaments/:id/manage`) redirecting unauthenticated users to `/login`.
+     - Updated `LandingPage.tsx` and `OngoingTournamentsPage.tsx` to route "Start a Tournament" to `/login` when logged out.
+     - Updated `src/context/AuthContext.tsx` so unauthenticated/logged-out states initialize `currentUser` as `null` instead of force-defaulting to demo user.
+  2. **Multi-Sport Venue Catalog & Pricing Architecture**:
+     - Expanded `src/data/venuesSeed.ts` to 12 distinct venues (3 per sport) across all 4 disciplines:
+       - **Futsal**: Colombo Futsal Hub (LKR 7.5k/hr, LKR 63k/day), CR&FC Arena (LKR 8.8k/hr, LKR 74k/day), Excel World Arena (LKR 6.2k/hr, LKR 51k/day).
+       - **7-a-side Football**: Havelock Sports Arena (LKR 12.5k/hr, LKR 98k/day), Colombo Racecourse Mini Grounds (LKR 15.5k/hr, LKR 125k/day), Sugathadasa Mini Outdoor Arena (LKR 18k/hr, LKR 145k/day).
+       - **Indoor Cricket**: MCA Indoor Cricket Complex (LKR 5.5k/hr, LKR 45k/day), Austasia Sports Complex (LKR 6.8k/hr, LKR 56k/day), NCC Cricket Center (LKR 5k/hr, LKR 40k/day).
+       - **Badminton**: St. Joseph's Sports Complex (LKR 3.5k/hr, LKR 28k/day), WPBA Headquarters (LKR 4.5k/hr, LKR 36k/day), Otter Aquatic Club Hall (LKR 3.8k/hr, LKR 30k/day).
+  3. **Searchable Sport & Venue Combobox Dropdowns**:
+     - Implemented custom searchable combobox dropdown in `src/pages/wizard/Step1DetailsPage.tsx` for Sport Selection with real-time text query filtering, icons, and rules presets.
+     - Implemented custom searchable combobox dropdown for Venue Selection, automatically filtered by currently selected sport, searching across venue name, location, and city.
+     - Auto-switches venue and court selections when sport changes to guarantee valid venue-sport compatibility.
+  4. **1st Half & 2nd Half Button Active State High-Contrast Fix**:
+     - Root cause diagnosed: `bg-live-orange` was missing in `tailwind.config.js` color definitions, rendering white text on transparent background.
+     - Added `"live-orange": "#ea580c"` to `tailwind.config.js` and `--color-live-orange: #ea580c;` to `src/styles/design-tokens.css`.
+     - Explicitly styled active period buttons with `bg-live-orange text-white font-bold shadow-xs` in `OngoingTournamentsPage.tsx` and `TournamentManagementPage.tsx`.
+     - Confirmed via Chrome DevTools MCP computed style evaluation: `backgroundColor: "rgb(234, 88, 12)"`, `color: "rgb(255, 255, 255)"`, `fontWeight: "700"`.
+  5. **Public Link View-Only Spectator Enforcement**:
+     - Hidden header and organizer footer on `/public/tournament/:id` route.
+     - Completely eliminated all sign-in triggers, tournament creation links, or organizer controls from public pages, making them strictly view-only for spectators.
+  6. **Dynamic Provisional Schedule Ledger Alignment**:
+     - Removed hardcoded `{sport} 5v5` from ledger; now displays clean sport name and icon (e.g. `⚽ Futsal`, `🏏 Indoor Cricket`, `🏸 Badminton`, `🏟️ 7-a-side Football`).
+     - Dynamically mapped competition architecture from `tournamentStyle` (`GROUP_KNOCKOUT` -> "Group Stage + Knockout", `ROUND_ROBIN` -> "Full League Table", `SINGLE_ELIMINATION` -> "Single Elimination Knockout").
+     - Added interactive pricing package model toggle (Day Package vs Hourly Rate).
+     - Dynamically calculated total venue package quotation, 30% advance deposit requirement, and 70% match day balance.
+     - Live-synced reserved courts list, duration, timetable window, and operating hours.
+  7. **Verification**:
+     - `npm run build` compiled with 0 errors.
+     - Full automated Chrome DevTools test suite verified logged-out state, login redirection, searchable dropdowns, dynamic ledger sync, public page isolation, and 1st/2nd half button high-contrast active states.
+- **Changes Made**:
+  - `[MODIFIED]` `src/App.tsx` - AppLayout with authentication & public route header/footer isolation.
+  - `[MODIFIED]` `src/components/layout/Header.tsx` - Hidden on unauthenticated & public routes.
+  - `[MODIFIED]` `src/context/AuthContext.tsx` - Nullable initial state when logged out, Shameel demo login support.
+  - `[MODIFIED]` `src/data/venuesSeed.ts` - 12 distinct multi-sport venues with unique rates & courts.
+  - `[MODIFIED]` `src/pages/wizard/Step1DetailsPage.tsx` - Searchable sport & venue dropdowns, pricing model toggle, dynamic ledger without "5v5".
+  - `[MODIFIED]` `tailwind.config.js` - Added `live-orange: #ea580c` color definition.
+  - `[MODIFIED]` `src/styles/design-tokens.css` - Added `--color-live-orange: #ea580c;`.
+  - `[MODIFIED]` `src/pages/OngoingTournamentsPage.tsx` - High-contrast 1st/2nd half buttons, auth-guarded "+ Start Tournament".
+  - `[MODIFIED]` `src/pages/TournamentManagementPage.tsx` - High-contrast 1st/2nd half buttons, simplified type conditions.
+  - `[MODIFIED]` `src/pages/LandingPage.tsx` - Auth-guarded "Start a Tournament" routing.
+  - `[MODIFIED]` `PROCESS_LOG.md` - Phase 15 documentation.
+
 ## 3. Summary of Changes
 | File | Action | Description |
 | :--- | :--- | :--- |
-| `src/types/tournament.ts` | Modified | Defined `WizardDraftData` interface with typed tournament creation fields |
-| `src/App.tsx` | Modified | Integrated React `ErrorBoundary`, typed `wizardDraft` state, wrapped application tree |
-| `src/context/AuthContext.tsx` | Modified | Harmonized `login` function parameter contract with interface |
-| `src/context/TournamentContext.tsx` | Modified | Added automated podium deduction in `concludeTournament`, fixed `addNotification` spread |
-| `src/components/layout/Header.tsx` | Modified | Fixed duplicate `aria-label`, added unread count to screen-reader label, cleaned unused imports |
-| `src/pages/LoginPage.tsx` | Modified | Added accessible `id`, `name`, and `htmlFor` bindings to login inputs |
-| `src/pages/SignUpPage.tsx` | Modified | Added accessible `id`, `name`, and `htmlFor` bindings to registration inputs |
-| `src/pages/OnboardingPage.tsx` | Modified | Added `aria-pressed` selection states to sports and operational roles; cleaned unused imports |
-| `src/pages/DashboardPage.tsx` | Modified | Added accessible label and name to search input; removed unused imports |
-| `src/pages/wizard/Step1DetailsPage.tsx` | Modified | Automated `daysCount` date calculation, added form accessibility IDs, typed draft |
-| `src/pages/wizard/Step2TeamsPage.tsx` | Modified | Added athlete form accessibility attributes, typed draft data, removed unused imports |
-| `src/pages/wizard/Step3ConfirmPage.tsx` | Modified | Strongly typed team and player iterations, removed unused imports |
-| `src/pages/wizard/Step4PaymentPage.tsx` | Modified | Added clipboard fallback, publish try/catch/finally, typed draft and matches |
-| `src/pages/OngoingTournamentsPage.tsx` | Modified | Conditioned 1s live countdown timer to active grace windows only; removed unused imports |
-| `src/pages/TournamentManagementPage.tsx` | Modified | Conditioned timer interval, added accessible event logger attributes, clipboard fallback |
-| `src/pages/EndedTournamentsPage.tsx` | Modified | Added empty tournament state guard, removed unused imports |
-| `src/pages/PublicLiveTournamentPage.tsx` | Modified | Added fallback clipboard copy, removed unused imports |
-| `src/pages/InviteAcceptPage.tsx` | Modified | Added null tournament fallback, stabilized useEffect dependencies |
-| `src/styles/*` | Created & Modified | Design tokens (Lora, Roboto, Inter), components, export canvas, and Tailwind CSS |
-| `src/lib/*` | Created & Modified | Tournament, standings, conflict, forfeit, and export engines |
-| `src/types/*` | Created & Modified | Complete TypeScript domain models |
-| `src/data/*` | Created | Realistic ongoing & ended tournament seeds and venue catalogue |
+| `src/App.tsx` | Modified | Added `AppContent` layout, route protection for auth, header/footer public isolation |
+| `src/components/layout/Header.tsx` | Modified | Hidden when `!isAuthenticated` or route starts with `/public` |
+| `src/context/AuthContext.tsx` | Modified | Set `currentUser` to `null` by default when logged out; support Shameel demo credentials |
+| `src/data/venuesSeed.ts` | Modified | Expanded to 12 realistic venues (3 per sport) across futsal, 7s, cricket, badminton |
+| `src/pages/wizard/Step1DetailsPage.tsx` | Modified | Searchable sport & venue comboboxes, dynamic pricing toggle, ledger without "5v5" |
+| `tailwind.config.js` | Modified | Added `"live-orange": "#ea580c"` color token |
+| `src/styles/design-tokens.css` | Modified | Added `--color-live-orange: #ea580c;` CSS variable |
+| `src/pages/OngoingTournamentsPage.tsx` | Modified | Added `bg-live-orange text-white font-bold` to active half buttons, auth guard |
+| `src/pages/TournamentManagementPage.tsx` | Modified | Added `bg-live-orange text-white font-bold` to active half buttons, cleaned type guard |
+| `src/pages/LandingPage.tsx` | Modified | "Start a Tournament" redirects to `/login` if unauthenticated |
 | `PROCESS_LOG.md` | Updated | Living process and progress tracking log |
-| `README.md` | Created | Comprehensive repository documentation |
 
 ## 4. Final Conclusion & Outcome
-- **Outcome**: Completed an exhaustive full-application audit and remediation across all 14 screens and underlying systems of Play Field. Eliminated loose `any` types with strongly-typed wizard interfaces, deployed a global `ErrorBoundary` for runtime crash resilience, resolved form accessibility (a11y) issues with explicit label-input associations and ARIA selection states, optimized polling timers to prevent unnecessary re-renders, added robust clipboard fallbacks, and automated tournament champion/runner-up podium calculation upon match conclusion.
-- **Verification**: Production build compiles with zero errors (`tsc && vite build` completed cleanly in 8.31s); live rendering, navigation, and interactive controls verified across all 14 views using Chrome DevTools MCP.
-- **Conclusion**: The entire application has been thoroughly investigated, debugged, and hardened to production-grade quality.
+- **Outcome**: Successfully resolved all 6 user requirements for the Play Field web application:
+  1. Top bar (`Header`) is completely hidden when logged out, and clicking "Start a Tournament" routes unauthenticated users directly to `/login`.
+  2. Each sport (`futsal`, `football7`, `cricket`, `badminton`) now has 3 distinct venues with realistic, varying hourly and day package rates.
+  3. Both sport and venue selectors have been upgraded to intuitive, searchable combobox dropdowns with instant real-time filtering and automatic cross-compatibility switching.
+  4. 1st Half and 2nd Half buttons now render with high-contrast `live-orange` background (`rgb(234, 88, 12)`) and crisp white bold text when active, verified via Chrome DevTools computed styles.
+  5. Public live tournament link (`/public/tournament/:id`) is strictly view-only for spectators with zero navigation header, zero organizer controls, and zero sign-in buttons.
+  6. Provisional schedule ledger on Step 1 now dynamically mirrors the user's selected sport, architecture, venue, courts, duration, and pricing package, with "5v5" cleanly removed.
+- **Verification**: Production build compiles cleanly with zero TypeScript errors (`tsc && vite build` passed); verified in real-time on Chromium via Chrome DevTools MCP.
+- **Conclusion**: All features and fixes have been thoroughly implemented, verified, and documented.

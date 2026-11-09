@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from '../context/AuthContext';
 import { ArrowRight, Trophy, ShieldCheck, Zap, Calendar, MapPin, Users, Share2 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -6,6 +7,15 @@ interface LandingPageProps {
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
+  const { isAuthenticated } = useAuth();
+
+  const handleStartTournament = () => {
+    if (isAuthenticated) {
+      onNavigate('/tournaments/new/details');
+    } else {
+      onNavigate('/login');
+    }
+  };
   return (
     <div className="flex flex-col w-full pb-16">
       {/* Sub-Header Context Bar */}
@@ -58,7 +68,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
                 <button
                   type="button"
-                  onClick={() => onNavigate('/tournaments/new/details')}
+                  onClick={handleStartTournament}
                   className="btn-primary py-3.5 px-6 text-base shadow-md group"
                 >
                   <span>Start a Tournament</span>

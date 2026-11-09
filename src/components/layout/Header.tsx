@@ -104,6 +104,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
     ? notifications.filter(n => !n.read)
     : notifications;
 
+  if (!isAuthenticated || currentPath.startsWith('/public')) {
+    return null;
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface-card border-b border-border-grid shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div className="h-16 max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter">

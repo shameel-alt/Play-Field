@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { /* ignore */ }
     }
-    return DEFAULT_DEMO_USER;
+    return null;
   });
 
   const [pendingInvite, setPendingInviteState] = useState<{ token: string; tournamentId: string } | null>(() => {
@@ -57,14 +57,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (email: string, _password?: string): Promise<boolean> => {
-    const user: UserProfile = {
-      id: `user-${email.replace(/[^a-zA-Z0-9]/g, '-')}`,
-      email,
-      fullName: email.split('@')[0].replace(/\./g, ' ').toUpperCase(),
-      role: 'organizer',
-      preferredSports: ['futsal'],
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80'
-    };
+    const user: UserProfile = (email === DEFAULT_DEMO_USER.email || email.toLowerCase().includes('shameel'))
+      ? DEFAULT_DEMO_USER
+      : {
+          id: `user-${email.replace(/[^a-zA-Z0-9]/g, '-')}`,
+          email,
+          fullName: email.split('@')[0].replace(/\./g, ' ').toUpperCase(),
+          role: 'organizer',
+          preferredSports: ['futsal'],
+          avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80'
+        };
 
     setCurrentUser(user);
     localStorage.setItem('playfield_user', JSON.stringify(user));
