@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTournament } from '../context/TournamentContext';
+import { useLanguage } from '../context/LanguageContext';
+import { LanguageSelector } from '../components/common/LanguageSelector';
 import { Trophy, Mail, Lock, User, ArrowRight, AlertCircle } from 'lucide-react';
 
 interface SignUpPageProps {
@@ -10,6 +12,7 @@ interface SignUpPageProps {
 export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
   const { signup, pendingInvite, clearPendingInvite } = useAuth();
   const { addCoOrganizer } = useTournament();
+  const { t } = useLanguage();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,14 +43,19 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full bg-surface-card p-space-xl rounded-2xl border border-border-grid shadow-xl flex flex-col gap-space-lg">
+      <div className="max-w-md w-full bg-surface-card p-space-xl rounded-2xl border border-border-grid shadow-xl flex flex-col gap-space-lg relative">
+        {/* Language Selector Top-Right */}
+        <div className="flex justify-end w-full mb-[-12px]">
+          <LanguageSelector variant="light" />
+        </div>
+
         {/* Header */}
         <div className="text-center flex flex-col items-center">
           <div className="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold text-xl shadow-sm mb-3">
             <Trophy className="w-6 h-6 text-primary-fixed" />
           </div>
           <h2 className="font-headline font-extrabold text-2xl text-floodlight-navy">
-            Create Organizer Account
+            {t('auth.signUpTitle')}
           </h2>
           <p className="font-body text-sm text-text-muted mt-1">
             Access multi-court scheduling, live scoring & public links
@@ -73,7 +81,7 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-space-md">
           <div className="flex flex-col gap-space-xs">
             <label htmlFor="signup-name" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
-              Full Legal / Organizer Name
+              {t('auth.fullNameLabel')}
             </label>
             <div className="relative">
               <User className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
@@ -92,7 +100,7 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
 
           <div className="flex flex-col gap-space-xs">
             <label htmlFor="signup-email" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
-              Official Email Address
+              {t('auth.emailLabel')}
             </label>
             <div className="relative">
               <Mail className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
@@ -111,7 +119,7 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
 
           <div className="flex flex-col gap-space-xs">
             <label htmlFor="signup-password" className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
-              Secure Password
+              {t('auth.passwordLabel')}
             </label>
             <div className="relative">
               <Lock className="w-4 h-4 text-text-placeholder absolute left-3 top-3.5" />
@@ -133,13 +141,13 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
             disabled={isSubmitting}
             className="btn-primary w-full h-11 text-sm font-bold shadow-md mt-2 flex items-center justify-center gap-2"
           >
-            <span>{isSubmitting ? 'Creating Profile...' : 'Complete Registration'}</span>
+            <span>{isSubmitting ? 'Creating Profile...' : t('auth.createAccountBtn')}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 
         <div className="pt-space-sm border-t border-border-grid text-center text-xs font-body text-text-muted">
-          <span>Already registered? </span>
+          <span>{t('auth.alreadyHaveAccount')}</span>
           <button
             type="button"
             onClick={() => onNavigate('/login')}

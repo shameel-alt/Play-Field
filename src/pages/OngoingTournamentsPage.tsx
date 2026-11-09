@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTournament } from '../context/TournamentContext';
+import { useLanguage } from '../context/LanguageContext';
 import { TournamentCard } from '../components/tournament/TournamentCard';
 import { MatchPeriod } from '../types/match';
 import {
@@ -21,6 +22,7 @@ interface OngoingTournamentsPageProps {
 
 export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ onNavigate }) => {
   const { currentUser, isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const {
     getUserTournaments,
     updateMatchPeriod,
@@ -100,17 +102,17 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
             <div className="flex items-center gap-2 mb-2">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-xs font-bold uppercase tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-status-success-emerald animate-pulse"></span>
-                Active Matchday Control
+                {t('ongoing.badge')}
               </span>
               <span className="font-badge-label text-xs text-text-placeholder">
-                • {ongoing.length} Active Events
+                • {ongoing.length} {t('ongoing.activeEvents')}
               </span>
             </div>
             <h1 className="font-headline font-extrabold text-2xl md:text-3xl text-surface-card tracking-tight">
-              Current Ongoing Tournaments
+              {t('ongoing.title')}
             </h1>
             <p className="font-body text-sm text-text-placeholder mt-1 max-w-2xl">
-              State match periods (1st Half, 2nd Half, Extra Time, Match Ended), log score events, advance qualified teams through automated knockout progression, and finalize tournaments.
+              {t('ongoing.desc')}
             </p>
           </div>
 
@@ -120,7 +122,7 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
             className="btn-primary py-2.5 px-5 text-sm font-bold shadow-md flex items-center gap-2 self-start md:self-auto font-button"
           >
             <PlusCircle className="w-4 h-4" />
-            <span>+ Start Tournament</span>
+            <span>{t('ongoing.startTournament')}</span>
           </button>
         </div>
       </section>
@@ -144,18 +146,18 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-live-orange animate-pulse"></span>
                   <h2 className="font-headline font-bold text-lg text-floodlight-navy">
-                    Match Periods & Progression Desk
+                    {t('ongoing.periodsDeskTitle')}
                   </h2>
                 </div>
                 <p className="font-body text-xs text-text-muted mt-0.5">
-                  State active halfs, extra time, or end matches to progress standings and knockout brackets forward.
+                  {t('ongoing.periodsDeskDesc')}
                 </p>
               </div>
 
               {/* Tournament Switcher if multiple ongoing */}
               {ongoing.length > 1 && (
                 <div className="flex items-center gap-2">
-                  <span className="font-badge-label text-xs text-text-muted">Event:</span>
+                  <span className="font-badge-label text-xs text-text-muted">{t('ongoing.eventLabel')}</span>
                   <select
                     value={selectedTournamentId}
                     onChange={(e) => setSelectedTournamentId(e.target.value)}
@@ -198,12 +200,12 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-border-grid font-badge-label text-[11px] uppercase text-text-muted tracking-wider bg-canvas-alabaster">
-                    <th className="py-2.5 px-3">#</th>
-                    <th className="py-2.5 px-3">Round / Court</th>
-                    <th className="py-2.5 px-3">Competing Teams</th>
-                    <th className="py-2.5 px-3">Score</th>
-                    <th className="py-2.5 px-3">Current Period</th>
-                    <th className="py-2.5 px-3 text-right">State Period / End Match</th>
+                    <th className="py-2.5 px-3">{t('ongoing.thMatchNum')}</th>
+                    <th className="py-2.5 px-3">{t('ongoing.thRoundCourt')}</th>
+                    <th className="py-2.5 px-3">{t('ongoing.thTeams')}</th>
+                    <th className="py-2.5 px-3">{t('ongoing.thScore')}</th>
+                    <th className="py-2.5 px-3">{t('ongoing.thPeriod')}</th>
+                    <th className="py-2.5 px-3 text-right">{t('ongoing.thActions')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border-grid font-body text-xs">
@@ -249,7 +251,7 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                           {isCompleted ? (
                             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-pitch-turf-surface text-status-success-emerald font-badge-label text-[11px] font-bold uppercase">
                               <CheckCircle className="w-3.5 h-3.5" />
-                              <span>Match Ended (FT)</span>
+                              <span>{t('periods.endedFT')}</span>
                             </span>
                           ) : isWalkover ? (
                             <span className="px-2.5 py-1 rounded-full bg-red-100 text-card-red-danger font-badge-label text-[11px] font-bold uppercase">
@@ -258,26 +260,26 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                           ) : match.currentHalf === 'HALF_TIME' ? (
                             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-100 text-status-warning-amber font-badge-label text-[11px] font-bold uppercase border border-amber-200">
                               <span className="w-1.5 h-1.5 rounded-full bg-status-warning-amber animate-pulse"></span>
-                              <span>Half Time Break</span>
+                              <span>{t('periods.halfTime')}</span>
                             </span>
                           ) : match.currentHalf === '2ND_HALF' ? (
                             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-orange-100 text-live-orange font-badge-label text-[11px] font-bold uppercase border border-orange-200">
                               <span className="w-1.5 h-1.5 rounded-full bg-live-orange animate-ping"></span>
-                              <span>2nd Half ({match.currentMinute || "25'"})</span>
+                              <span>{t('periods.secondHalf')} ({match.currentMinute || "25'"})</span>
                             </span>
                           ) : match.currentHalf === 'EXTRA_TIME' ? (
                             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-purple-100 text-purple-700 font-badge-label text-[11px] font-bold uppercase border border-purple-200">
                               <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse"></span>
-                              <span>Extra Time ({match.currentMinute || "51'"})</span>
+                              <span>{t('periods.extraTime')} ({match.currentMinute || "51'"})</span>
                             </span>
                           ) : match.status === 'LIVE' || match.currentHalf === '1ST_HALF' ? (
                             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-orange-100 text-live-orange font-badge-label text-[11px] font-bold uppercase border border-orange-200">
                               <span className="w-1.5 h-1.5 rounded-full bg-live-orange animate-pulse"></span>
-                              <span>1st Half ({match.currentMinute || "12'"})</span>
+                              <span>{t('periods.firstHalf')} ({match.currentMinute || "12'"})</span>
                             </span>
                           ) : (
                             <span className="px-2.5 py-1 rounded-full bg-surface-container font-badge-label text-[11px] text-text-muted font-bold uppercase">
-                              Upcoming
+                              {t('periods.upcoming')}
                             </span>
                           )}
                         </td>
@@ -296,9 +298,9 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                     ? 'bg-live-orange text-white shadow-xs'
                                     : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
-                                title={isCompleted ? "Match ended (FT)" : "Set 1st Half"}
+                                title={isCompleted ? t('periods.endedFT') : t('ongoing.set1stHalf')}
                               >
-                                1st H
+                                {t('ongoing.set1stHalf')}
                               </button>
                               <button
                                 type="button"
@@ -311,9 +313,9 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                     ? 'bg-status-warning-amber text-white shadow-xs'
                                     : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
-                                title={isCompleted ? "Match ended (FT)" : "Set Half Time"}
+                                title={isCompleted ? t('periods.endedFT') : t('ongoing.setHalfTime')}
                               >
-                                HT
+                                {t('ongoing.setHalfTime')}
                               </button>
                               <button
                                 type="button"
@@ -326,9 +328,9 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                     ? 'bg-live-orange text-white shadow-xs'
                                     : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
-                                title={isCompleted ? "Match ended (FT)" : "Set 2nd Half"}
+                                title={isCompleted ? t('periods.endedFT') : t('ongoing.set2ndHalf')}
                               >
-                                2nd H
+                                {t('ongoing.set2ndHalf')}
                               </button>
                               <button
                                 type="button"
@@ -341,9 +343,9 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                     ? 'bg-purple-600 text-white shadow-xs'
                                     : 'text-floodlight-navy hover:bg-state-hover-gray'
                                 }`}
-                                title={isCompleted ? "Match ended (FT)" : "Set Extra Time"}
+                                title={isCompleted ? t('periods.endedFT') : t('ongoing.setExtraTime')}
                               >
-                                ET
+                                {t('ongoing.setExtraTime')}
                               </button>
                             </div>
 
@@ -359,7 +361,7 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                 )}
                                 className="px-2.5 py-1 rounded-lg bg-card-red-surface hover:bg-card-red-danger text-card-red-danger hover:text-surface-card border border-card-red-border font-button text-[11px] font-bold transition-all"
                               >
-                                End Match (FT)
+                                {t('ongoing.endMatchFT')}
                               </button>
                             ) : isCompleted ? (
                               (() => {
@@ -372,7 +374,7 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
                                       type="button"
                                       onClick={() => handleAccidentalReinstate(match.id, match.matchNumber)}
                                       className="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-button text-[11px] font-bold flex items-center gap-1 animate-pulse shadow-xs"
-                                      title="Ended by accident? Click to reinstate"
+                                      title={t('ongoing.reinstatePrompt')}
                                     >
                                       <AlertTriangle className="w-3 h-3 text-status-warning-amber" />
                                       <span>Reinstate ({secondsLeft}s)</span>
@@ -416,10 +418,10 @@ export const OngoingTournamentsPage: React.FC<OngoingTournamentsPageProps> = ({ 
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-headline font-bold text-xl text-floodlight-navy">
-              Active Tournament Cards
+              {t('ongoing.cardsTitle')}
             </h2>
             <span className="font-badge-label text-xs text-text-muted">
-              {ongoing.length} Competitions Managed
+              {ongoing.length} {t('ongoing.competitionsManaged')}
             </span>
           </div>
 

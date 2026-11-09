@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useTournament } from '../context/TournamentContext';
+import { useLanguage } from '../context/LanguageContext';
+import { LanguageSelector } from '../components/common/LanguageSelector';
 import { StandingsTable } from '../components/tournament/StandingsTable';
 import { KnockoutBracket } from '../components/tournament/KnockoutBracket';
 import { calculateGroupStandings } from '../lib/standingsEngine';
@@ -24,6 +26,7 @@ interface PublicLiveTournamentPageProps {
 
 export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> = ({ tournamentId }) => {
   const { getTournamentByIdOrSlug, tournaments } = useTournament();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'fixtures' | 'standings' | 'knockout' | 'scorers'>('fixtures');
   const [copied, setCopied] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -95,7 +98,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
           <div className="flex items-center gap-space-sm flex-wrap">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-card-red-surface text-card-red-danger font-mono text-xs font-extrabold uppercase tracking-widest border border-card-red-border">
               <span className="w-2 h-2 rounded-full bg-card-red-danger animate-pulse"></span>
-              PUBLIC LIVE MATCH CENTER
+              {t('publicLive.masthead')}
             </span>
             <span className="text-surface-variant font-mono text-xs uppercase">
               • {tournament.title}
@@ -103,13 +106,15 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
           </div>
 
           <div className="flex items-center gap-3">
+            <LanguageSelector variant="dark" />
+
             <button
               type="button"
               onClick={handleRefresh}
               className="text-xs font-mono text-surface-card hover:text-primary-fixed flex items-center gap-1 transition-colors"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
-              <span>Live Synced</span>
+              <span>{t('publicLive.liveSynced')}</span>
             </button>
             <button
               type="button"
@@ -117,7 +122,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
               className="btn-secondary text-xs py-1 px-3 flex items-center gap-1"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-status-success-emerald" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Link Copied!' : 'Share Stream'}</span>
+              <span>{copied ? t('publicLive.linkCopied') : t('publicLive.shareStream')}</span>
             </button>
           </div>
         </div>
@@ -258,7 +263,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'
             }`}
           >
-            Live & Upcoming Fixtures ({tournament.matches.length})
+            {t('publicLive.tabFixtures')} ({tournament.matches.length})
           </button>
 
           <button
@@ -270,7 +275,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'
             }`}
           >
-            Live Group Standings
+            {t('publicLive.tabStandings')}
           </button>
 
           <button
@@ -282,7 +287,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'
             }`}
           >
-            Knockout Tree
+            {t('publicLive.tabKnockout')}
           </button>
 
           <button
@@ -294,7 +299,7 @@ export const PublicLiveTournamentPage: React.FC<PublicLiveTournamentPageProps> =
                 : 'bg-surface-card text-on-surface-variant hover:text-on-surface hover:bg-state-hover-gray border border-border-grid'
             }`}
           >
-            Golden Boot Leaderboard
+            {t('publicLive.tabScorers')}
           </button>
         </div>
 

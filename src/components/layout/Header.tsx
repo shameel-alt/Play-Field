@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTournament } from '../../context/TournamentContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { LanguageSelector } from '../common/LanguageSelector';
 import {
   PlusCircle, Bell, Trophy, ExternalLink, LogOut, User,
   CheckCheck, Trash2, X, ArrowRightLeft, Radio, AlertOctagon,
@@ -51,6 +53,7 @@ const getNotificationIconBg = (type: NotificationType) => {
 
 export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate }) => {
   const { currentUser, logout, isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const {
     notifications,
     unreadNotificationCount,
@@ -142,7 +145,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                 : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            Dashboard
+            {t('nav.dashboard')}
           </a>
           <a
             href="#/tournaments/ongoing"
@@ -153,7 +156,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                 : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            Ongoing Tournaments
+            {t('nav.ongoing')}
           </a>
           <a
             href="#/tournaments/ended"
@@ -164,7 +167,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                 : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            Ended Tournaments
+            {t('nav.ended')}
           </a>
           <a
             href="#/public/tournament/colombo-premier-futsal-2026"
@@ -175,20 +178,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                 : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            <span>Public Live Center</span>
+            <span>{t('nav.publicLive')}</span>
             <ExternalLink className="w-3.5 h-3.5 text-text-muted" />
           </a>
         </nav>
 
         {/* Right CTA & Profile cluster */}
         <div className="flex items-center gap-space-md">
+          {/* Multi-language Selector */}
+          <LanguageSelector variant="light" />
+
           <a
             href="#/tournaments/new/details"
             onClick={(e) => handleNav('/tournaments/new/details', e)}
             className="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-pitch-turf-hover active:bg-pitch-turf-active font-button text-sm font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.08)] transition-all whitespace-nowrap"
           >
             <PlusCircle className="w-4 h-4" />
-            <span>+ Start Tournament</span>
+            <span>{t('nav.startTournament')}</span>
           </a>
 
           {/* Notifications Center */}
@@ -413,7 +419,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                       className="flex items-center gap-2 px-4 py-2 text-sm text-on-surface hover:bg-state-hover-gray"
                     >
                       <User className="w-4 h-4 text-text-muted" />
-                      <span>Organizer Desk</span>
+                      <span>{t('nav.organizerDesk')}</span>
                     </a>
 
                     <button
@@ -422,7 +428,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                       className="w-full flex items-center gap-2 px-4 py-2 text-sm text-card-red-danger hover:bg-card-red-surface"
                     >
                       <LogOut className="w-4 h-4" />
-                      <span>Sign Out</span>
+                      <span>{t('nav.signOut')}</span>
                     </button>
                   </div>
                 )}
@@ -434,7 +440,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath = '/', onNavigate })
                   onClick={(e) => handleNav('/login', e)}
                   className="font-subheading text-sm text-floodlight-navy hover:text-primary font-semibold"
                 >
-                  Sign In
+                  {t('nav.signIn')}
                 </a>
               </div>
             )}

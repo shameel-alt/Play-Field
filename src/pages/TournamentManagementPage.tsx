@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTournament } from '../context/TournamentContext';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { ScoreStepper } from '../components/common/ScoreStepper';
 import { StandingsTable } from '../components/tournament/StandingsTable';
 import { KnockoutBracket } from '../components/tournament/KnockoutBracket';
@@ -49,6 +50,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
     markDisqualified
   } = useTournament();
   const { currentUser, isAuthenticated } = useAuth();
+  const { t } = useLanguage();
 
   const tournament = getTournamentByIdOrSlug(tournamentId);
 
@@ -469,7 +471,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                           : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
-                      1st Half
+                      {t('ongoing.set1stHalf')}
                     </button>
                     <button
                       type="button"
@@ -483,7 +485,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                           : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
-                      Half Time
+                      {t('ongoing.setHalfTime')}
                     </button>
                     <button
                       type="button"
@@ -497,7 +499,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                           : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
-                      2nd Half
+                      {t('ongoing.set2ndHalf')}
                     </button>
                     <button
                       type="button"
@@ -511,7 +513,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                           : 'bg-surface-card text-floodlight-navy hover:bg-state-hover-gray border border-border-grid'
                       }`}
                     >
-                      Extra Time
+                      {t('ongoing.setExtraTime')}
                     </button>
 
                     {/* End Match / Accidental Reinstate Action */}
@@ -522,7 +524,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                         className="px-3 py-1 rounded-lg bg-card-red-surface hover:bg-card-red-danger text-card-red-danger hover:text-surface-card border border-card-red-border font-button text-xs font-bold transition-all shadow-xs ml-1 flex items-center gap-1"
                       >
                         <CheckCircle className="w-3.5 h-3.5" />
-                        <span>End Match (FT)</span>
+                        <span>{t('ongoing.endMatchFT')}</span>
                       </button>
                     ) : activeMatch.status === 'COMPLETED' ? (
                       (() => {
@@ -533,14 +535,14 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                           return (
                             <div className="flex items-center gap-1.5 ml-2 p-1 px-2.5 rounded-lg bg-amber-50 border border-amber-300 shadow-2xs">
                               <AlertTriangle className="w-3.5 h-3.5 text-status-warning-amber shrink-0 animate-pulse" />
-                              <span className="font-body text-xs text-amber-900 font-medium">Ended by accident?</span>
+                              <span className="font-body text-xs text-amber-900 font-medium">{t('ongoing.reinstatePrompt')}</span>
                               <button
                                 type="button"
                                 onClick={() => handleAccidentalReinstate(activeMatch.id, activeMatch.matchNumber)}
                                 className="px-2 py-0.5 rounded bg-amber-200 hover:bg-amber-300 text-amber-950 font-button text-xs font-bold transition-all underline"
                                 title="Restore match to live play"
                               >
-                                Reinstate Match ({secondsLeft}s)
+                                Reinstate ({secondsLeft}s)
                               </button>
                               <button
                                 type="button"
@@ -548,7 +550,7 @@ export const TournamentManagementPage: React.FC<TournamentManagementPageProps> =
                                 className="text-text-muted hover:text-on-surface font-button text-[11px] ml-1"
                                 title="Lock as permanently completed"
                               >
-                                (Lock Final)
+                                ({t('ongoing.lockFinal')})
                               </button>
                             </div>
                           );

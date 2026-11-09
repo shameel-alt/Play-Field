@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Component, ErrorInfo, ReactNode } from 'react';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { TournamentProvider } from './context/TournamentContext';
 import { Header } from './components/layout/Header';
@@ -205,11 +206,13 @@ function AppContent() {
 export function App() {
   return (
     <ErrorBoundary>
-      <AuthProvider>
-        <TournamentProvider>
-          <AppContent />
-        </TournamentProvider>
-      </AuthProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <TournamentProvider>
+            <AppContent />
+          </TournamentProvider>
+        </AuthProvider>
+      </LanguageProvider>
     </ErrorBoundary>
   );
 }

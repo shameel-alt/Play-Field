@@ -1,7 +1,11 @@
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { LanguageSelector } from '../common/LanguageSelector';
 
 export const Footer: React.FC<{ onNavigate?: (path: string) => void }> = ({ onNavigate }) => {
+  const { t } = useLanguage();
+
   const handleNav = (path: string, e: React.MouseEvent) => {
     e.preventDefault();
     if (onNavigate) {
@@ -21,46 +25,48 @@ export const Footer: React.FC<{ onNavigate?: (path: string) => void }> = ({ onNa
             </span>
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-pitch-turf-surface text-status-success-emerald font-mono text-[10px] font-bold">
               <ShieldCheck className="w-3 h-3" />
-              SLFA Certified
+              {t('footer.certified')}
             </span>
           </div>
           <span className="text-text-muted font-body text-body-md hidden sm:inline">•</span>
           <span className="text-text-muted font-body text-body-md">
-            Smart Sports Tournament Scheduling & Live Match Management System
+            {t('footer.tagline')}
           </span>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-space-lg text-text-muted font-body text-table-cell">
+        <div className="flex flex-wrap items-center justify-center gap-space-md sm:gap-space-lg text-text-muted font-body text-table-cell">
+          <LanguageSelector variant="light" />
+
           <a
             href="#/public/tournament/colombo-premier-futsal-2026"
             onClick={(e) => handleNav('/public/tournament/colombo-premier-futsal-2026', e)}
             className="hover:text-primary transition-colors"
           >
-            Public Live Center
+            {t('nav.publicLive')}
           </a>
           <a
             href="#/tournaments/ongoing"
             onClick={(e) => handleNav('/tournaments/ongoing', e)}
             className="hover:text-primary transition-colors"
           >
-            Ongoing Tournaments
+            {t('nav.ongoing')}
           </a>
           <a
             href="#/tournaments/ended"
             onClick={(e) => handleNav('/tournaments/ended', e)}
             className="hover:text-primary transition-colors"
           >
-            Historical Archives
+            {t('nav.ended')}
           </a>
           <a
             href="#/dashboard"
             onClick={(e) => handleNav('/dashboard', e)}
             className="hover:text-primary transition-colors"
           >
-            Organizer Control Desk
+            {t('nav.dashboard')}
           </a>
           <span className="font-mono text-xs text-text-placeholder">
-            © 2026 Play Field Operations. All Rights Reserved.
+            {t('footer.rights')}
           </span>
         </div>
       </div>

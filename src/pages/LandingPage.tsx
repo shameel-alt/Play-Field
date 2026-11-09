@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
+import { LanguageSelector } from '../components/common/LanguageSelector';
 import { ArrowRight, Trophy, ShieldCheck, Zap, Calendar, MapPin, Users, Share2 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -8,6 +10,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
 
   const handleStartTournament = () => {
     if (isAuthenticated) {
@@ -24,20 +27,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           <div className="flex items-center gap-space-md">
             <span className="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-card-red-surface text-card-red-danger font-mono text-[11px] font-bold uppercase">
               <span className="w-2 h-2 rounded-full bg-card-red-danger animate-ping"></span>
-              Live Matchday Ops
+              {t('landing.liveOpsBadge')}
             </span>
             <span className="font-eyebrow text-xs uppercase text-text-muted hidden sm:inline">
-              Colombo Premier Futsal Cup • Matchday 1 Active
+              {t('landing.activeMatchday')}
             </span>
           </div>
 
-          <div className="flex items-center gap-space-lg text-sm font-subheading">
+          <div className="flex items-center gap-space-md text-sm font-subheading">
+            <LanguageSelector variant="light" />
             <a
               href="#/public/tournament/colombo-premier-futsal-2026"
               onClick={(e) => { e.preventDefault(); onNavigate('/public/tournament/colombo-premier-futsal-2026'); }}
               className="text-info-reassign-blue font-semibold hover:underline flex items-center gap-1"
             >
-              <span>Official Public Broadcast Link</span>
+              <span>{t('landing.publicLink')}</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -52,16 +56,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-7 flex flex-col gap-space-lg">
               <div className="inline-flex items-center gap-2 self-start px-space-md py-1 rounded-full bg-pitch-turf-surface text-primary font-mono text-xs font-bold uppercase tracking-wider border border-primary-container/20">
                 <ShieldCheck className="w-4 h-4 text-primary" />
-                <span>Tactical Tournament Management & Multi-Court Booking</span>
+                <span>{t('landing.heroSubtitle')}</span>
               </div>
 
               <h1 className="font-headline text-3xl sm:text-4xl lg:text-[48px] lg:leading-[54px] text-floodlight-navy font-extrabold tracking-tight">
-                Book the Turf. Run the Bracket.<br />
-                <span className="text-primary-container">Broadcast Every Goal Live.</span>
+                {t('landing.heroTitle')}
               </h1>
 
               <p className="font-body text-body-lg text-on-surface-variant max-w-[620px] leading-relaxed">
-                The authoritative tournament operating system engineered for multi-pitch arenas. Zero court scheduling clashes, automated FIFA-spec tiebreakers, and instant public broadcast desks that update spectators without a single refresh.
+                {t('landing.heroDesc')}
               </p>
 
               {/* CTAs */}
@@ -71,7 +74,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   onClick={handleStartTournament}
                   className="btn-primary py-3.5 px-6 text-base shadow-md group"
                 >
-                  <span>Start a Tournament</span>
+                  <span>{t('landing.startTournamentBtn')}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
 
@@ -81,7 +84,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   className="btn-secondary py-3.5 px-6 text-base"
                 >
                   <span className="w-2.5 h-2.5 rounded-full bg-card-red-danger"></span>
-                  <span>View Live Match Center</span>
+                  <span>{t('landing.viewLiveBtn')}</span>
                 </button>
               </div>
 
@@ -92,18 +95,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-headline font-bold text-base text-floodlight-navy">45+ Premier Venues</div>
-                    <div className="font-body text-xs text-text-muted">Live across Colombo & Western Province</div>
+                    <div className="font-headline font-bold text-base text-floodlight-navy">{t('landing.venuesCount')}</div>
+                    <div className="font-body text-xs text-text-muted">{t('landing.venuesSubtitle')}</div>
                   </div>
                 </div>
 
                 <div className="p-space-md rounded-xl bg-surface-card border border-border-grid shadow-xs flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-surface-container-high text-floodlight-navy flex items-center justify-center font-bold">
-                    <Zap className="w-5 h-5 text-status-warning-amber" />
+                  <div className="w-10 h-10 rounded-lg bg-pitch-turf-surface text-primary-container flex items-center justify-center font-bold">
+                    <Zap className="w-5 h-5 text-status-success-emerald" />
                   </div>
                   <div>
-                    <div className="font-headline font-bold text-base text-primary-container">0 Court Clashes</div>
-                    <div className="font-body text-xs text-text-muted">Multi-court two-tier mutex locking</div>
+                    <div className="font-headline font-bold text-base text-floodlight-navy">{t('landing.courtClashesCount')}</div>
+                    <div className="font-body text-xs text-text-muted">{t('landing.courtClashesSubtitle')}</div>
                   </div>
                 </div>
               </div>
@@ -200,10 +203,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       <section className="max-w-[1440px] mx-auto px-margin md:px-margin-md lg:px-margin-lg py-space-xl w-full">
         <div className="text-center max-w-2xl mx-auto mb-space-xl">
           <span className="font-eyebrow text-xs uppercase text-primary tracking-widest font-bold">
-            The Pitchside Engine
+            {t('landing.pitchsideEngineTitle')}
           </span>
           <h2 className="font-headline text-3xl font-extrabold text-floodlight-navy mt-1">
-            Engineered for Multi-Pitch Sports Complexes
+            {t('landing.engineeredSubtitle')}
           </h2>
         </div>
 
@@ -213,10 +216,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <Calendar className="w-6 h-6" />
             </div>
             <h3 className="font-headline text-lg font-bold text-floodlight-navy">
-              Integrated Venue & Court Booking
+              {t('landing.feature1Title')}
             </h3>
             <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-              Reserve Court 1 through Court 5 seamlessly with hourly or day packages. Check real-time availability and lock schedule blocks instantly with advance deposits.
+              {t('landing.feature1Desc')}
             </p>
           </div>
 
@@ -225,10 +228,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <ShieldCheck className="w-6 h-6 text-primary" />
             </div>
             <h3 className="font-headline text-lg font-bold text-floodlight-navy">
-              Two-Tier Court Conflict Mutex
+              {t('landing.feature2Title')}
             </h3>
             <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-              Never double-book a pitch again. Intra-tournament overlap detection and venue-wide lock guards prevent timetable collisions and suggest free alternate courts.
+              {t('landing.feature2Desc')}
             </p>
           </div>
 
@@ -237,10 +240,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <Trophy className="w-6 h-6" />
             </div>
             <h3 className="font-headline text-lg font-bold text-floodlight-navy">
-              Live Scoring & Instant Public Links
+              {t('landing.feature3Title')}
             </h3>
             <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-              Log goals, assists, and disciplinary walkovers directly from the sideline. Standings recalculate automatically and synchronize to public view links with zero delay.
+              {t('landing.feature3Desc')}
             </p>
           </div>
         </div>

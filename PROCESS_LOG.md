@@ -2,9 +2,9 @@
 
 ## 1. Overview & Objective
 - **Goal**: Build a complete, responsive, production-grade web application for the **Smart Sports Tournament Scheduling & Live Match Management System** ("Play Field") using React (Tailwind CSS, Lucide icons), Supabase PostgreSQL (via MCP), GitHub integration, and modular component architecture based on the Stitch UI designs.
-- **Status**: Completed (Phase 15: Auth Visibility, Searchable Selectors, Ledger Realignment & Match Period Contrast Fixes)
+- **Status**: Completed (Phase 16: Multi-Language Trilingual Localization — English, Sinhala & Tamil)
 - **Started**: 2026-10-28 16:48:00
-- **Last Updated**: 2026-11-09 14:40:00
+- **Last Updated**: 2026-11-09 17:00:00
 
 ## 2. Process & Execution Log
 
@@ -309,28 +309,71 @@
   - `[MODIFIED]` `src/pages/LandingPage.tsx` - Auth-guarded "Start a Tournament" routing.
   - `[MODIFIED]` `PROCESS_LOG.md` - Phase 15 documentation.
 
+### Phase 16: Multi-Language Trilingual Localization (Sinhala & Tamil) - [Completed]
+- **Current Action / Process**: Implemented a comprehensive, native Sri Lankan trilingual localization (i18n) engine supporting English (`en`), Sinhala (`si` / සිංහල), and Tamil (`ta` / தமிழ்) with persistent storage and typography support.
+- **Actions Taken**:
+  1. **Typography & Script Integration**:
+     - Embedded `Noto Sans Sinhala` (weights 400, 600, 700) and `Noto Sans Tamil` (weights 400, 600, 700) via Google Fonts in `index.html` for clean, crisp native rendering.
+  2. **Translation Dictionaries (`src/i18n/translations.ts`)**:
+     - Authored complete translation dictionaries for `en`, `si`, and `ta` covering navigation, landing page hero and features, wizard step 1 details and provisional schedule ledger, sports and architecture types, match periods and action buttons, accidental reinstate modal dialogs, public live spectator desk, auth forms (sign in/sign up), and footers.
+  3. **Reactive Language Context & Persistence (`src/context/LanguageContext.tsx`)**:
+     - Built `LanguageProvider` and `useLanguage` hook with recursive dot-path key resolution (`t('wizard.step1Title')`), graceful fallback to English, dynamic `document.documentElement.lang` attribute sync, and `localStorage` persistence (`playfield_language`).
+  4. **Accessible Language Selector (`src/components/common/LanguageSelector.tsx`)**:
+     - Designed and implemented a responsive dropdown selector with globe icon, national flag indicators (🇬🇧 English, 🇱🇰 සිංහල, 🇱🇰 தமிழ்), active checkmarks, and outside-click dismissal. Supports `light`, `dark`, and `header` visual variants.
+  5. **Component & Page Localization**:
+     - `Header.tsx`: Integrated `LanguageSelector` and localized navigation links, "+ Start Tournament", and profile dropdown actions.
+     - `Footer.tsx`: Integrated `LanguageSelector` and localized tagline, certified badge, links, and copyright text across all pages.
+     - `PublicLiveTournamentPage.tsx`: Integrated `LanguageSelector` in the public masthead and localized spectator tabs, live sync badge, share button, and court notices.
+     - `LandingPage.tsx`: Localized hero headers, badge, description, CTAs, proof metrics, and feature matrix cards.
+     - `Step1DetailsPage.tsx`: Localized step titles, sport combobox, architecture styles, venue allocation, pricing model, courts selection, dates, hours, and the Provisional Schedule Ledger.
+     - `OngoingTournamentsPage.tsx`: Localized periods desk, table headers (`#`, `Round / Court`, `Teams`, `Score`, `Period`, `Actions`), period buttons (`1st H`, `HT`, `2nd H`, `ET`, `End Match (FT)`), accidental reinstate prompts, and active tournament cards.
+     - `TournamentManagementPage.tsx`: Localized live console period buttons and end match/reinstate prompts.
+     - `LoginPage.tsx` & `SignUpPage.tsx`: Embedded prominent `LanguageSelector` in auth cards; localized form headings, labels, buttons, and mode-switch links.
+  6. **Automated Verification**:
+     - `npm run build` compiled with 0 errors (`tsc && vite build`).
+     - Tested live switching between English, Sinhala (සිංහල), and Tamil (தமிழ்) across Landing, Step 1, Ongoing Tournaments, Public Live Center, and Login pages via Chrome DevTools MCP. Verified dynamic DOM updates and `localStorage` persistence.
+- **Changes Made**:
+  - `[NEW]` `src/i18n/translations.ts` - Comprehensive trilingual translation schema & dictionaries (en, si, ta).
+  - `[NEW]` `src/context/LanguageContext.tsx` - Language context provider, dot-path resolver & localStorage persistence.
+  - `[NEW]` `src/components/common/LanguageSelector.tsx` - Trilingual language selector dropdown with flags & multiple visual themes.
+  - `[MODIFIED]` `index.html` - Embedded Noto Sans Sinhala & Noto Sans Tamil fonts.
+  - `[MODIFIED]` `src/App.tsx` - Wrapped app root with `LanguageProvider`.
+  - `[MODIFIED]` `src/components/layout/Header.tsx` - Added LanguageSelector and localized nav links.
+  - `[MODIFIED]` `src/components/layout/Footer.tsx` - Added LanguageSelector and localized footer copy.
+  - `[MODIFIED]` `src/pages/LandingPage.tsx` - Localized landing page hero, CTAs, metrics, features.
+  - `[MODIFIED]` `src/pages/PublicLiveTournamentPage.tsx` - Added masthead LanguageSelector and localized spectator tabs.
+  - `[MODIFIED]` `src/pages/wizard/Step1DetailsPage.tsx` - Localized step 1 form, selectors & provisional schedule ledger.
+  - `[MODIFIED]` `src/pages/OngoingTournamentsPage.tsx` - Localized match periods desk, table headers, buttons & cards.
+  - `[MODIFIED]` `src/pages/TournamentManagementPage.tsx` - Localized period controller buttons & reinstate actions.
+  - `[MODIFIED]` `src/pages/LoginPage.tsx` - Added in-card LanguageSelector, localized sign-in form.
+  - `[MODIFIED]` `src/pages/SignUpPage.tsx` - Added in-card LanguageSelector, localized sign-up form.
+  - `[MODIFIED]` `PROCESS_LOG.md` - Phase 16 tracking documentation.
+
 ## 3. Summary of Changes
 | File | Action | Description |
 | :--- | :--- | :--- |
-| `src/App.tsx` | Modified | Added `AppContent` layout, route protection for auth, header/footer public isolation |
-| `src/components/layout/Header.tsx` | Modified | Hidden when `!isAuthenticated` or route starts with `/public` |
-| `src/context/AuthContext.tsx` | Modified | Set `currentUser` to `null` by default when logged out; support Shameel demo credentials |
-| `src/data/venuesSeed.ts` | Modified | Expanded to 12 realistic venues (3 per sport) across futsal, 7s, cricket, badminton |
-| `src/pages/wizard/Step1DetailsPage.tsx` | Modified | Searchable sport & venue comboboxes, dynamic pricing toggle, ledger without "5v5" |
-| `tailwind.config.js` | Modified | Added `"live-orange": "#ea580c"` color token |
-| `src/styles/design-tokens.css` | Modified | Added `--color-live-orange: #ea580c;` CSS variable |
-| `src/pages/OngoingTournamentsPage.tsx` | Modified | Added `bg-live-orange text-white font-bold` to active half buttons, auth guard |
-| `src/pages/TournamentManagementPage.tsx` | Modified | Added `bg-live-orange text-white font-bold` to active half buttons, cleaned type guard |
-| `src/pages/LandingPage.tsx` | Modified | "Start a Tournament" redirects to `/login` if unauthenticated |
+| `src/i18n/translations.ts` | Created | Comprehensive trilingual translation dictionary for English, Sinhala, and Tamil |
+| `src/context/LanguageContext.tsx` | Created | Language context with dot-path key translation, fallback, and localStorage persistence |
+| `src/components/common/LanguageSelector.tsx` | Created | Trilingual selector dropdown with flags (🇬🇧, 🇱🇰) and themes (`light`, `dark`, `header`) |
+| `index.html` | Modified | Added Google Fonts for Noto Sans Sinhala and Noto Sans Tamil |
+| `src/App.tsx` | Modified | Wrapped app root with `LanguageProvider` |
+| `src/components/layout/Header.tsx` | Modified | Added `LanguageSelector` and localized navigation items |
+| `src/components/layout/Footer.tsx` | Modified | Added `LanguageSelector` and localized footer content |
+| `src/pages/LandingPage.tsx` | Modified | Localized hero, CTAs, metrics, and feature matrix cards |
+| `src/pages/PublicLiveTournamentPage.tsx` | Modified | Added `LanguageSelector` to masthead; localized spectator tabs and alerts |
+| `src/pages/wizard/Step1DetailsPage.tsx` | Modified | Localized sport/venue selectors, pricing toggle, and provisional schedule ledger |
+| `src/pages/OngoingTournamentsPage.tsx` | Modified | Localized match periods desk, fixture table, period buttons, and tournament cards |
+| `src/pages/TournamentManagementPage.tsx` | Modified | Localized live console period action buttons and modal prompts |
+| `src/pages/LoginPage.tsx` | Modified | Added in-card `LanguageSelector` and localized sign-in fields and buttons |
+| `src/pages/SignUpPage.tsx` | Modified | Added in-card `LanguageSelector` and localized sign-up fields and buttons |
 | `PROCESS_LOG.md` | Updated | Living process and progress tracking log |
 
 ## 4. Final Conclusion & Outcome
-- **Outcome**: Successfully resolved all 6 user requirements for the Play Field web application:
-  1. Top bar (`Header`) is completely hidden when logged out, and clicking "Start a Tournament" routes unauthenticated users directly to `/login`.
-  2. Each sport (`futsal`, `football7`, `cricket`, `badminton`) now has 3 distinct venues with realistic, varying hourly and day package rates.
-  3. Both sport and venue selectors have been upgraded to intuitive, searchable combobox dropdowns with instant real-time filtering and automatic cross-compatibility switching.
-  4. 1st Half and 2nd Half buttons now render with high-contrast `live-orange` background (`rgb(234, 88, 12)`) and crisp white bold text when active, verified via Chrome DevTools computed styles.
-  5. Public live tournament link (`/public/tournament/:id`) is strictly view-only for spectators with zero navigation header, zero organizer controls, and zero sign-in buttons.
-  6. Provisional schedule ledger on Step 1 now dynamically mirrors the user's selected sport, architecture, venue, courts, duration, and pricing package, with "5v5" cleanly removed.
-- **Verification**: Production build compiles cleanly with zero TypeScript errors (`tsc && vite build` passed); verified in real-time on Chromium via Chrome DevTools MCP.
-- **Conclusion**: All features and fixes have been thoroughly implemented, verified, and documented.
+- **Outcome**: Successfully delivered complete, high-fidelity trilingual localization (English, Sinhala, Tamil) for the Play Field web application:
+  1. Full trilingual support covering English (`en`), Sinhala (`si` / සිංහල), and Tamil (`ta` / தமிழ்) across all primary organizer, spectator, and public interfaces.
+  2. Integrated native Google Fonts (`Noto Sans Sinhala` and `Noto Sans Tamil`) for clean, typographically accurate rendering of Sinhala and Tamil glyphs.
+  3. Interactive, accessible `LanguageSelector` dropdown with national flag indicators (🇬🇧, 🇱🇰), native language labels, and automatic outside-click dismissal.
+  4. Language state is persistently saved in browser `localStorage` (`playfield_language`) and automatically updates `document.documentElement.lang`.
+  5. Localized all key operational surfaces: Header, Footer, Landing Page, Step 1 Tournament Details & Provisional Schedule Ledger, Ongoing Tournaments Desk, Live Management Console, Public Live Spectator Center, and Sign In / Sign Up authentication cards.
+- **Verification**: Production build passes with 0 compiler errors (`tsc && vite build`); trilingual switching dynamically verified on Chromium via Chrome DevTools MCP.
+- **Conclusion**: Multi-language localization (Sinhala and Tamil) is fully implemented, verified, and operational.

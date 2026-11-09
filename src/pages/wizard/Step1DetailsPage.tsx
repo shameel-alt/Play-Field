@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTournament } from '../../context/TournamentContext';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { SportType, TournamentStyle, WizardDraftData } from '../../types/tournament';
 import {
   ShieldCheck,
@@ -80,10 +81,54 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
 }) => {
   const { venues } = useTournament();
   const { currentUser } = useAuth();
+  const { t } = useLanguage();
 
   const [title, setTitle] = useState(draftData?.title || 'Colombo Corporate Futsal Super Cup 2026');
   const [sport, setSport] = useState<SportType>(draftData?.sport || 'futsal');
   const [tournamentStyle, setTournamentStyle] = useState<TournamentStyle>(draftData?.tournamentStyle || 'GROUP_KNOCKOUT');
+
+  const getStyleLabel = (style: TournamentStyle) => {
+    switch (style) {
+      case 'GROUP_KNOCKOUT':
+        return t('wizard.styleGroupKnockout');
+      case 'ROUND_ROBIN':
+        return t('wizard.styleRoundRobin');
+      case 'SINGLE_ELIMINATION':
+        return t('wizard.styleSingleElimination');
+      default:
+        return STYLE_LABELS[style];
+    }
+  };
+
+  const getSportLabel = (sId: SportType) => {
+    switch (sId) {
+      case 'futsal':
+        return t('sports.futsal');
+      case 'football7':
+        return t('sports.football7');
+      case 'cricket':
+        return t('sports.cricket');
+      case 'badminton':
+        return t('sports.badminton');
+      default:
+        return sId;
+    }
+  };
+
+  const getSportDesc = (sId: SportType) => {
+    switch (sId) {
+      case 'futsal':
+        return t('sports.futsalDesc');
+      case 'football7':
+        return t('sports.football7Desc');
+      case 'cricket':
+        return t('sports.cricketDesc');
+      case 'badminton':
+        return t('sports.badmintonDesc');
+      default:
+        return '';
+    }
+  };
 
   // Filter venues supporting the selected sport
   const sportVenues = venues.filter(v => v.supportedSports.includes(sport));
@@ -308,15 +353,15 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               Operations Engine v4.2 Active
             </div>
             <h1 className="font-headline font-extrabold text-2xl md:text-3xl text-floodlight-navy tracking-tight">
-              Step 1: Event Specification & Venue Allocation
+              {t('wizard.step1Title')}
             </h1>
             <p className="font-body text-sm text-text-muted mt-1 max-w-2xl">
-              Reserve tournament courts, choose competition style, and configure match day parameters with venue collision checks.
+              {t('wizard.step1Desc')}
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs font-mono text-text-muted bg-canvas-alabaster px-space-md py-2 rounded-xl border border-border-grid">
             <ShieldCheck className="w-4 h-4 text-primary" />
-            <span>Venue Collision Shield Active</span>
+            <span>{t('wizard.collisionShield')}</span>
           </div>
         </div>
       </section>
@@ -329,7 +374,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
             {/* Block 0: Tournament Title */}
             <div className="bg-surface-card rounded-2xl border border-border-grid p-space-lg shadow-sm flex flex-col gap-space-xs">
               <label htmlFor="tournament-title" className="font-eyebrow text-xs uppercase text-primary font-bold">
-                Tournament Title / Public Name
+                {t('wizard.tournamentTitleLabel')}
               </label>
               <input
                 id="tournament-title"
@@ -347,7 +392,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
             <div className="bg-surface-card rounded-2xl border border-border-grid p-space-lg shadow-sm flex flex-col gap-space-md" ref={sportDropdownRef}>
               <div className="flex items-center justify-between border-b border-border-grid pb-2">
                 <span className="font-eyebrow text-xs uppercase text-primary font-bold">
-                  01 / Sport Selection
+                  {t('wizard.sportSelection')}
                 </span>
                 <span className="font-mono text-xs text-status-success-emerald uppercase font-bold bg-pitch-turf-surface px-2 py-0.5 rounded">
                   {currentSportConfig.rulesPreset}
@@ -357,7 +402,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               {/* Combobox Trigger */}
               <div className="relative">
                 <label className="font-eyebrow text-xs uppercase text-text-muted block mb-1.5 font-bold">
-                  Select Sport (Searchable Dropdown)
+                  {t('wizard.selectSportDropdown')}
                 </label>
                 <button
                   type="button"
@@ -368,13 +413,13 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                     <span className="text-2xl">{currentSportConfig.icon}</span>
                     <div>
                       <div className="font-subheading font-bold text-base text-floodlight-navy flex items-center gap-2">
-                        <span>{currentSportConfig.name}</span>
+                        <span>{getSportLabel(sport)}</span>
                         <span className="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-[10px] uppercase font-bold">
                           Selected
                         </span>
                       </div>
                       <span className="font-body text-xs text-text-muted block mt-0.5">
-                        {currentSportConfig.desc}
+                        {getSportDesc(sport)}
                       </span>
                     </div>
                   </div>
@@ -394,7 +439,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                       <input
                         type="text"
                         autoFocus
-                        placeholder="Search sport (e.g. Futsal, Cricket, Badminton)..."
+                        placeholder={t('wizard.searchSportPlaceholder')}
                         value={sportSearchQuery}
                         onChange={(e) => setSportSearchQuery(e.target.value)}
                         className="w-full h-10 pl-9 pr-3 bg-canvas-alabaster rounded-lg border border-border-control font-body text-sm text-floodlight-navy focus:outline-none focus:ring-2 focus:ring-primary"
@@ -421,10 +466,10 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                                 <span className="text-xl">{s.icon}</span>
                                 <div>
                                   <span className="font-subheading font-bold text-sm text-floodlight-navy block">
-                                    {s.name}
+                                    {getSportLabel(s.id)}
                                   </span>
                                   <span className="font-body text-xs text-text-muted block">
-                                    {s.desc}
+                                    {getSportDesc(s.id)}
                                   </span>
                                 </div>
                               </div>
@@ -447,10 +492,10 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
             <div className="bg-surface-card rounded-2xl border border-border-grid p-space-lg shadow-sm flex flex-col gap-space-md">
               <div className="flex items-center justify-between border-b border-border-grid pb-2">
                 <span className="font-eyebrow text-xs uppercase text-primary font-bold">
-                  02 / Competition Architecture
+                  {t('wizard.competitionArchitecture')}
                 </span>
                 <span className="font-mono text-xs text-text-muted">
-                  Auto-Tiebreakers & Standings
+                  {t('wizard.autoTiebreakers')}
                 </span>
               </div>
 
@@ -458,20 +503,20 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                 {[
                   {
                     id: 'GROUP_KNOCKOUT',
-                    title: 'Group Stage + Knockout',
-                    desc: 'Round-robin groups (A, B) followed by Semi-Finals and Final.',
+                    title: t('wizard.styleGroupKnockout'),
+                    desc: t('wizard.styleGroupKnockoutDesc'),
                     recommended: true
                   },
                   {
                     id: 'ROUND_ROBIN',
-                    title: 'Full League Table',
-                    desc: 'Every squad plays every other squad once. Crowned by points table.',
+                    title: t('wizard.styleRoundRobin'),
+                    desc: t('wizard.styleRoundRobinDesc'),
                     recommended: false
                   },
                   {
                     id: 'SINGLE_ELIMINATION',
-                    title: 'Single Elimination',
-                    desc: 'High-stakes knockout cup. Losers exit directly each round.',
+                    title: t('wizard.styleSingleElimination'),
+                    desc: t('wizard.styleSingleEliminationDesc'),
                     recommended: false
                   }
                 ].map((style) => (
@@ -510,17 +555,17 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
             <div className="bg-surface-card rounded-2xl border border-border-grid p-space-lg shadow-sm flex flex-col gap-space-md" ref={venueDropdownRef}>
               <div className="flex items-center justify-between border-b border-border-grid pb-2">
                 <span className="font-eyebrow text-xs uppercase text-primary font-bold">
-                  03 / Participating Venue & Courts Allocation
+                  {t('wizard.venueAllocation')}
                 </span>
                 <span className="font-mono text-xs text-primary font-bold">
-                  {sportVenues.length} Venues Available for {currentSportConfig.name}
+                  {sportVenues.length} {t('wizard.venuesAvailable')} {getSportLabel(sport)}
                 </span>
               </div>
 
               {/* Combobox Trigger for Venue */}
               <div className="relative">
                 <label className="font-eyebrow text-xs uppercase text-text-muted block mb-1.5 font-bold">
-                  Select Venue (Searchable Dropdown for {currentSportConfig.name})
+                  {t('wizard.selectVenueDropdown')} {getSportLabel(sport)})
                 </label>
                 <button
                   type="button"
@@ -629,10 +674,10 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               <div className="p-space-md rounded-xl bg-canvas-alabaster border border-border-grid flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md mt-1">
                 <div>
                   <span className="font-eyebrow text-xs uppercase text-primary font-bold block">
-                    Venue Pricing Package Model
+                    {t('wizard.pricingModel')}
                   </span>
                   <span className="font-body text-xs text-text-muted">
-                    Choose between fixed full-day access or standard hourly reservation rates.
+                    {t('wizard.pricingModelDesc')}
                   </span>
                 </div>
                 <div className="flex items-center p-1 bg-surface-card rounded-xl border border-border-grid shadow-2xs shrink-0">
@@ -645,7 +690,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                         : 'text-text-muted hover:text-on-surface'
                     }`}
                   >
-                    Day Package (LKR {selectedVenue?.dayPackageRate.toLocaleString()})
+                    {t('wizard.dayPackage')} (LKR {selectedVenue?.dayPackageRate.toLocaleString()})
                   </button>
                   <button
                     type="button"
@@ -656,7 +701,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                         : 'text-text-muted hover:text-on-surface'
                     }`}
                   >
-                    Hourly Rate (LKR {selectedVenue?.hourlyRate.toLocaleString()}/hr)
+                    {t('wizard.hourlyRate')} (LKR {selectedVenue?.hourlyRate.toLocaleString()}/hr)
                   </button>
                 </div>
               </div>
@@ -665,10 +710,10 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               <div className="pt-space-xs flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <label className="font-eyebrow text-xs uppercase text-on-surface-variant font-bold">
-                    Select Specific Courts to Reserve ({selectedCourts.length} Selected)
+                    {t('wizard.selectCourts')} ({selectedCourts.length})
                   </label>
                   <span className="font-mono text-[11px] text-text-muted">
-                    Click court badges to toggle reservation
+                    {t('wizard.toggleCourtsHint')}
                   </span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -695,7 +740,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                 </div>
                 {selectedCourts.length === 0 && (
                   <p className="text-xs text-card-red-danger font-medium mt-1">
-                    ⚠️ At least one court must be selected for the tournament.
+                    ⚠️ {t('wizard.atLeastOneCourtError')}
                   </p>
                 )}
               </div>
@@ -703,7 +748,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               {/* Dates & Hours */}
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-space-md pt-space-xs">
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="tournament-start-date" className="font-eyebrow text-xs uppercase text-text-muted">Start Date</label>
+                  <label htmlFor="tournament-start-date" className="font-eyebrow text-xs uppercase text-text-muted">{t('wizard.startDate')}</label>
                   <input
                     id="tournament-start-date"
                     name="startDate"
@@ -716,7 +761,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="tournament-end-date" className="font-eyebrow text-xs uppercase text-text-muted">End Date</label>
+                  <label htmlFor="tournament-end-date" className="font-eyebrow text-xs uppercase text-text-muted">{t('wizard.endDate')}</label>
                   <input
                     id="tournament-end-date"
                     name="endDate"
@@ -729,7 +774,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="tournament-days-count" className="font-eyebrow text-xs uppercase text-text-muted">Total Days</label>
+                  <label htmlFor="tournament-days-count" className="font-eyebrow text-xs uppercase text-text-muted">{t('wizard.totalDays')}</label>
                   <input
                     id="tournament-days-count"
                     name="daysCount"
@@ -743,7 +788,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="tournament-daily-hours" className="font-eyebrow text-xs uppercase text-text-muted">Daily Schedule</label>
+                  <label htmlFor="tournament-daily-hours" className="font-eyebrow text-xs uppercase text-text-muted">{t('wizard.dailySchedule')}</label>
                   <div className="flex items-center gap-1.5">
                     <input
                       id="tournament-start-time"
@@ -768,13 +813,13 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
             </div>
           </div>
 
-          {/* Right Summary Ledger (4 cols) - Requirement 6 dynamic update without "5v5" */}
+          {/* Right Summary Ledger (4 cols) */}
           <div className="lg:col-span-4 flex flex-col gap-space-lg sticky top-20">
             <div className="bg-surface-card rounded-2xl border border-border-grid p-space-lg shadow-md flex flex-col gap-space-md">
               <div className="pb-2 border-b border-border-grid flex items-center justify-between">
                 <h3 className="font-headline font-bold text-base text-floodlight-navy flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-primary" />
-                  <span>Provisional Schedule Ledger</span>
+                  <span>{t('wizard.ledgerTitle')}</span>
                 </h3>
                 <span className="font-mono text-[10px] uppercase font-bold text-status-success-emerald bg-pitch-turf-surface px-2 py-0.5 rounded">
                   Live Sync
@@ -785,25 +830,25 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               <div className="space-y-2.5 text-xs font-body">
                 {/* Clean sport name with NO "5v5" */}
                 <div className="flex justify-between items-center py-1 border-b border-border-grid/50">
-                  <span className="text-text-muted font-medium">Sport:</span>
+                  <span className="text-text-muted font-medium">{t('wizard.ledgerSport')}</span>
                   <span className="font-bold text-floodlight-navy flex items-center gap-1.5 text-sm">
                     <span>{currentSportConfig.icon}</span>
-                    <span>{currentSportConfig.name}</span>
+                    <span>{getSportLabel(sport)}</span>
                   </span>
                 </div>
 
                 {/* Competition Architecture */}
                 <div className="flex justify-between items-center py-1 border-b border-border-grid/50">
-                  <span className="text-text-muted font-medium">Architecture:</span>
+                  <span className="text-text-muted font-medium">{t('wizard.ledgerArchitecture')}</span>
                   <span className="font-semibold text-floodlight-navy">
-                    {STYLE_LABELS[tournamentStyle]}
+                    {getStyleLabel(tournamentStyle)}
                   </span>
                 </div>
 
                 {/* Allocated Venue */}
                 <div className="flex flex-col py-1 border-b border-border-grid/50 gap-0.5">
                   <div className="flex justify-between items-center">
-                    <span className="text-text-muted font-medium">Allocated Venue:</span>
+                    <span className="text-text-muted font-medium">{t('wizard.ledgerVenue')}</span>
                     <span className="font-bold text-primary truncate max-w-[200px] text-right">
                       {selectedVenue?.name}
                     </span>
@@ -815,7 +860,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
 
                 {/* Selected Courts */}
                 <div className="flex justify-between items-center py-1 border-b border-border-grid/50">
-                  <span className="text-text-muted font-medium">Reserved Courts:</span>
+                  <span className="text-text-muted font-medium">{t('wizard.ledgerCourts')}</span>
                   <span className="font-mono font-bold text-floodlight-navy">
                     {selectedCourts.length > 0 ? (
                       selectedCourts.map(c => `Court ${c}`).join(', ')
@@ -827,15 +872,15 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
 
                 {/* Duration & Package */}
                 <div className="flex justify-between items-center py-1 border-b border-border-grid/50">
-                  <span className="text-text-muted font-medium">Duration & Model:</span>
+                  <span className="text-text-muted font-medium">{t('wizard.ledgerDuration')}</span>
                   <span className="font-mono font-bold text-floodlight-navy">
-                    {daysCount} Day{daysCount > 1 ? 's' : ''} ({pricingType === 'day' ? 'Day Package' : 'Hourly'})
+                    {daysCount} Day{daysCount > 1 ? 's' : ''} ({pricingType === 'day' ? t('wizard.dayPackage') : t('wizard.hourlyRate')})
                   </span>
                 </div>
 
                 {/* Date Window */}
                 <div className="flex justify-between items-center py-1 border-b border-border-grid/50">
-                  <span className="text-text-muted font-medium">Timetable Window:</span>
+                  <span className="text-text-muted font-medium">{t('wizard.ledgerWindow')}</span>
                   <span className="font-mono text-[11px] text-floodlight-navy">
                     {startDate} → {endDate}
                   </span>
@@ -843,7 +888,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
 
                 {/* Daily Hours */}
                 <div className="flex justify-between items-center py-1">
-                  <span className="text-text-muted font-medium">Operating Hours:</span>
+                  <span className="text-text-muted font-medium">{t('wizard.ledgerOperatingHours')}</span>
                   <span className="font-mono text-[11px] text-floodlight-navy">
                     {startTime} to {endTime} ({calculateDailyHours()} hrs/day)
                   </span>
@@ -853,7 +898,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
               {/* Dynamic Financial Calculation Strip */}
               <div className="mt-2 pt-3 border-t border-border-grid flex flex-col gap-2 bg-canvas-alabaster p-space-md rounded-xl">
                 <div className="flex justify-between items-baseline">
-                  <span className="font-eyebrow text-xs uppercase text-text-muted font-bold">Total Venue Quota:</span>
+                  <span className="font-eyebrow text-xs uppercase text-text-muted font-bold">{t('wizard.totalQuota')}</span>
                   <span className="font-mono text-xl font-extrabold text-floodlight-navy">
                     LKR {totalCalculatedCost.toLocaleString()}
                   </span>
@@ -861,17 +906,17 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
 
                 <div className="space-y-1 pt-2 border-t border-border-grid/60 text-xs font-mono">
                   <div className="flex justify-between text-primary font-bold">
-                    <span>30% Advance Deposit:</span>
+                    <span>{t('wizard.advanceDeposit')}</span>
                     <span>LKR {advanceCost.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between text-text-muted text-[11px]">
-                    <span>70% Balance on Match Day:</span>
+                    <span>{t('wizard.balanceMatchDay')}</span>
                     <span>LKR {balanceRemaining.toLocaleString()}</span>
                   </div>
                 </div>
 
                 <span className="font-body text-[11px] text-text-muted mt-1 leading-snug">
-                  Secures court lock for selected dates. Advance deposit payable at Step 4.
+                  {t('wizard.advanceNote')}
                 </span>
               </div>
 
@@ -880,7 +925,7 @@ export const Step1DetailsPage: React.FC<Step1DetailsPageProps> = ({
                 disabled={selectedCourts.length === 0}
                 className="btn-primary w-full py-3 text-sm font-bold shadow-md mt-1 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>Save & Continue to Teams (Step 2)</span>
+                <span>{t('wizard.saveContinueStep2')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
